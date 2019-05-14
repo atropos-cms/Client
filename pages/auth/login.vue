@@ -1,10 +1,10 @@
 <template>
   <v-card class="elevation-12">
-    <v-toolbar dark color="primary">
-      <v-toolbar-title>Login form</v-toolbar-title>
-    </v-toolbar>
-    <v-card-text>
-      <v-form>
+    <v-form @submit.prevent="onSubmit">
+      <v-toolbar dark color="primary">
+        <v-toolbar-title>Login form</v-toolbar-title>
+      </v-toolbar>
+      <v-card-text>
         <v-text-field
           v-model="credentials.username"
           prepend-icon="person"
@@ -20,14 +20,14 @@
           label="Password"
           type="password"
         ></v-text-field>
-      </v-form>
-    </v-card-text>
-    <v-card-actions>
-      <v-spacer></v-spacer>
-      <v-btn color="primary" @click="onSubmit">
-        Login
-      </v-btn>
-    </v-card-actions>
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn color="primary" type="submit">
+          Login
+        </v-btn>
+      </v-card-actions>
+    </v-form>
   </v-card>
 </template>
 
