@@ -1,7 +1,8 @@
 import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin'
-import pkg from './package'
+import NuxtConfiguration from '@nuxt/config'
+import pkg from './package.json'
 
-export default {
+const config: NuxtConfiguration = {
   mode: 'universal',
 
   /*
@@ -43,22 +44,13 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/apollo'
   ],
-  /*
-   ** Axios module configuration
-   */
-  axios: {
-    // See https://github.com/nuxt-community/axios-module#options
-  },
 
   apollo: {
     clientConfigs: {
       default: {
-        // required
         httpEndpoint: 'https://server.test/graphql'
       }
     }
@@ -79,6 +71,8 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {
+      config.module = config.module || {rules:[]}
+
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
@@ -91,3 +85,5 @@ export default {
     }
   }
 }
+
+export default config
