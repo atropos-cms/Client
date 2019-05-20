@@ -71,7 +71,7 @@ const config: NuxtConfiguration = {
      ** You can extend webpack config here
      */
     extend(config, ctx) {
-      config.module = config.module || {rules:[]}
+      config.module = config.module || { rules: [] }
 
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {

@@ -33,7 +33,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import gql from 'graphql-tag'
 
 @Component({
-  layout: 'guest',
+  layout: 'guest'
 })
 
 export default class AuthLogin extends Vue {
