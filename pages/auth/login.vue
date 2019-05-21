@@ -1,7 +1,7 @@
 <template>
   <v-flex xs12 sm8 md8>
     <v-card :elevation="12">
-      <v-layout row  align-center>
+      <v-layout row align-center>
         <v-flex xs12 lg6 class="pa-4">
           <v-form @submit.prevent="onSubmit">
             <v-card-text>
@@ -53,7 +53,7 @@ export default class AuthLogin extends Vue {
   credentials = {
     username: null,
     password: null
-  };
+  }
 
   async onSubmit() {
     const credentials = this.credentials
