@@ -29,7 +29,7 @@
             </v-card-actions>
           </v-form>
         </v-flex>
-        <v-flex xs6 class="hidden-md-and-down grey lighten-3">
+        <v-flex xs6 class="hidden-md-and-down blue-grey lighten-5">
           <v-img
             :src="require('~/static/svgs/undraw_authentication_fsn5.svg')"
             aspect-ratio="1"
@@ -44,7 +44,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import gql from 'graphql-tag'
+import LOGIN_MUTATION from '~/graphql/mutations/login.graphql'
 
 @Component({
   layout: 'guest'
@@ -60,39 +60,12 @@ export default class AuthLogin extends Vue {
     try {
       const res = await this.$apollo
         .mutate({
-          mutation: gql`
-            mutation($data: LoginInput!) {
-              login(data: $data) {
-                access_token
-                refresh_token
-                expires_in
-                token_type
-              }
-            }
-          `,
+          mutation: LOGIN_MUTATION,
           variables: { data: credentials }
         })
         .then(({ data }) => data && data.login)
       await this.$apolloHelpers.onLogin(res.access_token)
     } catch (e) {}
-
-    this.me()
-  }
-
-  async me() {
-    await this.$apollo.query({
-      query: gql`
-        query {
-          me {
-            id
-            name
-            email
-            created_at
-            updated_at
-          }
-        }
-      `
-    })
   }
 }
 </script>

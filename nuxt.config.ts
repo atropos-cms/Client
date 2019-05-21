@@ -38,7 +38,10 @@ const config: NuxtConfiguration = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/vuetify'],
+  plugins: [
+    '@/plugins/vuetify',
+    '@/plugins/vuelidate'
+  ],
 
   /*
    ** Nuxt.js modules
@@ -50,9 +53,7 @@ const config: NuxtConfiguration = {
 
   apollo: {
     clientConfigs: {
-      default: {
-        httpEndpoint: 'https://server.test/graphql'
-      }
+      default: '~/modules/apollo.ts'
     }
   },
 

@@ -18,15 +18,18 @@
     "@nuxtjs/apollo": "^4.0.0-rc4.2",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^2.6.0",
+    "@types/vuelidate": "^0.7.5",
     "cross-env": "^5.2.0",
     "graphql-tag": "^2.10.1",
     "nuxt": "^2.7.1",
     "ts-node": "^8.1.0",
     "vue-property-decorator": "^8.1.1",
+    "vuelidate": "^0.7.4",
     "vuetify": "^1.5.5",
     "vuetify-loader": "^1.2.1"
   },
   "devDependencies": {
+    "@graphql-codegen/typescript-graphql-files-modules": "^1.2.0",
     "@nuxt/typescript": "latest",
     "@nuxtjs/eslint-config": "^0.0.1",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
