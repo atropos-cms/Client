@@ -15,15 +15,16 @@
               <v-text-field
                 id="password"
                 v-model="credentials.password"
+                :append-icon="showPassword ? 'visibility' : 'visibility_off'"
+                :type="showPassword ? 'text' : 'password'"
                 prepend-icon="lock"
                 name="password"
                 label="Password"
-                type="password"
+                @click:append="showPassword = !showPassword"
               />
             </v-card-text>
             <v-card-actions>
-              <v-spacer />
-              <v-btn color="primary" type="submit">
+              <v-btn color="primary" type="submit" block large>
                 Login
               </v-btn>
             </v-card-actions>
@@ -54,6 +55,7 @@ export default class AuthLogin extends Vue {
     username: null,
     password: null
   }
+  showPassword = false
 
   async onSubmit() {
     const credentials = this.credentials
