@@ -20,23 +20,27 @@
       class="hidden-sm-and-down"
     />
     <v-spacer />
+
     <v-btn icon>
       <v-icon>apps</v-icon>
     </v-btn>
+
     <v-btn icon>
       <v-icon>notifications</v-icon>
     </v-btn>
-    <v-btn icon large>
-      <v-avatar size="32px" tile>
-        <img
-          src="https://vuetifyjs.com/static/doc-images/logo.svg"
-          alt="Vuetify"
-        >
-      </v-avatar>
-    </v-btn>
+
+    <account />
   </v-app-bar>
 </template>
 
-<script>
-export default {}
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import Account from './header/account.vue'
+
+@Component({
+  components: {
+    Account
+  }
+})
+export default class LayoutDefaultHeader extends Vue {}
 </script>

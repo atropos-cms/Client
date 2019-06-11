@@ -12,19 +12,19 @@
         <nuxt />
       </v-container>
     </v-content>
-
   </v-app>
 </template>
 
-<script>
-import Vue from 'vue'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
 import LayoutHeader from './default/layout-header.vue'
 import LayoutSidebar from './default/layout-sidebar.vue'
 
-export default Vue.extend({
+@Component({
   components: {
     LayoutHeader,
     LayoutSidebar
   }
 })
+export default class LayoutDefault extends Vue {}
 </script>

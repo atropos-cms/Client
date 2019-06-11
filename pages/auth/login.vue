@@ -7,6 +7,7 @@
             <v-card-text>
               <v-text-field
                 v-model="credentials.username"
+                autofocus
                 prepend-icon="person"
                 name="login"
                 label="Login"
@@ -24,7 +25,13 @@
               />
             </v-card-text>
             <v-card-actions>
-              <v-btn color="primary" type="submit" block large>
+              <v-btn
+                :loading="loading"
+                color="primary"
+                type="submit"
+                block
+                large
+              >
                 Login
               </v-btn>
             </v-card-actions>
@@ -45,29 +52,39 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import LOGIN_MUTATION from '~/graphql/mutations/login.graphql'
+import LOGIN_MUTATION from '~/graphql/mutations/login.gql'
 
 @Component({
-  layout: 'guest'
+  layout: 'guest',
+
+  middleware: 'guest'
 })
 export default class AuthLogin extends Vue {
-  credentials = {
+  credentials : { username: string | null; password: string | null; } = {
     username: null,
     password: null
   }
-  showPassword = false
+  showPassword: boolean = false
+  loading: boolean = false
 
   async onSubmit() {
     const credentials = this.credentials
+
     try {
+      this.loading = true
       const res = await this.$apollo
         .mutate({
           mutation: LOGIN_MUTATION,
           variables: { data: credentials }
         })
         .then(({ data }) => data && data.login)
+
       await this.$apolloHelpers.onLogin(res.access_token)
-    } catch (e) {}
+      this.$router.push('/')
+    } catch (e) {
+    } finally {
+      this.loading = false
+    }
   }
 }
 </script>

@@ -43,17 +43,26 @@ const config: NuxtConfiguration = {
   ],
 
   /*
+   ** Router
+   */
+  router: {
+    middleware: 'authenticated'
+  },
+
+  /*
    ** Nuxt.js modules
    */
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/apollo'
   ],
-
   devModules: [
     '@nuxtjs/vuetify'
   ],
 
+  /*
+  ** Apollo Configuraiont
+  */
   apollo: {
     clientConfigs: {
       default: '~/modules/apollo.ts'

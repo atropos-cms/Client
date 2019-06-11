@@ -141,7 +141,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-
   </v-layout>
 </template>
 
