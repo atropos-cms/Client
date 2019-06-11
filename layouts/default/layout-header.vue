@@ -1,28 +1,40 @@
 <template>
-  <v-navigation-drawer
-    v-model="drawer"
-    :mini-variant="miniVariant"
-    :clipped="clipped"
-    fixed
+  <v-app-bar
+    color="blue darken-3"
+    dark
     app
+    :clipped-left="$vuetify.breakpoint.mdAndUp"
+    fixed
   >
-    <v-list>
-      <v-list-item
-        v-for="(item, i) in items"
-        :key="i"
-        :to="item.to"
-        router
-        exact
-      >
-        <v-list-item-action>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-action>
-        <v-list-item-content>
-          <v-list-item-title v-text="item.title" />
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
-  </v-navigation-drawer>
+    <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <span class="hidden-sm-and-down">Google Contacts</span>
+    </v-toolbar-title>
+    <v-text-field
+      clearable
+      flat
+      solo-inverted
+      hide-details
+      prepend-inner-icon="search"
+      label="Search"
+      class="hidden-sm-and-down"
+    />
+    <v-spacer />
+    <v-btn icon>
+      <v-icon>apps</v-icon>
+    </v-btn>
+    <v-btn icon>
+      <v-icon>notifications</v-icon>
+    </v-btn>
+    <v-btn icon large>
+      <v-avatar size="32px" tile>
+        <img
+          src="https://vuetifyjs.com/static/doc-images/logo.svg"
+          alt="Vuetify"
+        >
+      </v-avatar>
+    </v-btn>
+  </v-app-bar>
 </template>
 
 <script>
