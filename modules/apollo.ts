@@ -1,5 +1,4 @@
-export default ctx => {
-
+export default () => {
   return {
     httpEndpoint: 'https://server.test/graphql'
   }

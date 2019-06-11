@@ -1,4 +1,3 @@
-import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin'
 import NuxtConfiguration from '@nuxt/config'
 import pkg from './package.json'
 
