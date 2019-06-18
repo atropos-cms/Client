@@ -38,6 +38,7 @@ const config: NuxtConfiguration = {
    ** Plugins to load before mounting the App
    */
   plugins: [
+    '@/plugins/atropos',
     '@/plugins/vuetify',
     '@/plugins/vuelidate'
   ],

@@ -12,7 +12,6 @@ const ignoreRedirect = [
 
 export default function ({ app, redirect, route }) {
   const hasToken = !!app.$apolloHelpers.getToken()
-  console.log(hasToken)
 
   // If the user is authenticated it's all good
   if (hasToken) return

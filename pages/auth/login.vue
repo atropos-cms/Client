@@ -72,16 +72,17 @@ export default class AuthLogin extends Vue {
 
     try {
       this.loading = true
+
       const res = await this.$apollo
         .mutate({
           mutation: LOGIN_MUTATION,
           variables: { data: credentials }
         })
         .then(({ data }) => data && data.login)
+        .catch(this.$validationErrors)
 
       await this.$apolloHelpers.onLogin(res.access_token)
       this.$router.push('/')
-    } catch (e) {
     } finally {
       this.loading = false
     }
