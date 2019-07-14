@@ -64,7 +64,9 @@ export default class AuthLogin extends Vue {
     username: null,
     password: null
   }
+
   showPassword: boolean = false
+
   loading: boolean = false
 
   async onSubmit() {

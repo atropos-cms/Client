@@ -71,6 +71,7 @@ import { Component, Vue } from 'vue-property-decorator'
 @Component({})
 export default class LayoutDefaultSidebar extends Vue {
   drawer = null
+
   items = [
     { icon: 'contacts', text: 'Contacts' },
     { icon: 'history', text: 'Frequently contacted' },

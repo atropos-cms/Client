@@ -5,4 +5,3 @@ import { validationErrors } from './atropos/validation-errors'
 export default () => {
   Vue.prototype.$validationErrors = validationErrors
 }
-

@@ -21,9 +21,7 @@
     />
     <v-spacer />
 
-    <v-btn icon>
-      <v-icon>apps</v-icon>
-    </v-btn>
+    <apps />
 
     <v-btn icon>
       <v-icon>notifications</v-icon>
@@ -36,10 +34,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import Account from './header/account.vue'
+import Apps from './header/apps.vue'
 
 @Component({
   components: {
-    Account
+    Account,
+    Apps
   }
 })
 export default class LayoutDefaultHeader extends Vue {}
