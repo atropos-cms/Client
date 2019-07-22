@@ -7,7 +7,7 @@
     fixed
   >
     <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon @click.stop="setDrawer(!drawer)" />
       <span class="hidden-sm-and-down">Google Contacts</span>
     </v-toolbar-title>
     <v-text-field
@@ -33,6 +33,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { uiVuexNamespace } from '@/store/ui/const'
 import Account from './header/account.vue'
 import Apps from './header/apps.vue'
 
@@ -42,5 +43,11 @@ import Apps from './header/apps.vue'
     Apps
   }
 })
-export default class LayoutDefaultHeader extends Vue {}
+export default class LayoutDefaultHeader extends Vue {
+  @uiVuexNamespace.State('drawer')
+  private drawer!: boolean
+
+  @uiVuexNamespace.Mutation('setDrawer')
+  private setDrawer!: () => void
+}
 </script>

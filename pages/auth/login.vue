@@ -81,10 +81,11 @@ export default class AuthLogin extends Vue {
           variables: { data: credentials }
         })
         .then(({ data }) => data && data.login)
-        .catch(this.$validationErrors)
 
       await this.$apolloHelpers.onLogin(res.access_token)
       this.$router.push('/')
+    } catch (error) {
+      this.$validationErrors(error)
     } finally {
       this.loading = false
     }

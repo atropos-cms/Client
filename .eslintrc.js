@@ -9,7 +9,6 @@ module.exports = {
     parser: '@typescript-eslint/parser'
   },
   extends: [
-    '@nuxtjs',
     'plugin:nuxt/recommended',
   ],
   // add your custom rules here

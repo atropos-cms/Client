@@ -1,9 +1,10 @@
 <template>
   <v-navigation-drawer
-    v-model="drawer"
+    :value="drawer"
     fixed
     :clipped="$vuetify.breakpoint.mdAndUp"
     app
+    @input="setDrawer"
   >
     <v-list dense>
       <template v-for="item in items">
@@ -67,10 +68,15 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { uiVuexNamespace } from '@/store/ui/const'
 
 @Component({})
 export default class LayoutDefaultSidebar extends Vue {
-  drawer = null
+  @uiVuexNamespace.State('drawer')
+  private drawer!: boolean
+
+  @uiVuexNamespace.Mutation('setDrawer')
+  private setDrawer!: () => void
 
   items = [
     { icon: 'contacts', text: 'Contacts' },
