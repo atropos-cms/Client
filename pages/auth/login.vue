@@ -56,7 +56,6 @@ import LOGIN_MUTATION from '~/graphql/mutations/login.gql'
 
 @Component({
   layout: 'guest',
-
   middleware: 'guest'
 })
 export default class AuthLogin extends Vue {

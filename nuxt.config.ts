@@ -39,6 +39,7 @@ const config: NuxtConfiguration = {
    */
   plugins: [
     '@/plugins/atropos',
+    '@/plugins/vue-i18n',
     '@/plugins/vuetify',
     '@/plugins/vuelidate'
   ],

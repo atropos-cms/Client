@@ -20,8 +20,8 @@
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title>John Leider</v-list-item-title>
-            <v-list-item-subtitle>Founder of Vuetify.js</v-list-item-subtitle>
+            <v-list-item-title>{{ me.name  }}</v-list-item-title>
+            <v-list-item-subtitle>{{ me.email }}</v-list-item-subtitle>
           </v-list-item-content>
 
           <v-list-item-action>
@@ -51,9 +51,18 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import ME_QUERY from '~/graphql/queries/me.gql'
+import { Me } from '~/graphql/queries/me.ts'
 
-@Component({})
+
+@Component({
+  apollo: {
+    me: ME_QUERY
+  }
+})
 export default class LayoutDefaultHeaderAccount extends Vue {
+  me: Me = {} as Me
+
   async logout() {
     await this.$apolloHelpers.onLogout()
     this.$router.push('/auth/login')

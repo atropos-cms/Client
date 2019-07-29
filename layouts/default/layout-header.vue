@@ -8,7 +8,7 @@
   >
     <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
       <v-app-bar-nav-icon @click.stop="setDrawer(!drawer)" />
-      <span class="hidden-sm-and-down">Google Contacts</span>
+      <span class="hidden-sm-and-down">{{ $t('atropos.atropos') }}</span>
     </v-toolbar-title>
     <v-text-field
       clearable
@@ -16,7 +16,7 @@
       solo-inverted
       hide-details
       prepend-inner-icon="search"
-      label="Search"
+      :label="$t('general.search')"
       class="hidden-sm-and-down"
     />
     <v-spacer />
