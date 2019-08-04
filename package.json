@@ -5,7 +5,7 @@
   "author": "Ralph Huwiler",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",

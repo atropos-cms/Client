@@ -23,8 +23,6 @@
     />
     <v-spacer />
 
-    <!-- <apps /> -->
-
     <v-btn icon>
       <v-icon>notifications</v-icon>
     </v-btn>
@@ -36,13 +34,11 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { uiVuexNamespace } from '@/store/ui/const'
-import Account from './header/account.vue'
-import Apps from './header/apps.vue'
+import Account from './account.vue'
 
 @Component({
   components: {
-    Account,
-    Apps
+    Account
   }
 })
 export default class LayoutDefaultHeader extends Vue {

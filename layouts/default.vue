@@ -18,8 +18,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import AppBar from './default/app-bar.vue'
-import NavigationDrawer from './default/navigation-drawer.vue'
+import AppBar from './default/app-bar/index.vue'
+import NavigationDrawer from './default/navigation-drawer/index.vue'
 
 @Component({
   components: {

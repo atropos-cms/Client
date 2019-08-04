@@ -15,27 +15,7 @@
         permanent
         style="transform: translateX(0) !important;"
       >
-        <v-divider></v-divider>
-
-        <v-list
-          dense
-          nav
-        >
-
-          <v-list-item
-            v-for="item in items"
-            :key="item.title"
-            @click=""
-          >
-            <v-list-item-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-action>
-
-            <v-list-item-content>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
+        <app-list/>
       </v-navigation-drawer>
 
       <v-list class="grow">
@@ -54,8 +34,13 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { uiVuexNamespace } from '@/store/ui/const'
+import AppList from './apps-list.vue'
 
-@Component({})
+@Component({
+  components: {
+    AppList
+  }
+})
 export default class LayoutDefaultSidebar extends Vue {
   @uiVuexNamespace.State('drawer')
   private drawer!: boolean
