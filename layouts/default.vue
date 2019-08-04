@@ -1,10 +1,11 @@
 <template>
   <v-app>
-    <!-- Sidebar -->
-    <layout-sidebar />
-
     <!-- Header -->
-    <layout-header />
+    <app-bar />
+
+    <!-- Sidebar -->
+    <navigation-drawer />
+
 
     <!-- Content -->
     <v-content>
@@ -17,13 +18,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import LayoutHeader from './default/layout-header.vue'
-import LayoutSidebar from './default/layout-sidebar.vue'
+import AppBar from './default/app-bar.vue'
+import NavigationDrawer from './default/navigation-drawer.vue'
 
 @Component({
   components: {
-    LayoutHeader,
-    LayoutSidebar
+    AppBar,
+    NavigationDrawer
   }
 })
 export default class LayoutDefault extends Vue {}

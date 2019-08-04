@@ -63,6 +63,8 @@ import { Me } from '~/graphql/queries/me.ts'
 export default class LayoutDefaultHeaderAccount extends Vue {
   me: Me = {} as Me
 
+  fav = false
+
   async logout() {
     await this.$apolloHelpers.onLogout()
     this.$router.push('/auth/login')

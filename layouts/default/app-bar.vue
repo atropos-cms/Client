@@ -4,12 +4,14 @@
     dark
     app
     :clipped-left="$vuetify.breakpoint.mdAndUp"
-    fixed
   >
-    <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
-      <v-app-bar-nav-icon @click.stop="setDrawer(!drawer)" />
-      <span class="hidden-sm-and-down">{{ $t('atropos.atropos') }}</span>
+    <v-app-bar-nav-icon @click.stop="setDrawer(!drawer)" />
+
+    <v-toolbar-title class="hidden-sm-and-down mr-4">
+      {{ $t('atropos.atropos') }}
     </v-toolbar-title>
+
+    <v-spacer />
     <v-text-field
       clearable
       flat
@@ -21,7 +23,7 @@
     />
     <v-spacer />
 
-    <apps />
+    <!-- <apps /> -->
 
     <v-btn icon>
       <v-icon>notifications</v-icon>
