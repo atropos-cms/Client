@@ -9,6 +9,8 @@
       "dom"
     ],
     "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
@@ -25,7 +27,10 @@
     "types": [
       "@types/node",
       "@nuxt/types",
-      "nuxt-i18n"
+      "@nuxtjs/apollo",
+      "nuxt-i18n",
+      "vue-apollo",
+      "vue-cli-plugin-apollo"
     ]
   },
   "exclude": [

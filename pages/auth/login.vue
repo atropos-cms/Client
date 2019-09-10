@@ -1,0 +1,104 @@
+<template>
+  <v-flex xs12 sm8 md8>
+    <v-card :elevation="12">
+      <v-layout row align-center>
+        <v-flex xs12 lg6 class="pa-4">
+          <v-form @submit.prevent="onSubmit">
+            <v-card-text>
+              <v-text-field
+                v-model="credentials.username"
+                autofocus
+                name="login"
+                label="Login"
+                type="text"
+              />
+              <v-text-field
+                id="password"
+                v-model="credentials.password"
+                :append-icon="showPassword ? 'visibility' : 'visibility_off'"
+                :type="showPassword ? 'text' : 'password'"
+                name="password"
+                label="Password"
+                @click:append="showPassword = !showPassword"
+              />
+            </v-card-text>
+            <v-card-actions>
+              <v-btn
+                :loading="loading"
+                color="primary"
+                type="submit"
+                block
+                large
+              >
+                Login
+              </v-btn>
+            </v-card-actions>
+          </v-form>
+        </v-flex>
+        <v-flex xs6 class="hidden-md-and-down blue-grey lighten-5">
+          <v-img
+            :src="require('~/static/svgs/undraw_authentication_fsn5.svg')"
+            aspect-ratio="1"
+            contain
+            class="ma-4"
+          />
+        </v-flex>
+      </v-layout>
+    </v-card>
+  </v-flex>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+import gql from 'graphql-tag'
+
+const LOGIN_MUTATION = gql`
+mutation($data: LoginInput!) {
+  login(data: $data) {
+    access_token
+    refresh_token
+    expires_in
+    token_type
+  }
+}`
+
+export default Vue.extend({
+  layout: 'guest',
+  middleware: 'guest',
+
+  data () {
+    return {
+      credentials: {
+        username: null,
+        password: null
+      },
+      showPassword: false,
+      loading: false
+    }
+  },
+
+  methods: {
+    async onSubmit () {
+      const credentials = this.credentials
+
+      try {
+        this.loading = true
+
+        const res = await this.$apollo
+          .mutate({
+            mutation: LOGIN_MUTATION,
+            variables: { data: credentials }
+          })
+          .then(({ data }) => data && data.login)
+
+        await this.$apolloHelpers.onLogin(res.access_token)
+        this.$router.push('/')
+      } catch (error) {
+        // this.$validationErrors(error)
+      } finally {
+        this.loading = false
+      }
+    }
+  }
+})
+</script>

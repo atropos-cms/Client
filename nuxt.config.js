@@ -25,6 +25,7 @@ export default {
   ** Global CSS
   */
   css: [
+    'material-design-icons-iconfont/dist/material-design-icons.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -32,6 +33,12 @@ export default {
   plugins: [
     '@/plugins/vue-i18n'
   ],
+  /*
+   ** Router
+   */
+  router: {
+    middleware: 'authenticated'
+  },
   /*
   ** Nuxt.js dev-modules
   */
@@ -74,6 +81,9 @@ export default {
           success: colors.green.accent3
         }
       }
+    },
+    icons: {
+      iconfont: 'md'
     }
   },
   /*

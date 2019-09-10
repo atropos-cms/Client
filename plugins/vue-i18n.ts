@@ -1,7 +1,7 @@
+import { Plugin } from '@nuxt/types'
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import messages from '@/lang/en'
-import { Plugin } from '@nuxt/types'
 
 Vue.use(VueI18n)
 

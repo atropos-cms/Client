@@ -1,5 +1,5 @@
 {
-  "name": "Client",
+  "name": "client",
   "version": "1.0.0",
   "description": "My great Nuxt.js project",
   "author": "Ralph",
@@ -41,6 +41,7 @@
     "eslint-plugin-nuxt": ">=0.4.2",
     "husky": "^2.6.0",
     "lint-staged": "^8.2.1",
+    "material-design-icons-iconfont": "^5.0.1",
     "require-extension-hooks": "^0.3.3",
     "require-extension-hooks-babel": "^1.0.0",
     "require-extension-hooks-vue": "^2.0.0"
