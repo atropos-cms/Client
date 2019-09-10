@@ -30,13 +30,13 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '@/plugins/vue-i18n'
   ],
   /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
     '@nuxt/typescript-build',
-    // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     '@nuxtjs/vuetify'
   ],
@@ -44,8 +44,17 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/apollo'
   ],
+  /*
+  ** Apollo Configuraiont
+  */
+  apollo: {
+    clientConfigs: {
+      default: '~/modules/apollo.ts'
+    }
+  },
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
@@ -53,7 +62,7 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken2,

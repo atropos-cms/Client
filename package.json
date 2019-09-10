@@ -21,8 +21,11 @@
     }
   },
   "dependencies": {
+    "@nuxtjs/apollo": "^4.0.0-rc12",
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "graphql-tag": "^2.10.1",
     "nuxt": "^2.0.0",
-    "@nuxtjs/pwa": "^3.0.0-0"
+    "vue-i18n": "^8.14.0"
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^0.2.6",

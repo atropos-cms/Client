@@ -79,14 +79,15 @@
   </v-layout>
 </template>
 
-<script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+<script lang="ts">
+import Vue from 'vue'
+import Logo from '@/components/Logo.vue'
+import VuetifyLogo from '@/components/VuetifyLogo.vue'
 
-export default {
+export default Vue.extend({
   components: {
     Logo,
     VuetifyLogo
   }
-}
+})
 </script>
