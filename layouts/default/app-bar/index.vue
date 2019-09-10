@@ -17,9 +17,7 @@
 
     <v-spacer />
 
-    <client-only>
-      <account />
-    </client-only>
+    <account />
 
     <!-- <v-btn
       icon

@@ -1,7 +1,7 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  mode: 'universal',
+  mode: 'spa',
   /*
   ** Headers of the page
   */
@@ -58,6 +58,14 @@ export default {
   ** Apollo Configuraiont
   */
   apollo: {
+    defaultOptions: {
+      // See 'apollo' definition
+      // For example: default query options
+      $query: {
+        loadingKey: 'loading',
+        fetchPolicy: 'cache-and-network'
+      }
+    },
     clientConfigs: {
       default: '~/modules/apollo.ts'
     }
