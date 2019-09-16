@@ -12,6 +12,10 @@
       <div class="text-center">
         {{ me.first_name }}
       </div>
+
+      <div @click="update">
+        Click
+      </div>
     </v-flex>
   </v-layout>
 </template>
@@ -31,32 +35,19 @@ export default Vue.extend({
         id
         first_name
       }
-    }`,
+    }`
+  },
 
-    $subscribe: {
-      // When a tag is added
-      tagAdded: {
-        query: gql`subscription tags($id: ID!) {
-          userUpdated(id: $id) {
+  methods: {
+    update () {
+      this.$apollo.mutate({
+        mutation: gql`mutation {
+          updateMe(data: {first_name: "Ralph"}) {
             id
             first_name
           }
-        }`,
-        // Reactive variables
-        variables () {
-          // This works just like regular queries
-          // and will re-subscribe with the right variables
-          // each time the values change
-          return {
-            id: this.me.id
-          }
-        },
-        // Result hook
-        // Don't forget to destructure `data`
-        result ({ data }) {
-          console.log(data.tagAdded)
-        }
-      }
+        }`
+      })
     }
   }
 })
