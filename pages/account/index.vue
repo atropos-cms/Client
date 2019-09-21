@@ -20,11 +20,6 @@
       </div>
     </div>
 
-    <v-text-field
-      v-model="me.first_name"
-      :label="$t('account.firstName')"
-    />
-
     <personal-info :value="me" />
   </div>
 </template>

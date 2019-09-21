@@ -11,14 +11,32 @@
         ref="form"
         lazy-validation
       >
-        <v-text-field
-          v-model="model.first_name"
-          :label="$t('account.firstName')"
-        />
+
+        <v-row>
+          <v-col
+            cols="12"
+            md="6"
+          >
+            <v-text-field
+            v-model="model.first_name"
+            :label="$t('account.firstName')"
+          />
+          </v-col>
+
+          <v-col
+            cols="12"
+            md="6"
+          >
+            <v-text-field
+            v-model="model.last_name"
+            :label="$t('account.lastName')"
+          />
+          </v-col>
+        </v-row>
 
         <v-text-field
-          v-model="model.last_name"
-          :label="$t('account.lastName')"
+          v-model="model.email"
+          :label="$t('account.email')"
         />
 
         <v-btn
@@ -51,7 +69,8 @@ export default mixins(isForm, savesModels).extend({
 
       this.saveModel(UPDATE_ME, {
         first_name: this.model.first_name,
-        last_name: this.model.last_name
+        last_name: this.model.last_name,
+        email: this.model.email
       }, {
         query: ME,
         callback: (store, data) => ({ me: { ...store.me, ...data.updateMe } })
