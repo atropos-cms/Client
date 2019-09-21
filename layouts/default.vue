@@ -8,7 +8,9 @@
 
     <!-- Content -->
     <v-content>
-      <v-container>
+      <v-container
+        class="pa-xl-12 pa-lg-10 pa-sm-4 pa-2"
+      >
         <nuxt />
       </v-container>
     </v-content>

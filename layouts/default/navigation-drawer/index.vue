@@ -3,6 +3,7 @@
     v-model="drawer"
     :mini-variant="miniDrawer"
     clipped
+    floating
     fixed
     app
   >

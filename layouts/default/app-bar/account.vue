@@ -1,5 +1,6 @@
 <template>
   <v-menu
+    v-model="openMenu"
     :close-on-content-click="false"
     :nudge-bottom="10"
     bottom
@@ -15,8 +16,16 @@
     <v-card>
       <v-list>
         <v-list-item>
-          <v-list-item-avatar>
-            <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+          <v-list-item-avatar
+            :size="96"
+            color="blue-grey lighten-5"
+          >
+            <img
+              v-if="img"
+              src="https://vuetifyjs.com/apple-touch-icon-180x180.png"
+              alt="avatar"
+            >
+            <span v-else>{{ me.initials }}</span>
           </v-list-item-avatar>
 
           <v-list-item-content>
@@ -26,11 +35,10 @@
 
           <v-list-item-action>
             <v-btn
-              :class="fav ? 'red--text' : ''"
               icon
-              @click="fav = !fav"
+              @click="navigateToAccount"
             >
-              <v-icon>favorite</v-icon>
+              <v-icon>edit</v-icon>
             </v-btn>
           </v-list-item-action>
         </v-list-item>
@@ -55,12 +63,9 @@ import gql from 'graphql-tag'
 
 export default Vue.extend({
   data: () => ({
-    fav: false,
-    me: {
-      first_name: null,
-      last_name: null,
-      email: null
-    }
+    openMenu: false,
+    img: false,
+    me: {}
   }),
 
   apollo: {
@@ -68,6 +73,7 @@ export default Vue.extend({
       me {
         first_name
         last_name
+        initials
         email
       }
     }`
@@ -77,6 +83,10 @@ export default Vue.extend({
     async logout () {
       await this.$apolloHelpers.onLogout()
       this.$router.push('/auth/login')
+    },
+    navigateToAccount () {
+      this.openMenu = false
+      this.$router.push('/account')
     }
   }
 })

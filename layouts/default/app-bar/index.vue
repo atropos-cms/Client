@@ -2,18 +2,26 @@
   <v-app-bar
     clipped-left
     fixed
+    flat
     app
   >
     <v-app-bar-nav-icon @click.stop="toggleDrawer" />
 
-    <v-btn
+    <!-- <v-btn
       icon
       @click.stop="toggleMiniDrawer"
     >
       <v-icon>mdi-{{ `chevron-${miniDrawer ? 'right' : 'left'}` }}</v-icon>
-    </v-btn>
+    </v-btn> -->
 
-    <v-toolbar-title v-text="title" />
+    <v-toolbar-title >
+      <span class="headline blue--text text--darken-2">
+        {{ $t('atropos.title') }}
+      </span>
+      <span class="blue-grey--text">
+        Account
+      </span>
+    </v-toolbar-title>
 
     <v-spacer />
 
