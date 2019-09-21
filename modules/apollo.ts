@@ -3,7 +3,9 @@ import { BatchHttpLink } from 'apollo-link-batch-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
 
-const cache = new InMemoryCache();
+const cache = new InMemoryCache({
+  addTypename: true
+});
 const batchHttpLink = new BatchHttpLink({
   uri: 'https://server.test/graphql',
 });
