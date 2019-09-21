@@ -14,7 +14,7 @@
       <v-icon>mdi-{{ `chevron-${miniDrawer ? 'right' : 'left'}` }}</v-icon>
     </v-btn> -->
 
-    <v-toolbar-title >
+    <v-toolbar-title>
       <span class="headline blue--text text--darken-2">
         {{ $t('atropos.title') }}
       </span>

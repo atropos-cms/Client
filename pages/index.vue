@@ -12,17 +12,13 @@
       <div class="text-center">
         {{ me.first_name }}
       </div>
-
-      <div @click="update">
-        Click
-      </div>
     </v-flex>
   </v-layout>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import gql from 'graphql-tag'
+import ME from '~/graphql/Me.gql'
 
 export default Vue.extend({
   data: () => ({
@@ -30,25 +26,7 @@ export default Vue.extend({
   }),
 
   apollo: {
-    me: gql`query {
-      me {
-        id
-        first_name
-      }
-    }`
-  },
-
-  methods: {
-    update () {
-      this.$apollo.mutate({
-        mutation: gql`mutation {
-          updateMe(data: {first_name: "Ralph"}) {
-            id
-            first_name
-          }
-        }`
-      })
-    }
+    me: { query: ME }
   }
 })
 </script>

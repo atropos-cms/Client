@@ -1,26 +1,23 @@
-import ApolloClient from 'apollo-client';
-import { BatchHttpLink } from 'apollo-link-batch-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloLink } from 'apollo-link';
+import ApolloClient from 'apollo-client'
+import { BatchHttpLink } from 'apollo-link-batch-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+import { ApolloLink } from 'apollo-link'
 
-const cache = new InMemoryCache({
-  addTypename: true
-});
+const cache = new InMemoryCache()
 const batchHttpLink = new BatchHttpLink({
-  uri: 'https://server.test/graphql',
-});
+  uri: 'https://server.test/graphql'
+})
 const apolloClient = new ApolloClient({
   link: ApolloLink.from([batchHttpLink]),
   cache,
   defaultOptions: {
     watchQuery: {
-      errorPolicy: 'all',
+      errorPolicy: 'all'
     },
     query: {
-      errorPolicy: 'all',
-    },
-  },
-});
-
+      errorPolicy: 'all'
+    }
+  }
+})
 
 export default () => apolloClient

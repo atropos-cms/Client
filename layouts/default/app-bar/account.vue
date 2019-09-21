@@ -59,7 +59,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import gql from 'graphql-tag'
+import ME from '~/graphql/Me.gql'
 
 export default Vue.extend({
   data: () => ({
@@ -69,14 +69,7 @@ export default Vue.extend({
   }),
 
   apollo: {
-    me: gql`{
-      me {
-        first_name
-        last_name
-        initials
-        email
-      }
-    }`
+    me: { query: ME }
   },
 
   methods: {

@@ -1,34 +1,38 @@
 <template>
-<div>
-
-  <div class="d-flex flex-column align-center">
-    <!-- Avatar -->
-    <v-avatar
-      :size="128"
-      color="blue-grey lighten-5"
-    >
-      <img
-        v-if="img"
-        src="https://vuetifyjs.com/apple-touch-icon-180x180.png"
-        alt="avatar"
+  <div>
+    <div class="d-flex flex-column align-center">
+      <!-- Avatar -->
+      <v-avatar
+        :size="128"
+        color="blue-grey lighten-5"
       >
-      <span v-else>{{ me.initials }}</span>
-    </v-avatar>
+        <img
+          v-if="img"
+          src="https://vuetifyjs.com/apple-touch-icon-180x180.png"
+          alt="avatar"
+        >
+        <span v-else>{{ me.initials }}</span>
+      </v-avatar>
 
-    <!-- Title -->
-    <div class="my-4 display-2">
-      {{ $t('account.welcome', me) }}
+      <!-- Title -->
+      <div class="my-4 display-2">
+        {{ $t('account.welcome', me) }}
+      </div>
     </div>
-  </div>
 
-    <personal-info />
-</div>
+    <v-text-field
+      v-model="me.first_name"
+      :label="$t('account.firstName')"
+    />
+
+    <personal-info :value="me" />
+  </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import gql from 'graphql-tag'
 import PersonalInfo from './-form/personal-info.vue'
+import ME from '~/graphql/Me.gql'
 
 export default Vue.extend({
   components: {
@@ -41,13 +45,7 @@ export default Vue.extend({
   }),
 
   apollo: {
-    me: gql`query {
-      me {
-        first_name
-        last_name
-        initials
-      }
-    }`
+    me: { query: ME }
   }
 })
 </script>
