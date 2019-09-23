@@ -3,7 +3,7 @@ import validationPlugin from './validation'
 
 
 const atroposPlugin: Plugin = (context, inject) => {
-  validationPlugin()
+  validationPlugin(context, inject)
 }
 
 export default atroposPlugin

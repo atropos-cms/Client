@@ -20,17 +20,27 @@
       </div>
     </div>
 
-    <personal-info :value="me" />
+    <personal-info
+      :value="me"
+      :loading="$apollo.queries.me.loading"
+    />
+
+    <password
+      :value="me"
+      :loading="$apollo.queries.me.loading"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import Password from './-form/password.vue'
 import PersonalInfo from './-form/personal-info.vue'
 import ME from '~/graphql/Me.gql'
 
 export default Vue.extend({
   components: {
+    Password,
     PersonalInfo
   },
 

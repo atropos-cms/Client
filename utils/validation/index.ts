@@ -40,8 +40,13 @@ class Validation {
     return state.errors
   }
 
-  static errorMessage (key: string) : ValidationError | undefined {
+  static errorFor (key: string) : ValidationError | undefined {
     return state.errors.find(e => e.key === key)
+  }
+
+  static firstErrorMessage (key: string) : string | undefined {
+    const error = this.errorFor(key)
+    return error && error.validation[0]
   }
 }
 

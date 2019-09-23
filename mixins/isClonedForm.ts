@@ -8,6 +8,11 @@ export default Vue.extend({
       required: true,
       default: () => ({})
     },
+    loading: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     isEdit: {
       type: Boolean,
       required: false,
@@ -15,28 +20,23 @@ export default Vue.extend({
     }
   },
 
-  data: () => ({
-    internalModel: null
-  }),
+  data () {
+    return {
+      model: _.cloneDeep(this.value)
+    }
+  },
 
-  computed: {
-    model: {
-      get () : any {
-        return this.internalModel || _.cloneDeep(this.value)
-      },
-      set (value: any) {
-        this.internalModel = value
-      }
+  methods: {
+    updateModel () {
+      this.model = _.cloneDeep(this.value)
     }
   },
 
   watch: {
-    value: {
-      handler () {
-        if (this.internalModel) { return }
-        this.internalModel = _.cloneDeep(this.value)
-      },
-      deep: true
+    loading (value, oldValue) {
+      if (oldValue && !value) {
+        this.updateModel()
+      }
     }
   }
 })

@@ -7,6 +7,11 @@ export default Vue.extend({
       required: true,
       default: () => ({})
     },
+    loading: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     isEdit: {
       type: Boolean,
       required: false,
