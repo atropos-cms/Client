@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Timeout from 'await-timeout'
 import { DocumentNode } from 'graphql'
+import Validation from '~/utils/validation/index'
 
 const updateCallback : {
   query: DocumentNode | null,
@@ -12,18 +13,18 @@ const updateCallback : {
 
 export default Vue.extend({
   data: () => ({
-    saving: false,
-    errors: null
+    saving: false
   }),
 
   methods: {
     async saveModel (mutation: DocumentNode, data: any, updateConstructor = updateCallback) {
       try {
         this.saving = true
+        Validation.reset()
 
-        await Timeout.wrap(this._wrappedSaveModel(mutation, data, updateConstructor), 600)
+        await Promise.all([this._wrappedSaveModel(mutation, data, updateConstructor), Timeout.set(600)])
       } catch (error) {
-        this.validationErrors(error)
+        Validation.catchValidationErrors(error)
       } finally {
         this.saving = false
       }
@@ -45,11 +46,6 @@ export default Vue.extend({
             store.writeQuery({ query: updateConstructor.query, data: updatedData })
           }
         })
-    },
-    validationErrors (error) {
-      for (const errors of error.graphQLErrors) {
-        this.errors = errors.extensions.validation
-      }
     }
   }
 })

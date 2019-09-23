@@ -37,7 +37,7 @@
           >
             <v-text-field
               v-model="model.email"
-              :error-messages="errors"
+              :error-messages="$v('data.email')"
               :label="$t('account.email')"
             />
           </v-col>
