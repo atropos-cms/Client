@@ -11,7 +11,6 @@
         ref="form"
         lazy-validation
       >
-
         <v-row>
           <v-col
             cols="12"
@@ -38,6 +37,7 @@
           >
             <v-text-field
               v-model="model.email"
+              :error-messages="errors"
               :label="$t('account.email')"
             />
           </v-col>
@@ -47,9 +47,9 @@
             md="6"
           >
             <v-text-field
-            v-model="model.postcode"
-            :label="$t('account.postcode')"
-          />
+              v-model="model.postcode"
+              :label="$t('account.postcode')"
+            />
           </v-col>
 
           <v-col
@@ -57,9 +57,9 @@
             md="6"
           >
             <v-text-field
-            v-model="model.city"
-            :label="$t('account.city')"
-          />
+              v-model="model.city"
+              :label="$t('account.city')"
+            />
           </v-col>
 
           <v-col
@@ -77,12 +77,10 @@
           :loading="saving"
           @click="submit"
         >
-          Save
+          {{ $t('general.save') }}
         </v-btn>
       </v-form>
-
     </v-card>
-
   </div>
 </template>
 
@@ -96,10 +94,6 @@ import ME from '~/graphql/Me.gql'
 export default mixins(isForm, savesModels).extend({
   methods: {
     submit () {
-      if (!this.$refs.form.validate()) {
-        return
-      }
-
       this.saveModel(UPDATE_ME, {
         first_name: this.model.first_name,
         last_name: this.model.last_name,

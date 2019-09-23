@@ -33,10 +33,10 @@ export default Vue.extend({
   watch: {
     value: {
       handler () {
-        if (this.internalModel) return
+        if (this.internalModel) { return }
         this.internalModel = _.cloneDeep(this.value)
       },
       deep: true
     }
-  }, 
+  }
 })
