@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Timeout from 'await-timeout'
 import { DocumentNode } from 'graphql'
 import Validation from '~/utils/validation/index'
+import FlowControlException from '~/utils/exceptions/FlowControlException'
 
 const updateCallback : {
   query: DocumentNode | null,
@@ -25,6 +26,7 @@ export default Vue.extend({
         await Promise.all([this._wrappedSaveModel(mutation, data, updateConstructor), Timeout.set(600)])
       } catch (error) {
         Validation.catchValidationErrors(error)
+        throw new FlowControlException()
       } finally {
         this.saving = false
       }
