@@ -18,8 +18,37 @@
             md="6"
           >
             <v-text-field
-            v-model="model.first_name"
-            :label="$t('account.firstName')"
+              v-model="model.first_name"
+              :label="$t('account.firstName')"
+            />
+          </v-col>
+
+          <v-col
+            cols="12"
+            md="6"
+          >
+            <v-text-field
+              v-model="model.last_name"
+              :label="$t('account.lastName')"
+            />
+          </v-col>
+
+          <v-col
+            cols="12"
+          >
+            <v-text-field
+              v-model="model.email"
+              :label="$t('account.email')"
+            />
+          </v-col>
+
+          <v-col
+            cols="12"
+            md="6"
+          >
+            <v-text-field
+            v-model="model.postcode"
+            :label="$t('account.postcode')"
           />
           </v-col>
 
@@ -28,16 +57,20 @@
             md="6"
           >
             <v-text-field
-            v-model="model.last_name"
-            :label="$t('account.lastName')"
+            v-model="model.city"
+            :label="$t('account.city')"
           />
           </v-col>
-        </v-row>
 
-        <v-text-field
-          v-model="model.email"
-          :label="$t('account.email')"
-        />
+          <v-col
+            cols="12"
+          >
+            <v-text-field
+              v-model="model.country"
+              :label="$t('account.country')"
+            />
+          </v-col>
+        </v-row>
 
         <v-btn
           color="primary"

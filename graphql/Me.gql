@@ -4,5 +4,9 @@ query {
     last_name
     initials
     email
+    street
+    postcode
+    city
+    country
   }
 }

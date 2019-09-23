@@ -3,5 +3,9 @@ export default {
   personalInfo: 'Personal info',
   firstName: 'First name',
   lastName: 'Last name',
-  email: 'Email'
+  email: 'Email',
+  street: 'Street',
+  postcode: 'Postcode',
+  city: 'City',
+  country: 'Country'
 }
