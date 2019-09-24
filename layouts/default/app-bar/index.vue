@@ -5,7 +5,10 @@
     flat
     app
   >
-    <v-app-bar-nav-icon @click.stop="toggleDrawer" />
+    <v-app-bar-nav-icon
+      v-if="pageLayout.showNavigationDrawer"
+      @click.stop="toggleDrawer"
+    />
 
     <!-- <v-btn
       icon
@@ -15,11 +18,14 @@
     </v-btn> -->
 
     <v-toolbar-title>
-      <span class="headline blue--text text--darken-2">
+      <nuxt-link
+        class="headline blue--text text--darken-2"
+        to="/"
+      >
         {{ $t('atropos.title') }}
-      </span>
+      </nuxt-link>
       <span class="blue-grey--text">
-        Account
+        {{ $t(pageLayout.title) }}
       </span>
     </v-toolbar-title>
 
@@ -37,10 +43,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import mixins from 'vue-typed-mixins'
+import usesPageLayout from '../layout-composer/usesPageLayout'
 import Account from './account.vue'
 
-export default Vue.extend({
+export default mixins(usesPageLayout).extend({
   components: {
     Account
   },

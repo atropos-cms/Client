@@ -1,10 +1,7 @@
 <template>
   <v-app>
-    <!-- Header -->
-    <app-bar />
-
-    <!-- Sidebar -->
-    <navigation-drawer />
+    <!-- Header and Sidebar -->
+    <default-layout />
 
     <!-- Content -->
     <v-content>
@@ -43,13 +40,11 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import AppBar from './default/app-bar/index.vue'
-import NavigationDrawer from './default/navigation-drawer/index.vue'
+import defaultLayout from './default/index.vue'
 
 export default Vue.extend({
   components: {
-    AppBar,
-    NavigationDrawer
+    defaultLayout
   },
 
   data () {

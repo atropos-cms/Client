@@ -30,7 +30,8 @@
       "@nuxtjs/apollo",
       "nuxt-i18n",
       "vue-apollo",
-      "vue-cli-plugin-apollo"
+      "vue-cli-plugin-apollo",
+      "./typescript"
     ]
   },
   "exclude": [

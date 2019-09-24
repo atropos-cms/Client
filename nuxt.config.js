@@ -25,6 +25,7 @@ export default {
   ** Global CSS
   */
   css: [
+    '~/assets/index.scss',
     'material-design-icons-iconfont/dist/material-design-icons.css'
   ],
   /*
