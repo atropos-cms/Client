@@ -5,7 +5,7 @@ import { ApolloLink } from 'apollo-link'
 
 const cache = new InMemoryCache()
 const batchHttpLink = new BatchHttpLink({
-  uri: 'https://server.test/graphql'
+  uri: 'https://server.localhost/graphql'
 })
 const apolloClient = new ApolloClient({
   link: ApolloLink.from([batchHttpLink]),

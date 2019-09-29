@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import _ from 'lodash'
-import pageLayoutMap, { PageLayout, defaultPageLayout } from './pageLayoutMap'
+import pageLayoutMap, { PageLayout, defaultPageLayout } from '~/utils/maps/pageLayoutMap'
 
 export default Vue.extend({
   computed: {
