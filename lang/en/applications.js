@@ -6,7 +6,7 @@ export default {
     title: 'Dashboard'
   },
   users: {
-    title: 'User',
+    title: 'Users',
     description: 'Add or manage users'
   },
   groups: {

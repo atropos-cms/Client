@@ -4,7 +4,6 @@ export interface PageLayout {
   readonly name: string,
   readonly title: string | null,
   readonly regex: RegExp | RegExp[],
-  readonly showNavigationDrawer: boolean,
   readonly navigationDrawerComponent?: () => Promise<Vue>
 }
 
@@ -16,14 +15,17 @@ const pageLayoutMap : PageLayout[] = [
     name: 'dashboard',
     title: 'applications.dashboard.title',
     regex: [/^$/, /^\//],
-    showNavigationDrawer: true,
     navigationDrawerComponent: () => import('~/layouts/default/navigation-drawer/drawers/dashboard.vue')
   },
   {
     name: 'account',
     title: 'applications.account.title',
-    regex: [/^account(.*)/],
-    showNavigationDrawer: false
+    regex: [/^account(.*)/]
+  },
+  {
+    name: 'users',
+    title: 'applications.users.title',
+    regex: [/^users(.*)/]
   }
 ]
 
@@ -32,7 +34,6 @@ export const defaultPageLayout : PageLayout = {
   name: 'default',
   title: null,
   regex: [/.*/],
-  showNavigationDrawer: false,
   navigationDrawerComponent: () => import('~/layouts/default/navigation-drawer/drawers/temp.vue')
 }
 export default pageLayoutMap

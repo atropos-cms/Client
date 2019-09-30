@@ -15,9 +15,7 @@
 
     <v-card class="pa-3">
       <v-container style="max-width: 20rem">
-        <v-row
-          align-content="start"
-        >
+        <v-row align-content="start">
           <v-col
             v-for="application in applications"
             :key="application.name"

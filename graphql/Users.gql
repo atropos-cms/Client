@@ -1,0 +1,15 @@
+query Users($first: Int!, $page: Int, $search: String, $orderBy: [OrderByClause!]) {
+  users(first: $first, page: $page, search: $search, orderBy: $orderBy) {
+    paginatorInfo {
+      count
+      currentPage
+      total
+    }
+    data {
+      id
+      first_name
+      last_name
+      email
+    }
+  }
+}

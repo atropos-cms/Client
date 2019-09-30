@@ -1,6 +1,6 @@
 <template>
   <v-navigation-drawer
-    v-if="pageLayout.showNavigationDrawer"
+    v-if="hasNavigationDrawer"
     v-model="drawer"
     :mini-variant="miniDrawer"
     clipped

@@ -6,7 +6,7 @@
     app
   >
     <v-app-bar-nav-icon
-      v-if="pageLayout.showNavigationDrawer"
+      v-if="hasNavigationDrawer"
       @click.stop="toggleDrawer"
     />
 
