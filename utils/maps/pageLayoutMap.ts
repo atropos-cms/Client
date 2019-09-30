@@ -1,10 +1,10 @@
 import Vue from 'vue'
 
 export interface PageLayout {
-  readonly name: String,
-  readonly title: String | null,
+  readonly name: string,
+  readonly title: string | null,
   readonly regex: RegExp | RegExp[],
-  readonly showNavigationDrawer: Boolean,
+  readonly showNavigationDrawer: boolean,
   readonly navigationDrawerComponent?: () => Promise<Vue>
 }
 

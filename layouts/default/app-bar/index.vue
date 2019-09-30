@@ -31,6 +31,8 @@
 
     <v-spacer />
 
+    <applications />
+
     <account />
 
     <!-- <v-btn
@@ -46,10 +48,12 @@
 import mixins from 'vue-typed-mixins'
 import usesPageLayout from '../layout-composer/usesPageLayout'
 import Account from './account.vue'
+import Applications from './applications.vue'
 
 export default mixins(usesPageLayout).extend({
   components: {
-    Account
+    Account,
+    Applications
   },
 
   data () {

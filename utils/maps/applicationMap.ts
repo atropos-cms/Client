@@ -1,9 +1,9 @@
 export interface Application {
-  readonly name: String,
-  readonly title: String | null,
-  readonly description: String | null,
-  readonly icon: String,
-  readonly url: String,
+  readonly name: string,
+  readonly title: string | null,
+  readonly description: string | null,
+  readonly icon: string,
+  readonly url: string,
 }
 
 const applicationsMap : Application[] = [
