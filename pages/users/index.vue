@@ -1,8 +1,16 @@
 <template>
   <v-card>
     <v-card-title>
-      {{ $t('applications.users.title') }}
+      <span class="mr-4">
+        {{ $t('applications.users.title') }}
+      </span>
+
+      <v-btn text small color="primary" @click="addUser">
+        {{ $t('applications.users.addNewUser') }}
+      </v-btn>
+
       <div class="flex-grow-1" />
+
       <v-text-field
         v-model="search"
         append-icon="search"
@@ -39,21 +47,25 @@
 
     <!-- Delete User modal -->
     <delete-modal :selected="selected" :show.sync="showDeleteModal" />
+    <create-modal :show.sync="showCreateModal" />
   </v-card>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import CreateModal from './-modals/createUser.vue'
 import DeleteModal from './-modals/deleteUser.vue'
 import USERS from '~/graphql/Users.gql'
 
 export default Vue.extend({
   components: {
+    CreateModal,
     DeleteModal
   },
 
   data: () => ({
     showDeleteModal: false,
+    showCreateModal: false,
     headers: [
       { text: 'First Name', value: 'first_name' },
       { text: 'Last Name', value: 'last_name' },
@@ -97,6 +109,9 @@ export default Vue.extend({
   },
 
   methods: {
+    addUser () {
+      this.showCreateModal = true
+    },
     editUser (user: {id: Number}) {
       this.$router.push(`/users/${user.id}`)
     },

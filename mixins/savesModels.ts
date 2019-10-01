@@ -45,7 +45,7 @@ export default Vue.extend({
           update: (store, { data }) => {
             if (!updateConstructor.query || !updateConstructor.callback) { return }
 
-            const storeData: UnsafeStoreObject|null = store.readQuery({ 
+            const storeData: UnsafeStoreObject|null = store.readQuery({
               query: updateConstructor.query,
               variables: updateConstructor.variables
             })
