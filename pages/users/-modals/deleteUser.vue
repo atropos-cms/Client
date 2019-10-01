@@ -5,10 +5,12 @@
     @input="close"
   >
     <v-card>
-      <v-card-title class="headline">Delete this user?</v-card-title>
+      <v-card-title class="headline">
+        Delete this user?
+      </v-card-title>
 
       <v-card-actions>
-        <div class="flex-grow-1"></div>
+        <div class="flex-grow-1" />
 
         <v-btn
           color="primary darken-1"

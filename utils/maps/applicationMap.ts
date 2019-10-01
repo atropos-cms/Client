@@ -12,14 +12,14 @@ const applicationsMap : Application[] = [
     title: 'applications.users.title',
     description: 'applications.users.description',
     icon: 'person',
-    url: '/users',
+    url: '/users'
   },
   {
     name: 'groups',
     title: 'applications.groups.title',
     description: 'applications.groups.description',
     icon: 'group',
-    url: '/groups',
+    url: '/groups'
   }
 ]
 

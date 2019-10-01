@@ -11,5 +11,7 @@ export default {
   current_password: 'Current password',
   password: 'Password',
   password_confirmation: 'Password confirmation',
-  country: 'Country'
+  country: 'Country',
+  loginAt: 'Last Sign-in: {date}',
+  createdAt: 'Created: {date}'
 }

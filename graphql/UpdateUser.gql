@@ -1,6 +1,5 @@
-query User($id: ID!) { 
-  user(id: $id) {
-    id
+mutation($id: ID!, $data: UpdateOrCreateUserInput!) {
+  updateUser(id: $id, data: $data) {
     first_name
     last_name
     initials
@@ -9,8 +8,5 @@ query User($id: ID!) {
     postcode
     city
     country
-    created_at
-    updated_at
-    login_at
   }
 }

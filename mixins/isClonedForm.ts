@@ -26,17 +26,17 @@ export default Vue.extend({
     }
   },
 
-  methods: {
-    updateModel () {
-      this.model = _.cloneDeep(this.value)
-    }
-  },
-
   watch: {
     loading (value, oldValue) {
       if (oldValue && !value) {
         this.updateModel()
       }
+    }
+  },
+
+  methods: {
+    updateModel () {
+      this.model = _.cloneDeep(this.value)
     }
   }
 })

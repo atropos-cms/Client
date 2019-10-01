@@ -4,11 +4,16 @@ import { DocumentNode } from 'graphql'
 import Validation from '~/utils/validation/index'
 import FlowControlException from '~/utils/exceptions/FlowControlException'
 
+interface UnsafeStoreObject {
+  [key: string]: any;
+}
 const updateCallback : {
   query: DocumentNode | null,
-  callback: (store: object, data: object) => object
+  variables: object | null,
+  callback: (store: UnsafeStoreObject, data: UnsafeStoreObject) => object
 } = {
   query: null,
+  variables: null,
   callback: () => ({})
 }
 
@@ -18,12 +23,12 @@ export default Vue.extend({
   }),
 
   methods: {
-    async saveModel (mutation: DocumentNode, data: any, updateConstructor = updateCallback) {
+    async saveModel (mutation: DocumentNode, variables: object, updateConstructor = updateCallback) {
       try {
         this.saving = true
         Validation.reset()
 
-        await Promise.all([this._wrappedSaveModel(mutation, data, updateConstructor), Timeout.set(600)])
+        await Promise.all([this._wrappedSaveModel(mutation, variables, updateConstructor), Timeout.set(600)])
       } catch (error) {
         Validation.catchValidationErrors(error)
         throw new FlowControlException()
@@ -32,15 +37,18 @@ export default Vue.extend({
       }
     },
 
-    _wrappedSaveModel (mutation: DocumentNode, data: any, updateConstructor = updateCallback) {
+    _wrappedSaveModel (mutation: DocumentNode, variables: object, updateConstructor = updateCallback) {
       return this.$apollo
         .mutate({
           mutation,
-          variables: { data },
+          variables,
           update: (store, { data }) => {
             if (!updateConstructor.query || !updateConstructor.callback) { return }
 
-            const storeData: {}|null = store.readQuery({ query: updateConstructor.query })
+            const storeData: UnsafeStoreObject|null = store.readQuery({ 
+              query: updateConstructor.query,
+              variables: updateConstructor.variables
+            })
 
             if (!storeData) { return }
 

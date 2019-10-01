@@ -50,17 +50,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import gql from 'graphql-tag'
-
-const LOGIN_MUTATION = gql`
-mutation($data: LoginInput!) {
-  login(data: $data) {
-    access_token
-    refresh_token
-    expires_in
-    token_type
-  }
-}`
+import LOGIN from '~/graphql/Login.gql'
 
 export default Vue.extend({
   layout: 'guest',
@@ -86,7 +76,7 @@ export default Vue.extend({
 
         const res = await this.$apollo
           .mutate({
-            mutation: LOGIN_MUTATION,
+            mutation: LOGIN,
             variables: { data: credentials }
           })
           .then(({ data }) => data && data.login)

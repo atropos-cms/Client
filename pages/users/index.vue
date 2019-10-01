@@ -2,14 +2,14 @@
   <v-card>
     <v-card-title>
       {{ $t('applications.users.title') }}
-      <div class="flex-grow-1"></div>
+      <div class="flex-grow-1" />
       <v-text-field
         v-model="search"
         append-icon="search"
         :label="$t('general.search')"
         single-line
         hide-details
-      ></v-text-field>
+      />
     </v-card-title>
     <v-data-table
       v-model="selected"

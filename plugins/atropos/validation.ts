@@ -28,7 +28,7 @@ const v = (prop: string, attribute:string|null = null) => {
   return i18n.t(error, { attribute: i18n.t(attribute) })
 }
 
-const install: Plugin = ({ app }, inject) => {
+const install: Plugin = (_context, inject) => {
   inject('v', v)
 }
 

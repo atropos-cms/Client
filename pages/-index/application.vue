@@ -6,7 +6,6 @@
     nuxt
     :to="application.url"
   >
-
     <div class="d-flex align-center flex-md-column">
       <!-- Application Icon -->
       <v-icon

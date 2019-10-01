@@ -1,49 +1,45 @@
 <template>
-  <div class="mt-12">
-    <!-- Title -->
-    <div
-      class="headline"
-      v-text="$t('account.changePassword')"
-    />
+  <v-card class="mt-12">
+    <v-card-title>
+      {{ $t('account.changePassword') }}
+    </v-card-title>
 
-    <v-card class="pa-4">
-      <v-form ref="form">
-        <v-row>
-          <v-col cols="12">
-            <v-text-field
-              v-model="model.current_password"
-              :error-messages="$v('current_password', 'account.current_password')"
-              :label="$t('account.current_password')"
-            />
-          </v-col>
+    <v-form ref="form" class="pa-4">
+      <v-row>
+        <v-col cols="12">
+          <v-text-field
+            v-model="model.current_password"
+            :error-messages="$v('current_password', 'account.current_password')"
+            :label="$t('account.current_password')"
+          />
+        </v-col>
 
-          <v-col cols="12">
-            <v-text-field
-              v-model="model.password"
-              :error-messages="$v('password', 'account.password')"
-              :label="$t('account.password')"
-            />
-          </v-col>
+        <v-col cols="12">
+          <v-text-field
+            v-model="model.password"
+            :error-messages="$v('password', 'account.password')"
+            :label="$t('account.password')"
+          />
+        </v-col>
 
-          <v-col cols="12">
-            <v-text-field
-              v-model="model.password_confirmation"
-              :error-messages="$v('password_confirmation', 'account.password_confirmation')"
-              :label="$t('account.password_confirmation')"
-            />
-          </v-col>
-        </v-row>
+        <v-col cols="12">
+          <v-text-field
+            v-model="model.password_confirmation"
+            :error-messages="$v('password_confirmation', 'account.password_confirmation')"
+            :label="$t('account.password_confirmation')"
+          />
+        </v-col>
+      </v-row>
 
-        <v-btn
-          color="primary"
-          :loading="saving"
-          @click="submit"
-        >
-          {{ $t('general.save') }}
-        </v-btn>
-      </v-form>
-    </v-card>
-  </div>
+      <v-btn
+        color="primary"
+        :loading="saving"
+        @click="submit"
+      >
+        {{ $t('general.save') }}
+      </v-btn>
+    </v-form>
+  </v-card>
 </template>
 
 <script lang="ts">

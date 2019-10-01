@@ -2,9 +2,9 @@ import Vue from 'vue'
 import { Plugin } from '@nuxt/types'
 import FlowControlException from '~/utils/exceptions/FlowControlException'
 
-Vue.config.errorHandler = (err, vm, info) => {
+Vue.config.errorHandler = (err) => {
   // If the exception is an flow control exception
-  // we can just ignore it as it is only used to break 
+  // we can just ignore it as it is only used to break
   // the execution path
   if (err instanceof FlowControlException) {
     return true
@@ -13,5 +13,5 @@ Vue.config.errorHandler = (err, vm, info) => {
   return false
 }
 
-const install: Plugin = ({ app }, inject) => {}
+const install: Plugin = () => {}
 export default install

@@ -6,7 +6,7 @@ export default Vue.extend({
   computed: {
     pageLayout () : PageLayout {
       const routePath = _.trim(this.$route.fullPath, '/')
-      const pageLayout = pageLayoutMap.find(p => {
+      const pageLayout = pageLayoutMap.find((p) => {
         // If the regex property is an array of regexes,
         // check each of them for a match
         if (Array.isArray(p.regex)) {
