@@ -19,31 +19,54 @@
       :server-items-length="users.paginatorInfo.total"
       :loading="$apollo.queries.users.loading"
       item-key="id"
-    />
+    >
+      <template v-slot:item.action="{ item }">
+        <v-icon
+          small
+          class="mr-2"
+          @click="editUser(item)"
+        >
+          edit
+        </v-icon>
+        <v-icon
+          small
+          @click="deleteUser(item)"
+        >
+          delete
+        </v-icon>
+      </template>
+    </v-data-table>
+
+    <!-- Delete User modal -->
+    <delete-modal :selected="selected" :show.sync="showDeleteModal" />
   </v-card>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import DeleteModal from './-modals/deleteUser.vue'
 import USERS from '~/graphql/Users.gql'
 
 export default Vue.extend({
   components: {
+    DeleteModal
   },
 
   data: () => ({
+    showDeleteModal: false,
     headers: [
-      { text: 'ID', value: 'id' },
       { text: 'First Name', value: 'first_name' },
       { text: 'Last Name', value: 'last_name' },
-      { text: 'Email', value: 'email' }
+      { text: 'Email', value: 'email' },
+      { text: 'Actions', value: 'action', align: 'center', sortable: false }
     ],
     options: {
       page: 1,
       itemsPerPage: 10,
-      sortBy: [],
-      sortDesc: []
+      sortBy: ['first_name'],
+      sortDesc: [false]
     },
+    selected: [],
     search: '',
     users: {
       paginatorInfo: {
@@ -70,6 +93,16 @@ export default Vue.extend({
           page: this.options.page
         }
       }
+    }
+  },
+
+  methods: {
+    editUser (user: {id: Number}) {
+      this.$router.push(`/users/${user.id}`)
+    },
+    deleteUser (user: {}) {
+      this.selected = [user]
+      this.showDeleteModal = true
     }
   }
 })

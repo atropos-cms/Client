@@ -1,0 +1,12 @@
+query User($id: ID!) { 
+  user(id: $id) {
+    first_name
+    last_name
+    initials
+    email
+    street
+    postcode
+    city
+    country
+  }
+}
