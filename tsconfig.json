@@ -14,6 +14,7 @@
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
+    "noImplicitThis": true,
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
@@ -28,11 +29,10 @@
       "@types/node",
       "@nuxt/types",
       "@nuxtjs/apollo",
-      "nuxt-i18n",
       "vue-apollo",
-      "vue-cli-plugin-apollo",
-      "./typescript"
-    ]
+      "vue-cli-plugin-apollo"
+    ],
+    "typeRoots" : ["./typescript"]
   },
   "exclude": [
     "node_modules"

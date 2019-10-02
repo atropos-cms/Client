@@ -10,7 +10,7 @@ export default Vue.extend({
   },
 
   computed: {
-    hasNavigationDrawer () {
+    hasNavigationDrawer (): boolean {
       return !!this.pageLayout.navigationDrawerComponent
     }
   }

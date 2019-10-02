@@ -78,7 +78,7 @@ export default Vue.extend({
       sortBy: ['first_name'],
       sortDesc: [false]
     },
-    selected: [],
+    selected: [] as object[],
     search: '',
     users: {
       paginatorInfo: {
@@ -115,9 +115,15 @@ export default Vue.extend({
     editUser (user: {id: Number}) {
       this.$router.push(`/users/${user.id}`)
     },
-    deleteUser (user: {}) {
-      this.selected = [user]
-      this.showDeleteModal = true
+    async deleteUser () {
+      const value = await this.$confirm({
+        title: 'Delete this user'
+      })
+
+      console.log('teste', value)
+
+      // this.selected = [user]
+      // this.showDeleteModal = true
     }
   }
 })

@@ -9,7 +9,7 @@ interface UnsafeStoreObject {
 }
 const updateCallback : {
   query: DocumentNode | null,
-  variables: object | null,
+  variables?: object | null,
   callback: (store: UnsafeStoreObject, data: UnsafeStoreObject) => object
 } = {
   query: null,

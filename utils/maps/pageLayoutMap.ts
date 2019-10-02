@@ -1,10 +1,8 @@
-import Vue from 'vue'
-
 export interface PageLayout {
   readonly name: string,
   readonly title: string | null,
   readonly regex: RegExp | RegExp[],
-  readonly navigationDrawerComponent?: () => Promise<Vue>
+  readonly navigationDrawerComponent?: () => any
 }
 
 // the current route will be matched against this list of PageLayout

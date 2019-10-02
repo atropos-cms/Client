@@ -1,11 +1,13 @@
 export const state = () => ({
   drawer: true,
-  miniDrawer: false
+  miniDrawer: false,
+  dialog: null
 })
 
 export const getters = {
   drawer: state => state.drawer,
-  miniDrawer: state => state.miniDrawer
+  miniDrawer: state => state.miniDrawer,
+  dialog: state => state.dialog
 }
 
 export const mutations = {
@@ -20,5 +22,8 @@ export const mutations = {
   },
   setMiniDrawer (state, value) {
     state.miniDrawer = value
+  },
+  setDialog (state, value) {
+    state.dialog = value
   }
 }

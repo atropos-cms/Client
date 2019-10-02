@@ -11,16 +11,21 @@
         <nuxt />
       </v-container>
     </v-content>
+
+    <!-- Doalogs -->
+    <dialogs />
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import defaultLayout from './default/index.vue'
+import Dialogs from '~/components/dialogs/index.vue'
 
 export default Vue.extend({
   components: {
-    defaultLayout
+    defaultLayout,
+    Dialogs
   }
 })
 </script>
