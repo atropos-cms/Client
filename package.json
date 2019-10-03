@@ -26,11 +26,13 @@
     "@nuxtjs/pwa": "^3.0.0-beta.19",
     "@nuxtjs/vuetify": "^1.9.0",
     "apollo-link-batch-http": "^1.2.13",
+    "apollo-link-error": "^1.1.12",
     "await-timeout": "^0.6.0",
     "dayjs": "^1.8.16",
     "graphql-tag": "^2.10.1",
     "lodash": "^4.17.15",
     "nuxt": "^2.0.0",
+    "universal-cookie": "^4.0.2",
     "vue-i18n": "^8.14.1",
     "vue-typed-mixins": "^0.1.0"
   },

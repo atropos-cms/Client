@@ -60,6 +60,7 @@ export default {
   ** Apollo Configuraiont
   */
   apollo: {
+    tokenName: 'atroposAuthToken',
     defaultOptions: {
       // See 'apollo' definition
       // For example: default query options

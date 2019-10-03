@@ -1,16 +1,16 @@
 import Vue from 'vue'
+import VueI18N from 'vue-i18n'
 
-interface Button {
-  text: string,
-  color: string
-}
-interface Options {
-  width: Number
+export enum Presets {
+  Confirm = 'confirm',
+  Delete = 'delete'
 }
 
 export interface Dialog {
-  title: string,
-  message?: string,
+  title: string | VueI18N.TranslateResult,
+  message?: string | VueI18N.TranslateResult,
+  preset?: Presets,
+  action?: () => Promise<void | undefined>,
   confirmButton?: Button,
   cancelButton?: Button,
   options?: Options
@@ -21,22 +21,51 @@ interface PromiseDialog extends Dialog {
   reject: Function
 }
 
+interface Button {
+  text: string,
+  color: string
+}
+interface Options {
+  width: Number
+}
+
+type ButtonPreset = {
+  [key in Presets]: {
+    confirm: Button,
+    cancel: Button
+  }
+}
+
+const buttonPresets : ButtonPreset = {
+  [Presets.Confirm]: {
+    confirm: {
+      text: 'general.ok',
+      color: 'primary darken-1'
+    },
+    cancel: {
+      text: 'general.cancel',
+      color: 'grey'
+    }
+  },
+
+  [Presets.Delete]: {
+    confirm: {
+      text: 'general.delete',
+      color: 'red darken-1'
+    },
+    cancel: {
+      text: 'general.cancel',
+      color: 'primary'
+    }
+  }
+}
+
 export default Vue.extend({
   data () {
     return {
       defaultOptions: {
-        width: 320,
-      } as Options,
-  
-      defaultConfirmButton: {
-        text: this.$t('general.ok'),
-        color: 'primary darken-1'
-      } as Button,
-  
-      defaultCancelButton: {
-        text: this.$t('general.cancel'),
-        color: 'grey'
-      } as Button
+        width: 320
+      } as Options
     }
   },
   computed: {
@@ -71,28 +100,36 @@ export default Vue.extend({
       return this.dialog.reject
     },
 
-    title () : string | null {
+    title () : string | VueI18N.TranslateResult | null {
       return this.dialog && this.dialog.title
     },
-    message () : string | null | undefined {
+    message () : string | VueI18N.TranslateResult | null | undefined {
       return this.dialog && this.dialog.message
     },
-
+    preset () : Presets {
+      return (this.dialog && this.dialog.preset) || Presets.Confirm
+    },
 
     options () : Options {
-      let dialogOptions = this.dialog && this.dialog.options
+      const dialogOptions = this.dialog && this.dialog.options
 
-      return {...this.defaultOptions, ...dialogOptions}
+      return { ...this.defaultOptions, ...dialogOptions }
     },
     confirmButton () : Button {
-      let dialogConfirmButton = this.dialog && this.dialog.confirmButton
+      const dialogConfirmButton = this.dialog && this.dialog.confirmButton
 
-      return {...this.defaultConfirmButton, ...dialogConfirmButton}
+      return { ...this.getPresets().confirm, ...dialogConfirmButton }
     },
     cancelButton () : Button {
-      let dialogCancelButton = this.dialog && this.dialog.cancelButton
+      const dialogCancelButton = this.dialog && this.dialog.cancelButton
 
-      return {...this.defaultCancelButton, ...dialogCancelButton}
+      return { ...this.getPresets().cancel, ...dialogCancelButton }
+    }
+  },
+
+  methods: {
+    getPresets () {
+      return buttonPresets[this.preset]
     }
   }
 })

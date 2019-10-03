@@ -25,11 +25,9 @@ const confirm = (store: Store<any>) => (options: Dialog) => {
     store.commit('ui/setDialog', {
       ...options,
       resolve,
-      reject,
+      reject
     })
   })
-
-  
 }
 
 const install: Plugin = ({ store }, inject) => {

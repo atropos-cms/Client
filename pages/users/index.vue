@@ -56,6 +56,8 @@ import Vue from 'vue'
 import CreateModal from './-modals/createUser.vue'
 import DeleteModal from './-modals/deleteUser.vue'
 import USERS from '~/graphql/Users.gql'
+import DELETE_USER from '~/graphql/DeleteUser.gql'
+import { Presets } from '~/components/dialogs/isDialog'
 
 export default Vue.extend({
   components: {
@@ -115,15 +117,20 @@ export default Vue.extend({
     editUser (user: {id: Number}) {
       this.$router.push(`/users/${user.id}`)
     },
-    async deleteUser () {
-      const value = await this.$confirm({
-        title: 'Delete this user'
+    async deleteUser (user: {id: Number}) {
+      await this.$confirm({
+        title: this.$t('account.messages.deleteUserTitle'),
+        message: this.$t('account.messages.deleteUserMessage', user),
+        preset: Presets.Delete,
+        action: () => this.$apollo.mutate({
+          mutation: DELETE_USER,
+          variables: {
+            id: user.id
+          }
+        }).then(() => {
+          this.$apollo.queries.users.refetch()
+        })
       })
-
-      console.log('teste', value)
-
-      // this.selected = [user]
-      // this.showDeleteModal = true
     }
   }
 })

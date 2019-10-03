@@ -13,5 +13,10 @@ export default {
   password_confirmation: 'Password confirmation',
   country: 'Country',
   loginAt: 'Last Sign-in: {date}',
-  createdAt: 'Created: {date}'
+  createdAt: 'Created: {date}',
+
+  messages: {
+    deleteUserTitle: 'Delete this user?',
+    deleteUserMessage: 'You are about to delete the user "{first_name} {last_name}". Are you sure you want to continue?'
+  }
 }
