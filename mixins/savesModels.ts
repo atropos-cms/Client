@@ -30,6 +30,7 @@ export default Vue.extend({
 
         await Promise.all([this._wrappedSaveModel(mutation, variables, updateConstructor), Timeout.set(600)])
       } catch (error) {
+        await Timeout.set(300)
         Validation.catchValidationErrors(error)
         throw new FlowControlException()
       } finally {

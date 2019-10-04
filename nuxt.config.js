@@ -39,7 +39,10 @@ export default {
    ** Router
    */
   router: {
-    middleware: 'authenticated'
+    middleware: [
+      'authenticated',
+      'resetValidation'
+    ]
   },
   /*
   ** Nuxt.js dev-modules

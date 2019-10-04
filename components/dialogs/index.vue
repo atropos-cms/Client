@@ -44,6 +44,7 @@
 
 <script lang="ts">
 import mixins from 'vue-typed-mixins'
+import Timeout from 'await-timeout'
 import isDialog from './isDialog'
 import Validation from '~/utils/validation/index'
 import FlowControlException from '~/utils/exceptions/FlowControlException'
@@ -61,8 +62,9 @@ export default mixins(isDialog).extend({
       if (this.dialog && this.dialog.action) {
         this.loading = true
         try {
-          await this.dialog.action(this.model)
+          await Promise.all([this.dialog.action(this.model), Timeout.set(600)])
         } catch (error) {
+          await Timeout.set(300)
           Validation.catchValidationErrors(error)
           throw new FlowControlException()
         } finally {
