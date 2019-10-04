@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-flex flex-column align-center">
+    <div class="d-none d-sm-flex flex-column align-center">
       <!-- Avatar -->
       <v-avatar
         :size="128"
@@ -15,7 +15,7 @@
       </v-avatar>
 
       <!-- Title -->
-      <div class="my-4 display-2">
+      <div class="mt-4 mb-8 display-2">
         {{ $t('account.welcome', me) }}
       </div>
     </div>

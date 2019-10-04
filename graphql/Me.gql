@@ -1,5 +1,6 @@
 query { 
   me {
+    id
     first_name
     last_name
     initials

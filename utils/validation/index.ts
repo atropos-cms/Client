@@ -29,6 +29,7 @@ class Validation {
   }
 
   static catchValidationErrors (error : GraphQLErrorResponse) {
+    state.errors = []
     for (const errors of error.graphQLErrors) {
       for (const [key, validation] of Object.entries(errors.extensions.validation)) {
         state.errors.push({ key, validation })

@@ -56,16 +56,14 @@ export default Vue.extend({
   layout: 'guest',
   middleware: 'guest',
 
-  data () {
-    return {
-      credentials: {
-        username: null,
-        password: null
-      },
-      showPassword: false,
-      loading: false
-    }
-  },
+  data: () => ({
+    credentials: {
+      username: null,
+      password: null
+    },
+    showPassword: false,
+    loading: false
+  }),
 
   methods: {
     async onSubmit () {

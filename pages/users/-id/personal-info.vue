@@ -71,13 +71,17 @@
         </v-col>
       </v-row>
 
-      <v-btn
-        color="primary"
-        :loading="saving"
-        @click="submit"
-      >
-        {{ $t('general.save') }}
-      </v-btn>
+      <div class="d-flex">
+        <div class="flex-grow-1" />
+
+        <v-btn
+          color="primary"
+          :loading="saving"
+          @click="submit"
+        >
+          {{ $t('general.save') }}
+        </v-btn>
+      </div>
     </v-form>
   </v-card>
 </template>

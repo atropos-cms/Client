@@ -16,7 +16,8 @@ export default {
   createdAt: 'Created: {date}',
 
   messages: {
+    createUserTitle: 'Create a new user',
     deleteUserTitle: 'Delete this user?',
-    deleteUserMessage: 'You are about to delete the user "{first_name} {last_name}". Are you sure you want to continue?'
+    deleteUserMessage: 'You are about to delete the user "{first_name} {last_name}".<br> Are you sure you want to continue?'
   }
 }

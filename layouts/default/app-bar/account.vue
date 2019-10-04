@@ -36,6 +36,7 @@
           <v-list-item-action>
             <v-btn
               icon
+              fab
               @click="navigateToAccount"
             >
               <v-icon>edit</v-icon>

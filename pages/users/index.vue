@@ -44,27 +44,18 @@
         </v-icon>
       </template>
     </v-data-table>
-
-    <!-- Delete User modal -->
-    <delete-modal :selected="selected" :show.sync="showDeleteModal" />
-    <create-modal :show.sync="showCreateModal" />
   </v-card>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import CreateModal from './-modals/createUser.vue'
-import DeleteModal from './-modals/deleteUser.vue'
+import CreateUser from './-modals/create-user.vue'
 import USERS from '~/graphql/Users.gql'
+import CREATE_USER from '~/graphql/CreateUser.gql'
 import DELETE_USER from '~/graphql/DeleteUser.gql'
-import { Presets } from '~/components/dialogs/isDialog'
+import { Preset } from '~/components/dialogs/isDialog'
 
 export default Vue.extend({
-  components: {
-    CreateModal,
-    DeleteModal
-  },
-
   data: () => ({
     showDeleteModal: false,
     showCreateModal: false,
@@ -111,8 +102,20 @@ export default Vue.extend({
   },
 
   methods: {
-    addUser () {
-      this.showCreateModal = true
+    async addUser () {
+      await this.$dialog({
+        title: this.$t('account.messages.createUserTitle'),
+        component: CreateUser,
+        preset: Preset.Create,
+        action: model => this.$apollo.mutate({
+          mutation: CREATE_USER,
+          variables: {
+            data: model
+          }
+        }).then(() => {
+          this.$apollo.queries.users.refetch()
+        })
+      })
     },
     editUser (user: {id: Number}) {
       this.$router.push(`/users/${user.id}`)
@@ -121,7 +124,7 @@ export default Vue.extend({
       await this.$confirm({
         title: this.$t('account.messages.deleteUserTitle'),
         message: this.$t('account.messages.deleteUserMessage', user),
-        preset: Presets.Delete,
+        preset: Preset.Delete,
         action: () => this.$apollo.mutate({
           mutation: DELETE_USER,
           variables: {

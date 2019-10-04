@@ -1,9 +1,9 @@
 <template>
   <v-card>
-    <div class="d-flex pa-4">
-      <div>
+    <div class="d-flex flex-md-column pa-4">
+      <div class="d-flex justify-center">
         <v-avatar
-          :size="96"
+          :size="$vuetify.breakpoint.lgAndUp ? 196 : 96"
           color="blue-grey lighten-5"
         >
           <img
@@ -14,7 +14,7 @@
           <span v-else>{{ model.initials }}</span>
         </v-avatar>
       </div>
-      <div class="ml-4">
+      <div class="ml-4 ml-md-0 mt-md-4">
         <div class="title">
           {{ model.first_name }} {{ model.last_name }}
         </div>

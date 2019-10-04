@@ -1,16 +1,23 @@
-import Vue from 'vue'
+import Vue, { VueConstructor } from 'vue'
 import VueI18N from 'vue-i18n'
 
-export enum Presets {
+export enum Preset {
   Confirm = 'confirm',
+  Create = 'create',
   Delete = 'delete'
+}
+
+export enum Width {
+  Normal = 600,
+  Small = 380,
 }
 
 export interface Dialog {
   title: string | VueI18N.TranslateResult,
   message?: string | VueI18N.TranslateResult,
-  preset?: Presets,
-  action?: () => Promise<void | undefined>,
+  component?: VueConstructor<Vue>,
+  preset?: Preset,
+  action?: (model: object) => Promise<void | undefined>,
   confirmButton?: Button,
   cancelButton?: Button,
   options?: Options
@@ -26,18 +33,19 @@ interface Button {
   color: string
 }
 interface Options {
-  width: Number
+  width: Width,
+  persistent: Boolean
 }
 
 type ButtonPreset = {
-  [key in Presets]: {
+  [key in Preset]: {
     confirm: Button,
     cancel: Button
   }
 }
 
 const buttonPresets : ButtonPreset = {
-  [Presets.Confirm]: {
+  [Preset.Confirm]: {
     confirm: {
       text: 'general.ok',
       color: 'primary darken-1'
@@ -48,7 +56,18 @@ const buttonPresets : ButtonPreset = {
     }
   },
 
-  [Presets.Delete]: {
+  [Preset.Create]: {
+    confirm: {
+      text: 'general.create',
+      color: 'primary darken-1'
+    },
+    cancel: {
+      text: 'general.cancel',
+      color: 'grey'
+    }
+  },
+
+  [Preset.Delete]: {
     confirm: {
       text: 'general.delete',
       color: 'red darken-1'
@@ -64,7 +83,8 @@ export default Vue.extend({
   data () {
     return {
       defaultOptions: {
-        width: 320
+        width: Width.Normal,
+        persistent: true
       } as Options
     }
   },
@@ -106,8 +126,11 @@ export default Vue.extend({
     message () : string | VueI18N.TranslateResult | null | undefined {
       return this.dialog && this.dialog.message
     },
-    preset () : Presets {
-      return (this.dialog && this.dialog.preset) || Presets.Confirm
+    component () : VueConstructor<Vue> | null | undefined {
+      return this.dialog && this.dialog.component
+    },
+    preset () : Preset {
+      return (this.dialog && this.dialog.preset) || Preset.Confirm
     },
 
     options () : Options {
