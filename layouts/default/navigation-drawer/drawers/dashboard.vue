@@ -4,8 +4,8 @@
       v-for="application in applications"
       :key="application.name"
       :to="application.url"
-      router
-      exact
+      :exact="application.exact"
+      nuxt
     >
       <v-list-item-action>
         <v-icon>{{ application.icon }}</v-icon>

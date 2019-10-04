@@ -4,6 +4,7 @@ export interface Application {
   readonly description: string | null,
   readonly icon: string,
   readonly url: string,
+  readonly exact?: boolean,
 }
 
 const applicationsMap : Application[] = [

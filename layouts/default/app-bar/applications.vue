@@ -8,7 +8,7 @@
     offset-y
   >
     <template v-slot:activator="{ on }">
-      <v-btn icon v-on="on">
+      <v-btn icon class="mr-2" v-on="on">
         <v-icon>apps</v-icon>
       </v-btn>
     </template>
