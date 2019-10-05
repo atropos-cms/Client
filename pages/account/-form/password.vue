@@ -1,7 +1,7 @@
 <template>
   <v-card class="mt-12">
     <v-card-title>
-      {{ $t('account.changePassword') }}
+      {{ $t('user.changePassword') }}
     </v-card-title>
 
     <v-form ref="form" class="pa-4">
@@ -12,7 +12,7 @@
             :append-icon="showCurrentPassword ? 'visibility' : 'visibility_off'"
             :type="showCurrentPassword ? 'text' : 'password'"
             :error-messages="$v('current_password', 'account.current_password')"
-            :label="$t('account.current_password')"
+            :label="$t('user.current_password')"
             @click:append="showCurrentPassword = !showCurrentPassword"
           />
         </v-col>
@@ -23,7 +23,7 @@
             :append-icon="showNewPassword ? 'visibility' : 'visibility_off'"
             :type="showNewPassword ? 'text' : 'password'"
             :error-messages="$v('password', 'account.password')"
-            :label="$t('account.password')"
+            :label="$t('user.password')"
             @click:append="showNewPassword = !showNewPassword"
           />
         </v-col>
@@ -34,7 +34,7 @@
             :append-icon="showNewPasswordConfirm ? 'visibility' : 'visibility_off'"
             :type="showNewPasswordConfirm ? 'text' : 'password'"
             :error-messages="$v('password_confirmation', 'account.password_confirmation')"
-            :label="$t('account.password_confirmation')"
+            :label="$t('user.password_confirmation')"
             @click:append="showNewPasswordConfirm = !showNewPasswordConfirm"
           />
         </v-col>

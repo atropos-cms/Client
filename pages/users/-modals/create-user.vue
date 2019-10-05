@@ -8,7 +8,7 @@
         <v-text-field
           v-model="model.first_name"
           :error-messages="$v('first_name', 'account.firstName')"
-          :label="$t('account.firstName')"
+          :label="$t('user.firstName')"
         />
       </v-col>
 
@@ -19,7 +19,7 @@
         <v-text-field
           v-model="model.last_name"
           :error-messages="$v('last_name', 'account.lastName')"
-          :label="$t('account.lastName')"
+          :label="$t('user.lastName')"
         />
       </v-col>
 
@@ -29,7 +29,7 @@
         <v-text-field
           v-model="model.email"
           :error-messages="$v('email', 'account.email')"
-          :label="$t('account.email')"
+          :label="$t('user.email')"
         />
       </v-col>
 
@@ -40,7 +40,7 @@
         <v-text-field
           v-model="model.postcode"
           :error-messages="$v('postcode', 'account.postcode')"
-          :label="$t('account.postcode')"
+          :label="$t('user.postcode')"
         />
       </v-col>
 
@@ -51,7 +51,7 @@
         <v-text-field
           v-model="model.city"
           :error-messages="$v('city', 'account.city')"
-          :label="$t('account.city')"
+          :label="$t('user.city')"
         />
       </v-col>
 
@@ -61,7 +61,7 @@
         <v-text-field
           v-model="model.country"
           :error-messages="$v('country', 'account.country')"
-          :label="$t('account.country')"
+          :label="$t('user.country')"
         />
       </v-col>
     </v-row>

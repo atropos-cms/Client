@@ -1,0 +1,13 @@
+query Groups($first: Int!, $page: Int, $search: String, $orderBy: [OrderByClause!]) {
+  groups(first: $first, page: $page, search: $search, orderBy: $orderBy) {
+    paginatorInfo {
+      count
+      currentPage
+      total
+    }
+    data {
+      id
+      name
+    }
+  }
+}

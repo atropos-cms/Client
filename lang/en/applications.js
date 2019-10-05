@@ -12,6 +12,7 @@ export default {
   },
   groups: {
     title: 'Groups',
+    addNewGroup: 'Add new group',
     description: 'Create groups and manage permissions'
   }
 }

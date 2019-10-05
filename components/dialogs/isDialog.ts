@@ -2,7 +2,8 @@ import Vue, { VueConstructor } from 'vue'
 import VueI18N from 'vue-i18n'
 
 export enum Preset {
-  Confirm = 'confirm',
+  Save = 'save',
+  Ok = 'ok',
   Create = 'create',
   Delete = 'delete'
 }
@@ -17,7 +18,7 @@ export interface Dialog {
   message?: string | VueI18N.TranslateResult,
   component?: VueConstructor<Vue>,
   preset?: Preset,
-  action?: (model: object) => Promise<void | undefined>,
+  action?: (model: object) => Promise<void | undefined> | any,
   confirmButton?: Button,
   cancelButton?: Button,
   options?: Options
@@ -45,7 +46,18 @@ type ButtonPreset = {
 }
 
 const buttonPresets : ButtonPreset = {
-  [Preset.Confirm]: {
+  [Preset.Save]: {
+    confirm: {
+      text: 'general.save',
+      color: 'primary darken-1'
+    },
+    cancel: {
+      text: 'general.cancel',
+      color: 'grey'
+    }
+  },
+
+  [Preset.Ok]: {
     confirm: {
       text: 'general.ok',
       color: 'primary darken-1'
@@ -130,7 +142,7 @@ export default Vue.extend({
       return this.dialog && this.dialog.component
     },
     preset () : Preset {
-      return (this.dialog && this.dialog.preset) || Preset.Confirm
+      return (this.dialog && this.dialog.preset) || Preset.Ok
     },
 
     options () : Options {

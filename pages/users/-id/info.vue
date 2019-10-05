@@ -20,10 +20,10 @@
         </div>
         <div>{{ model.email }}</div>
         <div class="mt-6 caption blue-grey--text">
-          {{ $t('account.loginAt', { date: loginAt }) }}
+          {{ $t('user.loginAt', { date: loginAt }) }}
         </div>
         <div class="caption blue-grey--text">
-          {{ $t('account.createdAt', { date: createdAt }) }}
+          {{ $t('general.createdAt', { date: createdAt }) }}
         </div>
       </div>
     </div>
@@ -46,6 +46,7 @@ export default mixins(isForm).extend({
       return dayjs(this.model.login_at).fromNow()
     },
     createdAt () {
+      if (!this.model.created_at) { return null }
       return dayjs(this.model.created_at).format('LL')
     }
   }

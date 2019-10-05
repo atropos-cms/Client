@@ -4,13 +4,13 @@
       cols="12"
       md="4"
     >
-      <info :value="user" />
+      <info :value="group" />
     </v-col>
 
     <v-col>
-      <personal-info
-        :value="user"
-        :loading="$apollo.queries.user.loading"
+      <group-info
+        :value="group"
+        :loading="$apollo.queries.group.loading"
       />
     </v-col>
   </v-row>
@@ -19,23 +19,23 @@
 <script lang="ts">
 import Vue from 'vue'
 import info from './-id/info.vue'
-import personalInfo from './-id/personal-info.vue'
-import USER from '~/graphql/User.gql'
+import groupInfo from './-id/group-info.vue'
+import GROUP from '~/graphql/Group.gql'
 
 export default Vue.extend({
   components: {
     info,
-    personalInfo
+    groupInfo
   },
 
   data: () => ({
     img: false,
-    user: {}
+    group: {}
   }),
 
   apollo: {
-    user: {
-      query: USER,
+    group: {
+      query: GROUP,
       variables () {
         return {
           id: this.$route.params.id

@@ -16,7 +16,7 @@
 
       <!-- Title -->
       <div class="mt-4 mb-8 display-2">
-        {{ $t('account.welcome', me) }}
+        {{ $t('user.welcome', me) }}
       </div>
     </div>
 

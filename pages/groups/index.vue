@@ -2,11 +2,11 @@
   <v-card>
     <v-card-title>
       <span class="mr-4">
-        {{ $t('applications.users.title') }}
+        {{ $t('applications.groups.title') }}
       </span>
 
-      <v-btn text small color="primary" @click="addUser">
-        {{ $t('applications.users.addNewUser') }}
+      <v-btn text small color="primary" @click="addGroup">
+        {{ $t('applications.groups.addNewGroup') }}
       </v-btn>
 
       <div class="flex-grow-1" />
@@ -20,26 +20,25 @@
       />
     </v-card-title>
     <v-data-table
-      v-model="selected"
       :headers="headers"
-      :items="users.data"
+      :items="groups.data"
       :footer-props="{ itemsPerPageOptions: [10, 50, 100] }"
       :options.sync="options"
-      :server-items-length="users.paginatorInfo.total"
-      :loading="$apollo.queries.users.loading"
+      :server-items-length="groups.paginatorInfo.total"
+      :loading="$apollo.queries.groups.loading"
       item-key="id"
     >
       <template v-slot:item.action="{ item }">
         <v-icon
           small
           class="mr-2"
-          @click="editUser(item)"
+          @click="editGroup(item)"
         >
           edit
         </v-icon>
         <v-icon
           small
-          @click="deleteUser(item)"
+          @click="deleteGroup(item)"
         >
           delete
         </v-icon>
@@ -50,30 +49,27 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import createUser from './-modals/create-user.vue'
+import createGroup from './-modals/create-group.vue'
 import { i18n } from '~/plugins/vue-i18n'
-import USERS from '~/graphql/Users.gql'
-import CREATE_USER from '~/graphql/CreateUser.gql'
-import DELETE_USER from '~/graphql/DeleteUser.gql'
+import GROUPS from '~/graphql/Groups.gql'
+import CREATE_GROUP from '~/graphql/CreateGroup.gql'
+import DELETE_GROUP from '~/graphql/DeleteGroup.gql'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default Vue.extend({
   data: () => ({
     headers: [
-      { text: i18n.t('user.firstName'), value: 'first_name' },
-      { text: i18n.t('user.lastName'), value: 'last_name' },
-      { text: i18n.t('user.email'), value: 'email' },
+      { text: i18n.t('group.name'), value: 'name' },
       { text: i18n.t('general.actions'), value: 'action', align: 'right', sortable: false }
     ],
     options: {
       page: 1,
       itemsPerPage: 10,
-      sortBy: ['first_name'],
+      sortBy: ['name'],
       sortDesc: [false]
     },
-    selected: [] as object[],
     search: '',
-    users: {
+    groups: {
       paginatorInfo: {
         total: 0
       },
@@ -82,10 +78,10 @@ export default Vue.extend({
   }),
 
   apollo: {
-    users: {
-      query: USERS,
+    groups: {
+      query: GROUPS,
       variables () {
-        const first = this.options.itemsPerPage === -1 ? this.users.paginatorInfo.total : this.options.itemsPerPage
+        const first = this.options.itemsPerPage === -1 ? this.groups.paginatorInfo.total : this.options.itemsPerPage
         const orderBy = this.options.sortBy.map((item, index) => ({
           field: item,
           order: this.options.sortDesc[index] ? 'DESC' : 'ASC'
@@ -102,36 +98,36 @@ export default Vue.extend({
   },
 
   methods: {
-    async addUser () {
+    async addGroup () {
       await this.$dialog({
-        title: this.$t('messages.createUserTitle'),
-        component: createUser,
+        title: this.$t('messages.createGroupTitle'),
+        component: createGroup,
         preset: Preset.Create,
         action: model => this.$apollo.mutate({
-          mutation: CREATE_USER,
+          mutation: CREATE_GROUP,
           variables: {
             data: model
           }
         }).then(() => {
-          this.$apollo.queries.users.refetch()
+          this.$apollo.queries.groups.refetch()
         })
       })
     },
-    editUser (user: {id: Number}) {
-      this.$router.push(`/users/${user.id}`)
+    editGroup (group: {id: Number}) {
+      this.$router.push(`/groups/${group.id}`)
     },
-    async deleteUser (user: {id: Number}) {
+    async deleteGroup (group: {id: Number}) {
       await this.$confirm({
-        title: this.$t('messages.deleteUserTitle'),
-        message: this.$t('messages.deleteUserMessage', user),
+        title: this.$t('messages.deleteGroupTitle'),
+        message: this.$t('messages.deleteGroupMessage', group),
         preset: Preset.Delete,
         action: () => this.$apollo.mutate({
-          mutation: DELETE_USER,
+          mutation: DELETE_GROUP,
           variables: {
-            id: user.id
+            id: group.id
           }
         }).then(() => {
-          this.$apollo.queries.users.refetch()
+          this.$apollo.queries.groups.refetch()
         })
       })
     }
