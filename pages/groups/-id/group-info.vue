@@ -9,8 +9,10 @@
         <v-col cols="12">
           <v-textarea
             v-model="model.description"
-            :error-messages="$v('description', 'group.description')"
+            :error-messages="$v('data.description', 'group.description', { max: 1000 })"
             :label="$t('group.description')"
+            auto-grow
+            counter
           />
         </v-col>
       </v-row>
@@ -43,6 +45,7 @@ export default mixins(isForm, savesModels).extend({
       this.saveModel(UPDATE_GROUP, {
         id: this.model.id,
         data: {
+          name: this.model.name,
           description: this.model.description
         }
       }, {

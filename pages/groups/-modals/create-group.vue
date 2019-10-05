@@ -6,6 +6,7 @@
           v-model="model.name"
           :error-messages="$v('name', 'group.name')"
           :label="$t('group.name')"
+          autofocus
         />
       </v-col>
     </v-row>

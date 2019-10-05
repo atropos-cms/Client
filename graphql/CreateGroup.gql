@@ -2,5 +2,6 @@ mutation($data: UpdateOrCreateGroupInput!) {
   createGroup(data: $data) {
     id
     name
+    description
   }
 }

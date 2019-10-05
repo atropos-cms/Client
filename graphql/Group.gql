@@ -2,6 +2,7 @@ query Group($id: ID!) {
   group(id: $id) {
     id
     name
+    description
     created_at
     updated_at
   }

@@ -8,6 +8,7 @@ query Groups($first: Int!, $page: Int, $search: String, $orderBy: [OrderByClause
     data {
       id
       name
+      description
     }
   }
 }
