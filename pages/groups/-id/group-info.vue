@@ -36,8 +36,8 @@
 import mixins from 'vue-typed-mixins'
 import isForm from '~/mixins/isClonedForm.ts'
 import savesModels from '~/mixins/savesModels.ts'
-import UPDATE_GROUP from '~/graphql/UpdateGroup.gql'
-import GROUP from '~/graphql/Group.gql'
+import UPDATE_GROUP from '~/graphql/updateGroup.gql'
+import GROUP from '~/graphql/group.gql'
 
 export default mixins(isForm, savesModels).extend({
   methods: {

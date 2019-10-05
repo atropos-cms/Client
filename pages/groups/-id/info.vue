@@ -45,8 +45,8 @@ import mixins from 'vue-typed-mixins'
 import renameGroup from '../-modals/rename-group.vue'
 import dayjs from '~/utils/dayjs'
 import isForm from '~/mixins/isForm.ts'
-import UPDATE_GROUP from '~/graphql/UpdateGroup.gql'
-import DELETE_GROUP from '~/graphql/DeleteGroup.gql'
+import UPDATE_GROUP from '~/graphql/updateGroup.gql'
+import DELETE_GROUP from '~/graphql/deleteGroup.gql'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default mixins(isForm).extend({

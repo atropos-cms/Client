@@ -51,9 +51,9 @@
 import Vue from 'vue'
 import createGroup from './-modals/create-group.vue'
 import { i18n } from '~/plugins/vue-i18n'
-import GROUPS from '~/graphql/Groups.gql'
-import CREATE_GROUP from '~/graphql/CreateGroup.gql'
-import DELETE_GROUP from '~/graphql/DeleteGroup.gql'
+import GROUPS from '~/graphql/groups.gql'
+import CREATE_GROUP from '~/graphql/createGroup.gql'
+import DELETE_GROUP from '~/graphql/deleteGroup.gql'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default Vue.extend({
@@ -81,7 +81,7 @@ export default Vue.extend({
     groups: {
       query: GROUPS,
       variables () {
-        const first = this.options.itemsPerPage === -1 ? this.groups.paginatorInfo.total : this.options.itemsPerPage
+        const first = this.options.itemsPerPage
         const orderBy = this.options.sortBy.map((item, index) => ({
           field: item,
           order: this.options.sortDesc[index] ? 'DESC' : 'ASC'

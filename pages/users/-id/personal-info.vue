@@ -90,8 +90,8 @@
 import mixins from 'vue-typed-mixins'
 import isForm from '~/mixins/isClonedForm.ts'
 import savesModels from '~/mixins/savesModels.ts'
-import UPDATE_USER from '~/graphql/UpdateUser.gql'
-import USER from '~/graphql/User.gql'
+import UPDATE_USER from '~/graphql/updateUser.gql'
+import USER from '~/graphql/user.gql'
 
 export default mixins(isForm, savesModels).extend({
   methods: {

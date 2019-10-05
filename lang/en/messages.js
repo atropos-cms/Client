@@ -1,4 +1,5 @@
 export default {
+  addMemberToGroupTitle: 'Add members to {name}',
   createUserTitle: 'Create a new user',
   createGroupTitle: 'Create a new group',
   renameGroupTitle: 'Rename group',

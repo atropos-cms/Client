@@ -25,7 +25,7 @@ const v = (prop: string, attribute?:string, parameters?:object) => {
   if (!error) { return null }
 
   attribute = attribute || prop
-  return i18n.t(error, { attribute: i18n.t(attribute), ...parameters})
+  return i18n.t(error, { attribute: i18n.t(attribute), ...parameters })
 }
 
 const install: Plugin = (_context, inject) => {

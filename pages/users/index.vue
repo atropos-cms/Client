@@ -52,9 +52,9 @@
 import Vue from 'vue'
 import createUser from './-modals/create-user.vue'
 import { i18n } from '~/plugins/vue-i18n'
-import USERS from '~/graphql/Users.gql'
-import CREATE_USER from '~/graphql/CreateUser.gql'
-import DELETE_USER from '~/graphql/DeleteUser.gql'
+import USERS from '~/graphql/users.gql'
+import CREATE_USER from '~/graphql/createUser.gql'
+import DELETE_USER from '~/graphql/deleteUser.gql'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default Vue.extend({
@@ -85,7 +85,7 @@ export default Vue.extend({
     users: {
       query: USERS,
       variables () {
-        const first = this.options.itemsPerPage === -1 ? this.users.paginatorInfo.total : this.options.itemsPerPage
+        const first = this.options.itemsPerPage
         const orderBy = this.options.sortBy.map((item, index) => ({
           field: item,
           order: this.options.sortDesc[index] ? 'DESC' : 'ASC'

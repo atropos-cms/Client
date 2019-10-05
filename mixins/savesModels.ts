@@ -26,6 +26,7 @@ export default Vue.extend({
     async saveModel (mutation: DocumentNode, variables: object, updateConstructor = updateCallback) {
       try {
         this.saving = true
+        this.$emit('update:loading', true)
         Validation.reset()
 
         await Promise.all([this._wrappedSaveModel(mutation, variables, updateConstructor), Timeout.set(600)])
@@ -34,6 +35,7 @@ export default Vue.extend({
         Validation.catchValidationErrors(error)
         throw new FlowControlException()
       } finally {
+        this.$emit('update:loading', false)
         this.saving = false
       }
     },

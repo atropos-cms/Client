@@ -55,7 +55,7 @@
 import mixins from 'vue-typed-mixins'
 import isForm from '~/mixins/isClonedForm.ts'
 import savesModels from '~/mixins/savesModels.ts'
-import UPDATE_MY_PASSWORD from '~/graphql/UpdateMyPassword.gql'
+import UPDATE_MY_PASSWORD from '~/graphql/updateMyPassword.gql'
 
 export default mixins(isForm, savesModels).extend({
   data: () => ({

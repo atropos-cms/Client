@@ -5,5 +5,9 @@ query Group($id: ID!) {
     description
     created_at
     updated_at
+    members {
+      id
+      full_name
+    }
   }
 }

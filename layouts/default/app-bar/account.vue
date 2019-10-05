@@ -60,7 +60,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import ME from '~/graphql/Me.gql'
+import ME from '~/graphql/me.gql'
 
 export default Vue.extend({
   data: () => ({

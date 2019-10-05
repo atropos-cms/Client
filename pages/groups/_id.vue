@@ -12,6 +12,11 @@
         :value="group"
         :loading="$apollo.queries.group.loading"
       />
+
+      <members
+        :value="group"
+        :loading="$apollo.queries.group.loading"
+      />
     </v-col>
   </v-row>
 </template>
@@ -20,12 +25,14 @@
 import Vue from 'vue'
 import info from './-id/info.vue'
 import groupInfo from './-id/group-info.vue'
-import GROUP from '~/graphql/Group.gql'
+import members from './-id/members.vue'
+import GROUP from '~/graphql/group.gql'
 
 export default Vue.extend({
   components: {
     info,
-    groupInfo
+    groupInfo,
+    members
   },
 
   data: () => ({

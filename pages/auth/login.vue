@@ -50,7 +50,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import LOGIN from '~/graphql/Login.gql'
+import LOGIN from '~/graphql/login.gql'
 
 export default Vue.extend({
   layout: 'guest',
