@@ -2,10 +2,11 @@ import Vue, { VueConstructor } from 'vue'
 import VueI18N from 'vue-i18n'
 
 export enum Preset {
-  Save = 'save',
-  Ok = 'ok',
   Create = 'create',
-  Delete = 'delete'
+  Delete = 'delete',
+  Ok = 'ok',
+  Remove = 'remove',
+  Save = 'save'
 }
 
 export enum Width {
@@ -18,7 +19,7 @@ export interface Dialog {
   message?: string | VueI18N.TranslateResult,
   component?: VueConstructor<Vue>,
   preset?: Preset,
-  action?: (model: object) => Promise<void | undefined> | any,
+  action?: (model: any) => Promise<void | undefined> | any,
   confirmButton?: Button,
   cancelButton?: Button,
   options?: Options
@@ -46,28 +47,6 @@ type ButtonPreset = {
 }
 
 const buttonPresets : ButtonPreset = {
-  [Preset.Save]: {
-    confirm: {
-      text: 'general.save',
-      color: 'primary darken-1'
-    },
-    cancel: {
-      text: 'general.cancel',
-      color: 'grey'
-    }
-  },
-
-  [Preset.Ok]: {
-    confirm: {
-      text: 'general.ok',
-      color: 'primary darken-1'
-    },
-    cancel: {
-      text: 'general.cancel',
-      color: 'grey'
-    }
-  },
-
   [Preset.Create]: {
     confirm: {
       text: 'general.create',
@@ -87,6 +66,39 @@ const buttonPresets : ButtonPreset = {
     cancel: {
       text: 'general.cancel',
       color: 'primary'
+    }
+  },
+
+  [Preset.Ok]: {
+    confirm: {
+      text: 'general.ok',
+      color: 'primary darken-1'
+    },
+    cancel: {
+      text: 'general.cancel',
+      color: 'grey darken-1'
+    }
+  },  
+
+  [Preset.Remove]: {
+    confirm: {
+      text: 'general.remove',
+      color: 'red darken-1'
+    },
+    cancel: {
+      text: 'general.cancel',
+      color: 'primary'
+    }
+  },
+
+  [Preset.Save]: {
+    confirm: {
+      text: 'general.save',
+      color: 'primary darken-1'
+    },
+    cancel: {
+      text: 'general.cancel',
+      color: 'grey darken-1'
     }
   }
 }

@@ -4,6 +4,7 @@ export default {
   cancel: 'Cancel',
   create: 'Create',
   delete: 'Delete',
+  remove: 'Remove',
   search: 'Search',
   save: 'Save',
   createdAt: 'Created: {date}'

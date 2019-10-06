@@ -16,6 +16,7 @@
       <members
         :value="group"
         :loading="$apollo.queries.group.loading"
+        @refreshGroup="refreshGroup"
       />
     </v-col>
   </v-row>
@@ -48,6 +49,12 @@ export default Vue.extend({
           id: this.$route.params.id
         }
       }
+    }
+  },
+
+  methods: {
+    refreshGroup () {
+      this.$apollo.queries.group.refresh()
     }
   }
 })

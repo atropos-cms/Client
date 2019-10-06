@@ -16,24 +16,48 @@
       <v-icon>mdi-plus</v-icon>
     </v-btn>
 
-    <v-row class="pa-4">
-      <v-col cols="12">
-        Members
-      </v-col>
-    </v-row>
+    <v-data-table
+      :headers="headers"
+      :items="model.members"
+      :options.sync="options"
+      :footer-props="{ itemsPerPageOptions: [10, 50, 100] }"
+      item-key="id"
+    >
+      <template v-slot:item.action="{ item }">
+        <v-icon
+          small
+          @click="removeMember(item)"
+        >
+          delete
+        </v-icon>
+      </template>
+    </v-data-table>
   </v-card>
 </template>
 
 <script lang="ts">
 import mixins from 'vue-typed-mixins'
 import addMemberDialog from '../-modals/add-member.vue'
+import { i18n } from '~/plugins/vue-i18n'
 import isForm from '~/mixins/isClonedForm.ts'
 import savesModels from '~/mixins/savesModels.ts'
-import SYNC_GROUP_MEMBERS from '~/graphql/syncGroupMembers.gql'
+import ADD_GROUP_MEMBERS from '~/graphql/addGroupMembers.gql'
+import REMOVE_GROUP_MEMBERS from '~/graphql/removeGroupMembers.gql'
 // import GROUP from '~/graphql/group.gql'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default mixins(isForm, savesModels).extend({
+  data: () => ({
+    headers: [
+      { text: i18n.t('user.fullName'), value: 'full_name' },
+      { text: i18n.t('general.actions'), value: 'action', align: 'right', sortable: false }
+    ],
+    options: {
+      sortBy: ['full_name'],
+      sortDesc: [false]
+    }
+  }),
+
   methods: {
     async addMember () {
       await this.$dialog({
@@ -41,12 +65,26 @@ export default mixins(isForm, savesModels).extend({
         component: addMemberDialog,
         preset: Preset.Save,
         action: model => this.$apollo.mutate({
-          mutation: SYNC_GROUP_MEMBERS,
+          mutation: ADD_GROUP_MEMBERS,
           variables: {
             id: this.model.id,
-            members: model
+            members: model.selected
           }
-        })
+        }).then(() => this.$emit('refreshGroup'))
+      })
+    },
+    async removeMember (item: {id: Number}) {
+      await this.$confirm({
+        title: this.$t('messages.removeMemberToGroupTitle', { full_name: item.full_name, name: this.model.name }),
+        message: this.$t('messages.removeMemberToGroupMessage', item),
+        preset: Preset.Remove,
+        action: () => this.$apollo.mutate({
+          mutation: REMOVE_GROUP_MEMBERS,
+          variables: {
+            id: this.model.id,
+            members: [item.id]
+          }
+        }).then(() => this.$emit('refreshGroup'))
       })
     }
   }

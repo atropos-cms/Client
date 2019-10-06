@@ -79,6 +79,12 @@ export default mixins(isDialog).extend({
       this.reject(new FlowControlException())
       this.show = false
     }
+  },
+
+  watch: {
+    show () {
+      this.model = {}
+    }
   }
 })
 </script>

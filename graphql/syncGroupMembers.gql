@@ -1,6 +1,0 @@
-mutation($id: ID!, $members: [ID!]!) {
-  syncGroupMembers(id: $id, members: $members) {
-    id
-    name
-  }
-}

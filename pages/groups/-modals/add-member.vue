@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12">
         <v-autocomplete
-          v-model="model"
+          v-model="model.selected"
           :loading="$apollo.queries.users.loading"
           :items="users"
           :search-input.sync="search"
@@ -55,7 +55,9 @@ export default mixins(isForm).extend({
   }),
 
   mounted () {
-    this.model = []
+    this.model = {
+      selected: [] as Number[]
+    }
   },
 
   apollo: {
@@ -63,7 +65,7 @@ export default mixins(isForm).extend({
       query: USERS,
       variables () {
         return {
-          first: 10,
+          first: 100,
           orderBy: [{ field: 'first_name', order: 'ASC' }],
           search: this.search || undefined,
           page: 1
@@ -75,9 +77,9 @@ export default mixins(isForm).extend({
 
   methods: {
     remove (user: { id: Number }) {
-      const index = this.model.indexOf(user.id)
+      const index = this.model.selected.indexOf(user.id)
       if (index >= 0) {
-        this.model.splice(index, 1)
+        this.model.selected.splice(index, 1)
       }
     }
   }
