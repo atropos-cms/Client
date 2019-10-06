@@ -19,6 +19,21 @@
           {{ model.first_name }} {{ model.last_name }}
         </div>
         <div>{{ model.email }}</div>
+      </div>
+
+      <div class="mt-4">
+        <v-chip
+          v-for="group in model.groups"
+          :key="group.id"
+          label
+          small
+          class="mr-2"
+        >
+          {{ group.name }}
+        </v-chip>
+      </div>
+
+      <div>
         <div class="mt-6 caption blue-grey--text">
           {{ $t('user.loginAt', { date: loginAt }) }}
         </div>

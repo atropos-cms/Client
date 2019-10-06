@@ -13,5 +13,10 @@ query User($id: ID!) {
     created_at
     updated_at
     login_at
+
+    groups {
+      id
+      name
+    }
   }
 }
