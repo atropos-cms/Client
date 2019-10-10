@@ -1,0 +1,12 @@
+query {
+  pages {
+    id
+    title
+    created_at
+    updated_at
+    author {
+      id
+      full_name
+    }
+  }
+}

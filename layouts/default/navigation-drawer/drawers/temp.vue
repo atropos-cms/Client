@@ -1,5 +1,5 @@
 <template>
-  <v-list>
+  <v-list shaped>
     <v-list-item
       v-for="(item, i) in items"
       :key="i"

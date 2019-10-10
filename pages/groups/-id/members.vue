@@ -73,7 +73,7 @@ export default mixins(isForm, savesModels).extend({
         }).then(() => this.$emit('refreshGroup'))
       })
     },
-    async removeMember (item: {id: Number}) {
+    async removeMember (item: any) {
       await this.$confirm({
         title: this.$t('messages.removeMemberToGroupTitle', { full_name: item.full_name, name: this.model.name }),
         message: this.$t('messages.removeMemberToGroupMessage', item),

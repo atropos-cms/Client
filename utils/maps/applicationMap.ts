@@ -9,6 +9,13 @@ export interface Application {
 
 const applicationsMap : Application[] = [
   {
+    name: 'pages',
+    title: 'applications.pages.title',
+    description: 'applications.pages.description',
+    icon: 'insert_drive_file',
+    url: '/pages'
+  },
+  {
     name: 'users',
     title: 'applications.users.title',
     description: 'applications.users.description',

@@ -25,7 +25,7 @@
               src="https://vuetifyjs.com/apple-touch-icon-180x180.png"
               alt="avatar"
             >
-            <span v-else>{{ me.initials }}</span>
+            <span v-else class="grey--text text--darken-3">{{ me.initials }}</span>
           </v-list-item-avatar>
 
           <v-list-item-content>

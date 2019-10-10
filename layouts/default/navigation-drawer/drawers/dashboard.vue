@@ -1,5 +1,5 @@
 <template>
-  <v-list>
+  <v-list shaped>
     <v-list-item
       v-for="application in applications"
       :key="application.name"

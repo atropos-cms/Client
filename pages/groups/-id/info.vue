@@ -6,7 +6,7 @@
           {{ model.name }}
         </div>
         <div>{{ model.email }}</div>
-        <div class="mt-6 caption blue-grey--text">
+        <div class="mt-6 caption accent--text">
           {{ $t('general.createdAt', { date: createdAt }) }}
         </div>
       </div>

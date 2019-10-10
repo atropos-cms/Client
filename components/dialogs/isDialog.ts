@@ -78,7 +78,7 @@ const buttonPresets : ButtonPreset = {
       text: 'general.cancel',
       color: 'grey darken-1'
     }
-  },  
+  },
 
   [Preset.Remove]: {
     confirm: {

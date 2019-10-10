@@ -1,0 +1,10 @@
+// Light theme
+.theme--light.v-application.v-application {
+  background: #ffffff;
+}
+
+// Dark theme
+.theme--dark.v-navigation-drawer.v-navigation-drawer,
+.theme--dark.v-toolbar.v-toolbar {
+  background-color: transparent;
+}

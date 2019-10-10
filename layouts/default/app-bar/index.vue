@@ -19,12 +19,12 @@
 
     <v-toolbar-title>
       <nuxt-link
-        class="headline blue--text text--darken-2"
+        class="headline primary--text"
         to="/"
       >
         {{ $t('atropos.title') }}
       </nuxt-link>
-      <span class="blue-grey--text">
+      <span class="accent--text">
         {{ $t(pageLayout.title) }}
       </span>
     </v-toolbar-title>

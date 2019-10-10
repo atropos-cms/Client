@@ -5,6 +5,10 @@ export default {
   dashboard: {
     title: 'Dashboard'
   },
+  pages: {
+    title: 'Pages',
+    description: 'Create pages and manage content'
+  },
   users: {
     title: 'Users',
     addNewUser: 'Add new user',

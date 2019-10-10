@@ -85,10 +85,13 @@ export default {
     theme: {
       dark: false,
       themes: {
+        light: {
+          accent: colors.blueGrey.darken1
+        },
         dark: {
           primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
+          accent: colors.blueGrey.lighten2,
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,

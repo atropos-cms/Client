@@ -10,7 +10,7 @@
       <!-- Application Icon -->
       <v-icon
         :size="64"
-        color="blue darken-2"
+        color="primary"
       >
         {{ application.icon }}
       </v-icon>
@@ -21,7 +21,7 @@
           {{ $t(application.title) }}
         </span>
         <!-- Application Name -->
-        <span class="caption text-md-center blue-grey--text">
+        <span class="caption text-md-center accent--text">
           {{ $t(application.description) }}
         </span>
       </div>

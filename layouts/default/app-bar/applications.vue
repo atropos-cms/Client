@@ -35,7 +35,7 @@
                   <!-- Application Icon -->
                   <v-icon
                     :size="36"
-                    color="blue darken-2"
+                    color="primary"
                   >
                     {{ application.icon }}
                   </v-icon>

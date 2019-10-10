@@ -31,7 +31,13 @@ const pageLayoutMap : PageLayout[] = [
     title: 'applications.groups.title',
     regex: [/^groups(.*)/],
     navigationDrawerComponent: () => import('~/layouts/default/navigation-drawer/drawers/dashboard.vue')
-  }
+  },
+  {
+    name: 'pages',
+    title: 'applications.pages.title',
+    regex: [/^pages(.*)/],
+    navigationDrawerComponent: () => import('~/layouts/default/navigation-drawer/drawers/dashboard.vue')
+  },
 ]
 
 // default page settings will be used when no other page matched
