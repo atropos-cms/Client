@@ -1,28 +1,15 @@
 <template>
-  <v-card>
-    <v-toolbar
-      color="primary"
-      dark
-      height="null"
-      class="py-2"
-    >
-      <v-row
-        align="center"
-        no-gutters
-      >
-        <v-col cols="4" sm="6">
-          <v-toolbar-title>{{ $t('applications.pages.title') }}</v-toolbar-title>
-        </v-col>
-        <v-col cols="8" sm="6" class="d-flex align-center justify-end">
-          <v-btn text>
-            <v-icon>add</v-icon>
-            Create
-          </v-btn>
-        </v-col>
-      </v-row>
-    </v-toolbar>
+  <div>
+    <v-row>
+      <v-col cols="12" class="d-flex align-center justify-end">
+        <v-btn color="primary">
+          <v-icon>add</v-icon>
+          {{ $t('page.createNewPage') }}
+        </v-btn>
+      </v-col>
+    </v-row>
 
-    <div class="">
+    <v-card>
       <v-list>
         <draggable
           v-model="pages"
@@ -90,8 +77,8 @@
           </transition-group>
         </draggable>
       </v-list>
-    </div>
-  </v-card>
+    </v-card>
+  </div>
 </template>
 
 <script lang="ts">
@@ -127,11 +114,8 @@ export default Vue.extend({
   },
 
   methods: {
-    editPage (page) {
-      console.log('edit', page)
-    },
-    infoPage (page) {
-      console.log('info', page)
+    editPage (page: {id: Number}) {
+      this.$router.push(`/pages/${page.id}`)
     }
   }
 })

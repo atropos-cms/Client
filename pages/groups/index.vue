@@ -1,10 +1,6 @@
 <template>
   <v-card>
     <v-card-title>
-      <span class="mr-4">
-        {{ $t('applications.groups.title') }}
-      </span>
-
       <v-btn text small color="primary" @click="addGroup">
         {{ $t('applications.groups.addNewGroup') }}
       </v-btn>

@@ -1,0 +1,13 @@
+query Page($id: ID!) { 
+  page(id: $id) {
+    id
+    title
+    slug
+    created_at
+    updated_at
+    author {
+      id
+      full_name
+    }
+  }
+}
