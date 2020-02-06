@@ -1,8 +1,8 @@
 query { 
   me {
     id
-    first_name
-    last_name
+    firstName
+    lastName
     initials
     email
     street

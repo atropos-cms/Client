@@ -3,11 +3,11 @@ query Page($id: ID!) {
     id
     title
     slug
-    created_at
-    updated_at
+    createdAt
+    updatedAt
     author {
       id
-      full_name
+      fullName
     }
   }
 }

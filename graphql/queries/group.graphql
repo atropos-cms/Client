@@ -3,11 +3,11 @@ query Group($id: ID!) {
     id
     name
     description
-    created_at
-    updated_at
+    createdAt
+    updatedAt
     members {
       id
-      full_name
+      fullName
     }
   }
 }

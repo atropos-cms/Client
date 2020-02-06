@@ -1,0 +1,9 @@
+overwrite: true
+schema: "http://127.0.0.1:8000/graphql"
+documents: "graphql/**/*.graphql"
+generates:
+  typescript/graphql.d.ts:
+    - typescript-graphql-files-modules
+  typescript/types.ts:
+    - typescript
+    - typescript-operations

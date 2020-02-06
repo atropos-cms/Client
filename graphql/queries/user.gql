@@ -1,18 +1,18 @@
 query User($id: ID!) { 
   user(id: $id) {
     id
-    first_name
-    last_name
-    full_name
+    firstName
+    lastName
+    fullName
     initials
     email
     street
     postcode
     city
     country
-    created_at
-    updated_at
-    login_at
+    createdAt
+    updatedAt
+    loginAt
 
     groups {
       id

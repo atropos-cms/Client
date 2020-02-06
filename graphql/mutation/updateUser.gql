@@ -1,8 +1,8 @@
 mutation($id: ID!, $data: UpdateOrCreateUserInput!) {
   updateUser(id: $id, data: $data) {
     id
-    first_name
-    last_name
+    firstName
+    lastName
     initials
     email
     street

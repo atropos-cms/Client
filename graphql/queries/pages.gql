@@ -2,11 +2,11 @@ query {
   pages {
     id
     title
-    created_at
-    updated_at
+    createdAt
+    updatedAt
     author {
       id
-      full_name
+      fullName
     }
   }
 }

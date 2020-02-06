@@ -1,8 +1,0 @@
-mutation($data: LoginInput!) {
-  login(data: $data) {
-    access_token
-    refresh_token
-    expires_in
-    token_type
-  }
-}

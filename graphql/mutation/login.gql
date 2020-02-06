@@ -1,0 +1,8 @@
+mutation($data: LoginInput!) {
+  login(data: $data) {
+    accessToken
+    refreshToken
+    expiresIn
+    tokenType
+  }
+}

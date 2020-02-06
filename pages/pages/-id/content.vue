@@ -3,7 +3,6 @@
     <v-col
       cols="12"
     >
-
       <editor
         autofocus
         holder-id="codex-editor"
@@ -13,7 +12,6 @@
         @ready="onReady"
         @change="onChange"
       />
-
     </v-col>
   </v-row>
 </template>
