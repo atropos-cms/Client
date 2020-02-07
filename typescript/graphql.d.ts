@@ -2,6 +2,7 @@
 declare module '*/addGroupMembers.graphql' {
   import { DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode } from 'graphql'
   const defaultDocument: DocumentNode
+  export const addGroupMembers: DocumentNode
 
   export default defaultDocument
 }
@@ -9,6 +10,7 @@ declare module '*/addGroupMembers.graphql' {
 declare module '*/createGroup.graphql' {
 
   const defaultDocument: DocumentNode
+  export const createGroup: DocumentNode
 
   export default defaultDocument
 }
@@ -16,6 +18,7 @@ declare module '*/createGroup.graphql' {
 declare module '*/createUser.graphql' {
 
   const defaultDocument: DocumentNode
+  export const createUser: DocumentNode
 
   export default defaultDocument
 }
@@ -23,6 +26,7 @@ declare module '*/createUser.graphql' {
 declare module '*/deleteGroup.graphql' {
 
   const defaultDocument: DocumentNode
+  export const deleteGroup: DocumentNode
 
   export default defaultDocument
 }
@@ -30,6 +34,7 @@ declare module '*/deleteGroup.graphql' {
 declare module '*/deleteUser.graphql' {
 
   const defaultDocument: DocumentNode
+  export const deleteUser: DocumentNode
 
   export default defaultDocument
 }
@@ -37,6 +42,7 @@ declare module '*/deleteUser.graphql' {
 declare module '*/login.graphql' {
 
   const defaultDocument: DocumentNode
+  export const login: DocumentNode
 
   export default defaultDocument
 }
@@ -44,6 +50,7 @@ declare module '*/login.graphql' {
 declare module '*/removeGroupMembers.graphql' {
 
   const defaultDocument: DocumentNode
+  export const removeGroupMembers: DocumentNode
 
   export default defaultDocument
 }
@@ -51,6 +58,7 @@ declare module '*/removeGroupMembers.graphql' {
 declare module '*/updateGroup.graphql' {
 
   const defaultDocument: DocumentNode
+  export const updateGroup: DocumentNode
 
   export default defaultDocument
 }
@@ -58,6 +66,7 @@ declare module '*/updateGroup.graphql' {
 declare module '*/updateMe.graphql' {
 
   const defaultDocument: DocumentNode
+  export const updateMe: DocumentNode
 
   export default defaultDocument
 }
@@ -65,6 +74,7 @@ declare module '*/updateMe.graphql' {
 declare module '*/updateMyPassword.graphql' {
 
   const defaultDocument: DocumentNode
+  export const updateMyPassword: DocumentNode
 
   export default defaultDocument
 }
@@ -72,6 +82,7 @@ declare module '*/updateMyPassword.graphql' {
 declare module '*/updateUser.graphql' {
 
   const defaultDocument: DocumentNode
+  export const updateUser: DocumentNode
 
   export default defaultDocument
 }

@@ -1,4 +1,4 @@
-mutation($id: ID!, $data: UpdateOrCreateUserInput!) {
+mutation updateUser($id: ID!, $data: UpdateOrCreateUserInput!) {
   updateUser(id: $id, data: $data) {
     id
     firstName

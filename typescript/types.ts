@@ -53,10 +53,22 @@ export type Group = {
   members: Array<User>,
 };
 
+export enum GroupColumn {
+  Name = 'name',
+  Description = 'description',
+  CreatedAt = 'createdAt',
+  UpdatedAt = 'updatedAt'
+}
+
 export type GroupPaginator = {
    __typename?: 'GroupPaginator',
   paginatorInfo: PaginatorInfo,
   data: Array<Group>,
+};
+
+export type GroupsOrderByOrderByClause = {
+  field: GroupColumn,
+  order: SortOrder,
 };
 
 export type LoginInput = {
@@ -315,7 +327,7 @@ export type QueryGroupArgs = {
 
 export type QueryGroupsArgs = {
   search?: Maybe<Scalars['String']>,
-  orderBy?: Maybe<Array<OrderByClause>>,
+  orderBy?: Maybe<Array<GroupsOrderByOrderByClause>>,
   first: Scalars['Int'],
   page?: Maybe<Scalars['Int']>
 };
@@ -421,7 +433,17 @@ export type User = {
 
 export enum UserColumn {
   FirstName = 'firstName',
-  LastName = 'lastName'
+  LastName = 'lastName',
+  Initials = 'initials',
+  Street = 'street',
+  Postcode = 'postcode',
+  City = 'city',
+  Country = 'country',
+  Email = 'email',
+  LoginAt = 'loginAt',
+  CreatedAt = 'createdAt',
+  UpdatedAt = 'updatedAt',
+  DeletedAt = 'deletedAt'
 }
 
 export type UserPaginator = {
@@ -435,12 +457,12 @@ export type UsersOrderByOrderByClause = {
   order: SortOrder,
 };
 
-export type Unnamed_1_MutationVariables = {
+export type AddGroupMembersMutationVariables = {
   id: Scalars['ID'],
   members: Array<Scalars['ID']>
 };
 
-export type Unnamed_1_Mutation = (
+export type AddGroupMembersMutation = (
   { __typename?: 'Mutation' }
   & { addGroupMembers: Maybe<(
     { __typename?: 'Group' }
@@ -448,11 +470,11 @@ export type Unnamed_1_Mutation = (
   )> }
 );
 
-export type Unnamed_2_MutationVariables = {
+export type CreateGroupMutationVariables = {
   data: UpdateOrCreateGroupInput
 };
 
-export type Unnamed_2_Mutation = (
+export type CreateGroupMutation = (
   { __typename?: 'Mutation' }
   & { createGroup: Maybe<(
     { __typename?: 'Group' }
@@ -460,11 +482,11 @@ export type Unnamed_2_Mutation = (
   )> }
 );
 
-export type Unnamed_3_MutationVariables = {
+export type CreateUserMutationVariables = {
   data: UpdateOrCreateUserInput
 };
 
-export type Unnamed_3_Mutation = (
+export type CreateUserMutation = (
   { __typename?: 'Mutation' }
   & { createUser: Maybe<(
     { __typename?: 'User' }
@@ -472,11 +494,11 @@ export type Unnamed_3_Mutation = (
   )> }
 );
 
-export type Unnamed_4_MutationVariables = {
+export type DeleteGroupMutationVariables = {
   id: Scalars['ID']
 };
 
-export type Unnamed_4_Mutation = (
+export type DeleteGroupMutation = (
   { __typename?: 'Mutation' }
   & { deleteGroup: Maybe<(
     { __typename?: 'Group' }
@@ -484,11 +506,11 @@ export type Unnamed_4_Mutation = (
   )> }
 );
 
-export type Unnamed_5_MutationVariables = {
+export type DeleteUserMutationVariables = {
   id: Scalars['ID']
 };
 
-export type Unnamed_5_Mutation = (
+export type DeleteUserMutation = (
   { __typename?: 'Mutation' }
   & { deleteUser: Maybe<(
     { __typename?: 'User' }
@@ -496,11 +518,11 @@ export type Unnamed_5_Mutation = (
   )> }
 );
 
-export type Unnamed_6_MutationVariables = {
+export type LoginMutationVariables = {
   data: LoginInput
 };
 
-export type Unnamed_6_Mutation = (
+export type LoginMutation = (
   { __typename?: 'Mutation' }
   & { login: Maybe<(
     { __typename?: 'AuthPayload' }
@@ -508,12 +530,12 @@ export type Unnamed_6_Mutation = (
   )> }
 );
 
-export type Unnamed_7_MutationVariables = {
+export type RemoveGroupMembersMutationVariables = {
   id: Scalars['ID'],
   members: Array<Scalars['ID']>
 };
 
-export type Unnamed_7_Mutation = (
+export type RemoveGroupMembersMutation = (
   { __typename?: 'Mutation' }
   & { removeGroupMembers: Maybe<(
     { __typename?: 'Group' }
@@ -521,12 +543,12 @@ export type Unnamed_7_Mutation = (
   )> }
 );
 
-export type Unnamed_8_MutationVariables = {
+export type UpdateGroupMutationVariables = {
   id: Scalars['ID'],
   data: UpdateOrCreateGroupInput
 };
 
-export type Unnamed_8_Mutation = (
+export type UpdateGroupMutation = (
   { __typename?: 'Mutation' }
   & { updateGroup: Maybe<(
     { __typename?: 'Group' }
@@ -534,11 +556,11 @@ export type Unnamed_8_Mutation = (
   )> }
 );
 
-export type Unnamed_9_MutationVariables = {
+export type UpdateMeMutationVariables = {
   data: UpdateOrCreateUserInput
 };
 
-export type Unnamed_9_Mutation = (
+export type UpdateMeMutation = (
   { __typename?: 'Mutation' }
   & { updateMe: Maybe<(
     { __typename?: 'User' }
@@ -546,11 +568,11 @@ export type Unnamed_9_Mutation = (
   )> }
 );
 
-export type Unnamed_10_MutationVariables = {
+export type UpdateMyPasswordMutationVariables = {
   data: UpdateUserPasswordInput
 };
 
-export type Unnamed_10_Mutation = (
+export type UpdateMyPasswordMutation = (
   { __typename?: 'Mutation' }
   & { updateMyPassword: Maybe<(
     { __typename?: 'User' }
@@ -558,12 +580,12 @@ export type Unnamed_10_Mutation = (
   )> }
 );
 
-export type Unnamed_11_MutationVariables = {
+export type UpdateUserMutationVariables = {
   id: Scalars['ID'],
   data: UpdateOrCreateUserInput
 };
 
-export type Unnamed_11_Mutation = (
+export type UpdateUserMutation = (
   { __typename?: 'Mutation' }
   & { updateUser: Maybe<(
     { __typename?: 'User' }
@@ -591,7 +613,7 @@ export type GroupsQueryVariables = {
   first: Scalars['Int'],
   page?: Maybe<Scalars['Int']>,
   search?: Maybe<Scalars['String']>,
-  orderBy?: Maybe<Array<OrderByClause>>
+  orderBy?: Maybe<Array<GroupsOrderByOrderByClause>>
 };
 
 export type GroupsQuery = (

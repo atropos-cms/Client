@@ -1,4 +1,4 @@
-mutation($id: ID!) {
+mutation deleteGroup($id: ID!) {
   deleteGroup(id: $id) {
     id
   }
