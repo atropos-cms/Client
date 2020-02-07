@@ -1,4 +1,4 @@
-query Groups($first: Int!, $page: Int, $search: String, $orderBy: [OrderByClause!]) {
+query Groups($first: Int!, $page: Int, $search: String, $orderBy: [GroupsOrderByOrderByClause!]) {
   groups(first: $first, page: $page, search: $search, orderBy: $orderBy) {
     paginatorInfo {
       count

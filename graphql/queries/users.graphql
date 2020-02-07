@@ -1,4 +1,4 @@
-query Users($first: Int!, $page: Int, $search: String, $orderBy: [OrderByClause!]) {
+query Users($first: Int!, $page: Int, $search: String, $orderBy: [UsersOrderByOrderByClause!]) {
   users(first: $first, page: $page, search: $search, orderBy: $orderBy) {
     paginatorInfo {
       count

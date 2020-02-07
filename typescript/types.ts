@@ -12,9 +12,6 @@ export type Scalars = {
 export type AuthPayload = {
    __typename?: 'AuthPayload',
   accessToken: Scalars['String'],
-  refreshToken: Scalars['String'],
-  expiresIn: Scalars['Int'],
-  tokenType: Scalars['String'],
   user: User,
 };
 
@@ -75,7 +72,7 @@ export type LogoutResponse = {
 
 export type Mutation = {
    __typename?: 'Mutation',
-  login?: Maybe<User>,
+  login?: Maybe<AuthPayload>,
   updateMe?: Maybe<User>,
   updateMyPassword?: Maybe<User>,
   createUser?: Maybe<User>,
@@ -306,7 +303,7 @@ export type QueryUserArgs = {
 
 export type QueryUsersArgs = {
   search?: Maybe<Scalars['String']>,
-  orderBy?: Maybe<Array<OrderByClause>>,
+  orderBy?: Maybe<Array<UsersOrderByOrderByClause>>,
   first: Scalars['Int'],
   page?: Maybe<Scalars['Int']>,
   trashed?: Maybe<Trashed>
@@ -348,18 +345,6 @@ export type QueryPostsArgs = {
   first: Scalars['Int'],
   page?: Maybe<Scalars['Int']>,
   trashed?: Maybe<Trashed>
-};
-
-export type RefreshTokenInput = {
-  refreshToken?: Maybe<Scalars['String']>,
-};
-
-export type RefreshTokenPayload = {
-   __typename?: 'RefreshTokenPayload',
-  accessToken: Scalars['String'],
-  refreshToken: Scalars['String'],
-  expiresIn: Scalars['Int'],
-  tokenType: Scalars['String'],
 };
 
 export type RegisterInput = {
@@ -434,10 +419,20 @@ export type User = {
   groups?: Maybe<Array<Group>>,
 };
 
+export enum UserColumn {
+  FirstName = 'firstName',
+  LastName = 'lastName'
+}
+
 export type UserPaginator = {
    __typename?: 'UserPaginator',
   paginatorInfo: PaginatorInfo,
   data: Array<User>,
+};
+
+export type UsersOrderByOrderByClause = {
+  field: UserColumn,
+  order: SortOrder,
 };
 
 export type Unnamed_1_MutationVariables = {
@@ -508,8 +503,8 @@ export type Unnamed_6_MutationVariables = {
 export type Unnamed_6_Mutation = (
   { __typename?: 'Mutation' }
   & { login: Maybe<(
-    { __typename?: 'User' }
-    & Pick<User, 'id'>
+    { __typename?: 'AuthPayload' }
+    & Pick<AuthPayload, 'accessToken'>
   )> }
 );
 
@@ -673,7 +668,7 @@ export type UsersQueryVariables = {
   first: Scalars['Int'],
   page?: Maybe<Scalars['Int']>,
   search?: Maybe<Scalars['String']>,
-  orderBy?: Maybe<Array<OrderByClause>>
+  orderBy?: Maybe<Array<UsersOrderByOrderByClause>>
 };
 
 export type UsersQuery = (
