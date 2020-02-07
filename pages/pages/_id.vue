@@ -17,7 +17,7 @@
 import Vue from 'vue'
 import contentEditor from './-id/content.vue'
 import general from './-id/general.vue'
-import PAGE from '~/graphql/page.gql'
+import PAGE from '~/graphql/queries/page.graphql'
 
 export default Vue.extend({
   components: {

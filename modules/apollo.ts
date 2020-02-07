@@ -20,7 +20,8 @@ const link = onError(({ graphQLErrors }) => {
 
 const cache = new InMemoryCache()
 const batchHttpLink = new BatchHttpLink({
-  uri: 'https://server.localhost/graphql'
+  uri: 'http://atropos-server.test/graphql',
+  credentials: 'include'
 })
 const apolloClient = new ApolloClient({
   link: ApolloLink.from([link, batchHttpLink]),

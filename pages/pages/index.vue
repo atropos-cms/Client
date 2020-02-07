@@ -84,7 +84,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import draggable from 'vuedraggable'
-import PAGES from '~/graphql/pages.gql'
+import PAGES from '~/graphql/queries/pages.graphql'
 
 export default Vue.extend({
   components: {

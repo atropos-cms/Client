@@ -27,7 +27,7 @@ import Vue from 'vue'
 import info from './-id/info.vue'
 import groupInfo from './-id/group-info.vue'
 import members from './-id/members.vue'
-import GROUP from '~/graphql/group.gql'
+import GROUP from '~/graphql/queries/group.graphql'
 
 export default Vue.extend({
   components: {

@@ -9,6 +9,15 @@ export type Scalars = {
   DateTime: any,
 };
 
+export type AuthPayload = {
+   __typename?: 'AuthPayload',
+  accessToken: Scalars['String'],
+  refreshToken: Scalars['String'],
+  expiresIn: Scalars['Int'],
+  tokenType: Scalars['String'],
+  user: User,
+};
+
 export type CreateAuthorRelation = {
   connect?: Maybe<Scalars['ID']>,
 };
@@ -24,6 +33,16 @@ export type CreatePostInput = {
   title?: Maybe<Scalars['String']>,
   content?: Maybe<Scalars['String']>,
   author?: Maybe<CreateAuthorRelation>,
+};
+
+export type ForgotPasswordInput = {
+  email: Scalars['String'],
+};
+
+export type ForgotPasswordResponse = {
+   __typename?: 'ForgotPasswordResponse',
+  status: Scalars['String'],
+  message?: Maybe<Scalars['String']>,
 };
 
 export type Group = {
@@ -43,8 +62,20 @@ export type GroupPaginator = {
   data: Array<Group>,
 };
 
+export type LoginInput = {
+  email: Scalars['String'],
+  password: Scalars['String'],
+};
+
+export type LogoutResponse = {
+   __typename?: 'LogoutResponse',
+  status: Scalars['String'],
+  message?: Maybe<Scalars['String']>,
+};
+
 export type Mutation = {
    __typename?: 'Mutation',
+  login?: Maybe<User>,
   updateMe?: Maybe<User>,
   updateMyPassword?: Maybe<User>,
   createUser?: Maybe<User>,
@@ -68,6 +99,10 @@ export type Mutation = {
   updatePost?: Maybe<Post>,
   deletePost?: Maybe<Post>,
   restorePost?: Maybe<Post>,
+};
+
+export type MutationLoginArgs = {
+  data?: Maybe<LoginInput>
 };
 
 export type MutationUpdateMeArgs = {
@@ -170,6 +205,13 @@ export type MutationDeletePostArgs = {
 
 export type MutationRestorePostArgs = {
   id: Scalars['ID']
+};
+
+export type NewPasswordWithCodeInput = {
+  email: Scalars['String'],
+  token: Scalars['String'],
+  password: Scalars['String'],
+  passwordConfirmation: Scalars['String'],
 };
 
 export type OrderByClause = {
@@ -308,6 +350,25 @@ export type QueryPostsArgs = {
   trashed?: Maybe<Trashed>
 };
 
+export type RefreshTokenInput = {
+  refreshToken?: Maybe<Scalars['String']>,
+};
+
+export type RefreshTokenPayload = {
+   __typename?: 'RefreshTokenPayload',
+  accessToken: Scalars['String'],
+  refreshToken: Scalars['String'],
+  expiresIn: Scalars['Int'],
+  tokenType: Scalars['String'],
+};
+
+export type RegisterInput = {
+  name: Scalars['String'],
+  email: Scalars['String'],
+  password: Scalars['String'],
+  passwordConfirmation: Scalars['String'],
+};
+
 export enum SortOrder {
   Asc = 'ASC',
   Desc = 'DESC'
@@ -379,6 +440,142 @@ export type UserPaginator = {
   data: Array<User>,
 };
 
+export type Unnamed_1_MutationVariables = {
+  id: Scalars['ID'],
+  members: Array<Scalars['ID']>
+};
+
+export type Unnamed_1_Mutation = (
+  { __typename?: 'Mutation' }
+  & { addGroupMembers: Maybe<(
+    { __typename?: 'Group' }
+    & Pick<Group, 'id'>
+  )> }
+);
+
+export type Unnamed_2_MutationVariables = {
+  data: UpdateOrCreateGroupInput
+};
+
+export type Unnamed_2_Mutation = (
+  { __typename?: 'Mutation' }
+  & { createGroup: Maybe<(
+    { __typename?: 'Group' }
+    & Pick<Group, 'id' | 'name' | 'description'>
+  )> }
+);
+
+export type Unnamed_3_MutationVariables = {
+  data: UpdateOrCreateUserInput
+};
+
+export type Unnamed_3_Mutation = (
+  { __typename?: 'Mutation' }
+  & { createUser: Maybe<(
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'firstName' | 'lastName' | 'initials' | 'email' | 'street' | 'postcode' | 'city' | 'country'>
+  )> }
+);
+
+export type Unnamed_4_MutationVariables = {
+  id: Scalars['ID']
+};
+
+export type Unnamed_4_Mutation = (
+  { __typename?: 'Mutation' }
+  & { deleteGroup: Maybe<(
+    { __typename?: 'Group' }
+    & Pick<Group, 'id'>
+  )> }
+);
+
+export type Unnamed_5_MutationVariables = {
+  id: Scalars['ID']
+};
+
+export type Unnamed_5_Mutation = (
+  { __typename?: 'Mutation' }
+  & { deleteUser: Maybe<(
+    { __typename?: 'User' }
+    & Pick<User, 'id'>
+  )> }
+);
+
+export type Unnamed_6_MutationVariables = {
+  data: LoginInput
+};
+
+export type Unnamed_6_Mutation = (
+  { __typename?: 'Mutation' }
+  & { login: Maybe<(
+    { __typename?: 'User' }
+    & Pick<User, 'id'>
+  )> }
+);
+
+export type Unnamed_7_MutationVariables = {
+  id: Scalars['ID'],
+  members: Array<Scalars['ID']>
+};
+
+export type Unnamed_7_Mutation = (
+  { __typename?: 'Mutation' }
+  & { removeGroupMembers: Maybe<(
+    { __typename?: 'Group' }
+    & Pick<Group, 'id'>
+  )> }
+);
+
+export type Unnamed_8_MutationVariables = {
+  id: Scalars['ID'],
+  data: UpdateOrCreateGroupInput
+};
+
+export type Unnamed_8_Mutation = (
+  { __typename?: 'Mutation' }
+  & { updateGroup: Maybe<(
+    { __typename?: 'Group' }
+    & Pick<Group, 'id' | 'name' | 'description'>
+  )> }
+);
+
+export type Unnamed_9_MutationVariables = {
+  data: UpdateOrCreateUserInput
+};
+
+export type Unnamed_9_Mutation = (
+  { __typename?: 'Mutation' }
+  & { updateMe: Maybe<(
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'firstName' | 'lastName' | 'initials' | 'email' | 'street' | 'postcode' | 'city' | 'country'>
+  )> }
+);
+
+export type Unnamed_10_MutationVariables = {
+  data: UpdateUserPasswordInput
+};
+
+export type Unnamed_10_Mutation = (
+  { __typename?: 'Mutation' }
+  & { updateMyPassword: Maybe<(
+    { __typename?: 'User' }
+    & Pick<User, 'id'>
+  )> }
+);
+
+export type Unnamed_11_MutationVariables = {
+  id: Scalars['ID'],
+  data: UpdateOrCreateUserInput
+};
+
+export type Unnamed_11_Mutation = (
+  { __typename?: 'Mutation' }
+  & { updateUser: Maybe<(
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'firstName' | 'lastName' | 'initials' | 'email' | 'street' | 'postcode' | 'city' | 'country'>
+  )> }
+);
+
 export type GroupQueryVariables = {
   id: Scalars['ID']
 };
@@ -412,6 +609,83 @@ export type GroupsQuery = (
     ), data: Array<(
       { __typename?: 'Group' }
       & Pick<Group, 'id' | 'name' | 'description'>
+    )> }
+  )> }
+);
+
+export type MeQueryVariables = {};
+
+export type MeQuery = (
+  { __typename?: 'Query' }
+  & { me: Maybe<(
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'firstName' | 'lastName' | 'initials' | 'email' | 'street' | 'postcode' | 'city' | 'country'>
+  )> }
+);
+
+export type PageQueryVariables = {
+  id: Scalars['ID']
+};
+
+export type PageQuery = (
+  { __typename?: 'Query' }
+  & { page: Maybe<(
+    { __typename?: 'Page' }
+    & Pick<Page, 'id' | 'title' | 'slug' | 'createdAt' | 'updatedAt'>
+    & { author: (
+      { __typename?: 'User' }
+      & Pick<User, 'id' | 'fullName'>
+    ) }
+  )> }
+);
+
+export type PagesQueryVariables = {};
+
+export type PagesQuery = (
+  { __typename?: 'Query' }
+  & { pages: Array<(
+    { __typename?: 'Page' }
+    & Pick<Page, 'id' | 'title' | 'createdAt' | 'updatedAt'>
+    & { author: (
+      { __typename?: 'User' }
+      & Pick<User, 'id' | 'fullName'>
+    ) }
+  )> }
+);
+
+export type UserQueryVariables = {
+  id: Scalars['ID']
+};
+
+export type UserQuery = (
+  { __typename?: 'Query' }
+  & { user: Maybe<(
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'firstName' | 'lastName' | 'fullName' | 'initials' | 'email' | 'street' | 'postcode' | 'city' | 'country' | 'createdAt' | 'updatedAt' | 'loginAt'>
+    & { groups: Maybe<Array<(
+      { __typename?: 'Group' }
+      & Pick<Group, 'id' | 'name'>
+    )>> }
+  )> }
+);
+
+export type UsersQueryVariables = {
+  first: Scalars['Int'],
+  page?: Maybe<Scalars['Int']>,
+  search?: Maybe<Scalars['String']>,
+  orderBy?: Maybe<Array<OrderByClause>>
+};
+
+export type UsersQuery = (
+  { __typename?: 'Query' }
+  & { users: Maybe<(
+    { __typename?: 'UserPaginator' }
+    & { paginatorInfo: (
+      { __typename?: 'PaginatorInfo' }
+      & Pick<PaginatorInfo, 'count' | 'currentPage' | 'total'>
+    ), data: Array<(
+      { __typename?: 'User' }
+      & Pick<User, 'id' | 'firstName' | 'lastName' | 'fullName' | 'email'>
     )> }
   )> }
 );

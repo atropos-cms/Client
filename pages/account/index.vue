@@ -36,7 +36,7 @@
 import Vue from 'vue'
 import Password from './-form/password.vue'
 import PersonalInfo from './-form/personal-info.vue'
-import ME from '~/graphql/me.gql'
+import ME from '~/graphql/queries/me.graphql'
 
 export default Vue.extend({
   components: {

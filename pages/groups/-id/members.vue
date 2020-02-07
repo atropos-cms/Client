@@ -41,9 +41,9 @@ import addMemberDialog from '../-modals/add-member.vue'
 import { i18n } from '~/plugins/vue-i18n'
 import isForm from '~/mixins/isClonedForm.ts'
 import savesModels from '~/mixins/savesModels.ts'
-import ADD_GROUP_MEMBERS from '~/graphql/addGroupMembers.gql'
-import REMOVE_GROUP_MEMBERS from '~/graphql/removeGroupMembers.gql'
-// import GROUP from '~/graphql/group.gql'
+import ADD_GROUP_MEMBERS from '~/graphql/mutations/addGroupMembers.graphql'
+import REMOVE_GROUP_MEMBERS from '~/graphql/mutations/removeGroupMembers.graphql'
+// import GROUP from '~/graphql/group.graphql'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default mixins(isForm, savesModels).extend({

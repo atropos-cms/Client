@@ -11,8 +11,8 @@
           md="6"
         >
           <v-text-field
-            v-model="model.first_name"
-            :error-messages="$v('first_name', 'user.firstName')"
+            v-model="model.firstName"
+            :error-messages="$v('firstName', 'user.firstName')"
             :label="$t('user.firstName')"
           />
         </v-col>
@@ -22,8 +22,8 @@
           md="6"
         >
           <v-text-field
-            v-model="model.last_name"
-            :error-messages="$v('last_name', 'user.lastName')"
+            v-model="model.lastName"
+            :error-messages="$v('lastName', 'user.lastName')"
             :label="$t('user.lastName')"
           />
         </v-col>
@@ -90,8 +90,8 @@
 import mixins from 'vue-typed-mixins'
 import isForm from '~/mixins/isClonedForm.ts'
 import savesModels from '~/mixins/savesModels.ts'
-import UPDATE_USER from '~/graphql/updateUser.gql'
-import USER from '~/graphql/user.gql'
+import UPDATE_USER from '~/graphql/mutations/updateUser.graphql'
+import USER from '~/graphql/queries/user.graphql'
 
 export default mixins(isForm, savesModels).extend({
   methods: {
@@ -99,8 +99,8 @@ export default mixins(isForm, savesModels).extend({
       this.saveModel(UPDATE_USER, {
         id: this.model.id,
         data: {
-          first_name: this.model.first_name,
-          last_name: this.model.last_name,
+          firstName: this.model.firstName,
+          lastName: this.model.lastName,
           email: this.model.email,
           postcode: this.model.postcode,
           city: this.model.city,

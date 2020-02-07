@@ -45,7 +45,7 @@
 
 <script lang="ts">
 import mixins from 'vue-typed-mixins'
-import USERS from '~/graphql/users.gql'
+import USERS from '~/graphql/queries/users.graphql'
 import isForm from '~/mixins/isForm.ts'
 
 export default mixins(isForm).extend({

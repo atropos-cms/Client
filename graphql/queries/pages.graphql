@@ -1,4 +1,4 @@
-query {
+query Pages {
   pages {
     id
     title

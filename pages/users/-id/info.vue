@@ -16,7 +16,7 @@
       </div>
       <div class="ml-4 ml-md-0 mt-md-4">
         <div class="title">
-          {{ model.first_name }} {{ model.last_name }}
+          {{ model.firstName }} {{ model.lastName }}
         </div>
         <div>{{ model.email }}</div>
       </div>

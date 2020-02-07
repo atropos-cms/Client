@@ -20,7 +20,7 @@
 import Vue from 'vue'
 import info from './-id/info.vue'
 import personalInfo from './-id/personal-info.vue'
-import USER from '~/graphql/user.gql'
+import USER from '~/graphql/queries/user.graphql'
 
 export default Vue.extend({
   components: {

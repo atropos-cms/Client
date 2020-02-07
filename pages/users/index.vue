@@ -48,23 +48,23 @@
 import Vue from 'vue'
 import createUser from './-modals/create-user.vue'
 import { i18n } from '~/plugins/vue-i18n'
-import USERS from '~/graphql/users.gql'
-import CREATE_USER from '~/graphql/createUser.gql'
-import DELETE_USER from '~/graphql/deleteUser.gql'
+import USERS from '~/graphql/queries/users.graphql'
+import CREATE_USER from '~/graphql/mutations/createUser.graphql'
+import DELETE_USER from '~/graphql/mutations/deleteUser.graphql'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default Vue.extend({
   data: () => ({
     headers: [
-      { text: i18n.t('user.firstName'), value: 'first_name' },
-      { text: i18n.t('user.lastName'), value: 'last_name' },
+      { text: i18n.t('user.firstName'), value: 'firstName' },
+      { text: i18n.t('user.lastName'), value: 'lastName' },
       { text: i18n.t('user.email'), value: 'email' },
       { text: i18n.t('general.actions'), value: 'action', align: 'right', sortable: false }
     ],
     options: {
       page: 1,
       itemsPerPage: 10,
-      sortBy: ['first_name'],
+      sortBy: ['firstName'],
       sortDesc: [false]
     },
     selected: [] as object[],

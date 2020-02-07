@@ -6,7 +6,7 @@
           <v-form @submit.prevent="onSubmit">
             <v-card-text>
               <v-text-field
-                v-model="credentials.username"
+                v-model="credentials.email"
                 autofocus
                 name="login"
                 label="Login"
@@ -50,7 +50,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import LOGIN from '~/graphql/login.gql'
+import LOGIN from '~/graphql/mutations/login.graphql'
+import { LoginInput } from '~/typescript/types'
 
 export default Vue.extend({
   layout: 'guest',
@@ -58,9 +59,9 @@ export default Vue.extend({
 
   data: () => ({
     credentials: {
-      username: null,
-      password: null
-    },
+      email: 'admin@localhost',
+      password: 'password'
+    } as LoginInput,
     showPassword: false,
     loading: false
   }),
@@ -72,14 +73,14 @@ export default Vue.extend({
       try {
         this.loading = true
 
-        const res = await this.$apollo
+        const response = await this.$apollo
           .mutate({
             mutation: LOGIN,
             variables: { data: credentials }
           })
           .then(({ data }) => data && data.login)
 
-        await this.$apolloHelpers.onLogin(res.access_token)
+        await this.$apolloHelpers.onLogin(response.accessToken)
         this.$router.push('/')
       } catch (error) {
         // this.$validationErrors(error)

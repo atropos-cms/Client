@@ -47,9 +47,9 @@
 import Vue from 'vue'
 import createGroup from './-modals/create-group.vue'
 import { i18n } from '~/plugins/vue-i18n'
-import GROUPS from '~/graphql/groups.gql'
-import CREATE_GROUP from '~/graphql/createGroup.gql'
-import DELETE_GROUP from '~/graphql/deleteGroup.gql'
+import GROUPS from '~/graphql/queries/groups.graphql'
+import CREATE_GROUP from '~/graphql/mutations/createGroup.graphql'
+import DELETE_GROUP from '~/graphql/mutations/deleteGroup.graphql'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default Vue.extend({

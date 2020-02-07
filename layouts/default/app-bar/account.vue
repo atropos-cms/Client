@@ -60,7 +60,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import ME from '~/graphql/me.gql'
+import MeQueryGQL from '~/graphql/queries/me.graphql'
 
 export default Vue.extend({
   data: () => ({
@@ -70,7 +70,7 @@ export default Vue.extend({
   }),
 
   apollo: {
-    me: { query: ME }
+    me: { query: MeQueryGQL }
   },
 
   methods: {
