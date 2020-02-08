@@ -32,6 +32,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '@/plugins/composition-api',
     '@/plugins/vue-i18n',
     '@/plugins/atropos'
   ],
@@ -86,10 +87,11 @@ export default {
       dark: false,
       themes: {
         light: {
+          primary: colors.blue.darken4,
           accent: colors.blueGrey.darken1
         },
         dark: {
-          primary: colors.blue.darken2,
+          primary: colors.blue.darken1,
           secondary: colors.amber.darken3,
           accent: colors.blueGrey.lighten2,
           info: colors.teal.lighten1,

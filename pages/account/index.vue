@@ -4,7 +4,7 @@
       <!-- Avatar -->
       <v-avatar
         :size="128"
-        color="blue-grey lighten-5"
+        :color="$vuetify.theme.dark ? 'grey darken-3' : 'blue-grey lighten-5'"
       >
         <img
           v-if="img"

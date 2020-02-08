@@ -57,12 +57,12 @@ export default mixins(isForm).extend({
 
   computed: {
     loginAt () {
-      if (!this.model.login_at) { return null }
-      return dayjs(this.model.login_at).fromNow()
+      if (!this.model.loginAt) { return null }
+      return dayjs(this.model.loginAt).fromNow()
     },
     createdAt () {
-      if (!this.model.created_at) { return null }
-      return dayjs(this.model.created_at).format('LL')
+      if (!this.model.createdAt) { return null }
+      return dayjs(this.model.createdAt).format('LL')
     }
   }
 })

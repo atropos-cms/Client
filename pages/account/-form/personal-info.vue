@@ -11,8 +11,8 @@
           md="6"
         >
           <v-text-field
-            v-model="model.first_name"
-            :error-messages="$v('first_name', 'user.firstName')"
+            v-model="model.firstName"
+            :error-messages="$v('firstName', 'user.firstName')"
             :label="$t('user.firstName')"
           />
         </v-col>
@@ -22,8 +22,8 @@
           md="6"
         >
           <v-text-field
-            v-model="model.last_name"
-            :error-messages="$v('last_name', 'user.lastName')"
+            v-model="model.lastName"
+            :error-messages="$v('lastName', 'user.lastName')"
             :label="$t('user.lastName')"
           />
         </v-col>

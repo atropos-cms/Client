@@ -1,5 +1,5 @@
 export default {
-  welcome: 'Welcome, {first_name} {last_name}',
+  welcome: 'Welcome, {firstName} {lastName}',
   personalInfo: 'Personal info',
   changePassword: 'Change your password',
   firstName: 'First name',

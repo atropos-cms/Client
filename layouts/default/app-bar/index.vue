@@ -1,9 +1,11 @@
 <template>
   <v-app-bar
+    color="primary"
     clipped-left
     fixed
     flat
     app
+    dark
   >
     <v-app-bar-nav-icon
       v-if="hasNavigationDrawer"
@@ -19,12 +21,12 @@
 
     <v-toolbar-title>
       <nuxt-link
-        class="headline primary--text"
+        class="headline white--text"
         to="/"
       >
         {{ $t('atropos.title') }}
       </nuxt-link>
-      <span class="accent--text">
+      <span class="">
         {{ $t(pageLayout.title) }}
       </span>
     </v-toolbar-title>

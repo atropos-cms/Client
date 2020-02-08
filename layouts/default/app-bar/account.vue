@@ -18,14 +18,16 @@
         <v-list-item>
           <v-list-item-avatar
             :size="96"
-            color="blue-grey lighten-5"
+            :color="$vuetify.theme.dark ? 'grey darken-3' : 'blue-grey lighten-5'"
           >
             <img
               v-if="img"
-              src="https://vuetifyjs.com/apple-touch-icon-180x180.png"
+              :src="img"
               alt="avatar"
             >
-            <span v-else class="grey--text text--darken-3">{{ me.initials }}</span>
+            <span v-else>
+              {{ me.initials }}
+            </span>
           </v-list-item-avatar>
 
           <v-list-item-content>
@@ -65,7 +67,7 @@ import MeQueryGQL from '~/graphql/queries/me.graphql'
 export default Vue.extend({
   data: () => ({
     openMenu: false,
-    img: false,
+    img: 'https://randomuser.me/api/portraits/men/81.jpg',
     me: {}
   }),
 
