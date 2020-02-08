@@ -14,7 +14,7 @@
           flat
           hide-no-data
           hide-details
-          item-text="full_name"
+          item-text="fullName"
           item-value="id"
           multiple
         >
@@ -26,14 +26,14 @@
               @click="select"
               @click:close="remove(item)"
             >
-              {{ item.full_name }}
+              {{ item.fullName }}
             </v-chip>
           </template>
 
           <template v-slot:item="{item}">
             <template>
               <v-list-item-content>
-                <v-list-item-title>{{ item.full_name }}</v-list-item-title>
+                <v-list-item-title>{{ item.fullName }}</v-list-item-title>
               </v-list-item-content>
             </template>
           </template>
@@ -66,7 +66,7 @@ export default mixins(isForm).extend({
       variables () {
         return {
           first: 100,
-          orderBy: [{ field: 'first_name', order: 'ASC' }],
+          orderBy: [{ field: 'firstName', order: 'ASC' }],
           search: this.search || undefined,
           page: 1
         }

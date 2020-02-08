@@ -17,7 +17,9 @@
         <div v-if="message" class="pt-4" v-html="message" />
         <!--eslint-enable-->
 
-        <component :is="component" v-if="component" v-model="model" />
+        <form @submit.prevent="agree">
+          <component :is="component" v-if="component" v-model="model" />
+        </form>
       </v-card-text>
 
       <v-card-actions>

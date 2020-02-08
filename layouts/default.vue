@@ -24,6 +24,8 @@ import defaultLayout from './default/index.vue'
 import Dialogs from '~/components/dialogs/index.vue'
 
 export default Vue.extend({
+  name: 'DefaultLayout',
+
   components: {
     defaultLayout,
     Dialogs

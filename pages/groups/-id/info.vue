@@ -6,7 +6,7 @@
           {{ model.name }}
         </div>
         <div>{{ model.email }}</div>
-        <div class="mt-6 caption accent--text">
+        <div class="mt-3 caption accent--text">
           {{ $t('general.createdAt', { date: createdAt }) }}
         </div>
       </div>
@@ -61,8 +61,8 @@ export default mixins(isForm).extend({
 
   computed: {
     createdAt () {
-      if (!this.model.created_at) { return null }
-      return dayjs(this.model.created_at).format('LL')
+      if (!this.model.createdAt) { return null }
+      return dayjs(this.model.createdAt).format('LL')
     }
   },
 

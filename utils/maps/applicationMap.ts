@@ -7,14 +7,13 @@ export interface Application {
   readonly exact?: boolean,
 }
 
-const applicationsMap : Application[] = [
-  {
-    name: 'pages',
-    title: 'applications.pages.title',
-    description: 'applications.pages.description',
-    icon: 'insert_drive_file',
-    url: '/pages'
-  },
+export interface Category {
+  readonly name: string,
+  readonly title: string | null,
+  readonly applications : Application[]
+}
+
+export const adminApps : Application[] = [
   {
     name: 'users',
     title: 'applications.users.title',
@@ -31,4 +30,32 @@ const applicationsMap : Application[] = [
   }
 ]
 
-export default applicationsMap
+export const contentApps : Application[] = [
+  {
+    name: 'pages',
+    title: 'applications.pages.title',
+    description: 'applications.pages.description',
+    icon: 'insert_drive_file',
+    url: '/pages'
+  }
+]
+
+const categoriesMap : Category[] = [
+  {
+    name: 'countent',
+    title: 'categories.content.title',
+    applications: contentApps
+  },
+  {
+    name: 'admin',
+    title: 'categories.admin.title',
+    applications: adminApps
+  }
+]
+
+export const applicationsMap : Application[] = [
+  ...contentApps,
+  ...adminApps
+]
+
+export default categoriesMap

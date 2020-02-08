@@ -1,29 +1,22 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col
-        v-for="application in applications"
-        :key="application.name"
-        class="d-flex align-stretch"
-        cols="12"
-        sm="6"
-        md="4"
-        lg="2"
-      >
-        <application :application="application" />
-      </v-col>
-    </v-row>
+    <div
+      v-for="category in categories"
+      :key="category.name"
+    >
+      <category :category="category" />
+    </div>
   </v-container>
 </template>
 
 <script lang="ts">
 import mixins from 'vue-typed-mixins'
-import Application from './-index/application.vue'
+import Category from './-index/category.vue'
 import usesApplications from '~/mixins/usesApplications.ts'
 
 export default mixins(usesApplications).extend({
   components: {
-    Application
+    Category
   }
 })
 </script>

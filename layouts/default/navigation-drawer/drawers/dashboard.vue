@@ -1,19 +1,28 @@
 <template>
   <v-list shaped>
-    <v-list-item
-      v-for="application in applications"
-      :key="application.name"
-      :to="application.url"
-      :exact="application.exact"
-      nuxt
+
+    <div
+      v-for="category in categories"
+      :key="category.name"
     >
-      <v-list-item-action>
-        <v-icon>{{ application.icon }}</v-icon>
-      </v-list-item-action>
-      <v-list-item-content>
-        <v-list-item-title v-text="$t(application.title)" />
-      </v-list-item-content>
-    </v-list-item>
+
+      <v-subheader>{{ $t(category.title) }}</v-subheader>
+      <v-list-item
+        v-for="application in category.applications"
+        :key="application.name"
+        :to="application.url"
+        :exact="application.exact"
+        nuxt
+      >
+        <v-list-item-action>
+          <v-icon>{{ application.icon }}</v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title v-text="$t(application.title)" />
+        </v-list-item-content>
+      </v-list-item>
+
+    </div>
   </v-list>
 </template>
 

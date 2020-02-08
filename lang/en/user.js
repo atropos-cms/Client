@@ -9,9 +9,9 @@ export default {
   street: 'Street',
   postcode: 'Postcode',
   city: 'City',
-  current_password: 'Current password',
+  currentPassword: 'Current password',
   password: 'Password',
-  password_confirmation: 'Password confirmation',
+  passwordConfirmation: 'Password confirmation',
   country: 'Country',
   loginAt: 'Last Sign-in: {date}'
 }

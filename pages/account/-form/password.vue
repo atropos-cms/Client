@@ -8,11 +8,11 @@
       <v-row>
         <v-col cols="12">
           <v-text-field
-            v-model="model.current_password"
+            v-model="model.currentPassword"
             :append-icon="showCurrentPassword ? 'visibility' : 'visibility_off'"
             :type="showCurrentPassword ? 'text' : 'password'"
-            :error-messages="$v('current_password', 'account.current_password')"
-            :label="$t('user.current_password')"
+            :error-messages="$v('currentPassword', 'account.currentPassword')"
+            :label="$t('user.currentPassword')"
             @click:append="showCurrentPassword = !showCurrentPassword"
           />
         </v-col>
@@ -30,11 +30,11 @@
 
         <v-col cols="12">
           <v-text-field
-            v-model="model.password_confirmation"
+            v-model="model.passwordConfirmation"
             :append-icon="showNewPasswordConfirm ? 'visibility' : 'visibility_off'"
             :type="showNewPasswordConfirm ? 'text' : 'password'"
-            :error-messages="$v('password_confirmation', 'account.password_confirmation')"
-            :label="$t('user.password_confirmation')"
+            :error-messages="$v('passwordConfirmation', 'account.passwordConfirmation')"
+            :label="$t('user.passwordConfirmation')"
             @click:append="showNewPasswordConfirm = !showNewPasswordConfirm"
           />
         </v-col>
@@ -67,9 +67,9 @@ export default mixins(isForm, savesModels).extend({
   methods: {
     async submit () {
       await this.saveModel(UPDATE_MY_PASSWORD, { data: {
-        current_password: this.model.current_password,
+        currentPassword: this.model.currentPassword,
         password: this.model.password,
-        password_confirmation: this.model.password_confirmation
+        passwordConfirmation: this.model.passwordConfirmation
       } })
 
       this.model = {}

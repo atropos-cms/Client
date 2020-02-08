@@ -10,7 +10,7 @@
       fab
       top
       right
-      color="pink"
+      color="secondary"
       @click="addMember"
     >
       <v-icon>mdi-plus</v-icon>
@@ -45,11 +45,12 @@ import ADD_GROUP_MEMBERS from '~/graphql/mutations/addGroupMembers.graphql'
 import REMOVE_GROUP_MEMBERS from '~/graphql/mutations/removeGroupMembers.graphql'
 // import GROUP from '~/graphql/group.graphql'
 import { Preset } from '~/components/dialogs/isDialog'
+import { User } from '~/typescript/types'
 
 export default mixins(isForm, savesModels).extend({
   data: () => ({
     headers: [
-      { text: i18n.t('user.fullName'), value: 'full_name' },
+      { text: i18n.t('user.fullName'), value: 'fullName' },
       { text: i18n.t('general.actions'), value: 'action', align: 'right', sortable: false }
     ],
     options: {
@@ -73,16 +74,16 @@ export default mixins(isForm, savesModels).extend({
         }).then(() => this.$emit('refreshGroup'))
       })
     },
-    async removeMember (item: any) {
+    async removeMember (user: User) {
       await this.$confirm({
-        title: this.$t('messages.removeMemberToGroupTitle', { full_name: item.full_name, name: this.model.name }),
-        message: this.$t('messages.removeMemberToGroupMessage', item),
+        title: this.$t('messages.removeMemberToGroupTitle', { full_name: user.fullName, name: this.model.name }),
+        message: this.$t('messages.removeMemberToGroupMessage', user),
         preset: Preset.Remove,
         action: () => this.$apollo.mutate({
           mutation: REMOVE_GROUP_MEMBERS,
           variables: {
             id: this.model.id,
-            members: [item.id]
+            members: [user.id]
           }
         }).then(() => this.$emit('refreshGroup'))
       })

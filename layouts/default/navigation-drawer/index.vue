@@ -43,7 +43,7 @@ import MeQueryGQL from '~/graphql/queries/me.graphql'
 export default mixins(usesPageLayout).extend({
   data: () => ({
     openMenu: false,
-    img: 'https://randomuser.me/api/portraits/men/81.jpg',
+    img: null,
     me: {}
   }),
 

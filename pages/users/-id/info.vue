@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <div class="d-flex flex-md-column pa-4">
-      <div class="d-flex justify-center">
+      <div class="d-flex justify-center align-center">
         <v-avatar
           :size="$vuetify.breakpoint.lgAndUp ? 196 : 96"
           color="blue-grey lighten-5"
@@ -14,31 +14,34 @@
           <span v-else class="display-2 grey--text text--darken-3">{{ model.initials }}</span>
         </v-avatar>
       </div>
+
       <div class="ml-4 ml-md-0 mt-md-4">
-        <div class="title">
-          {{ model.firstName }} {{ model.lastName }}
+        <div>
+          <div class="title">
+            {{ model.firstName }} {{ model.lastName }}
+          </div>
+          <div>{{ model.email }}</div>
         </div>
-        <div>{{ model.email }}</div>
-      </div>
 
-      <div class="mt-4">
-        <v-chip
-          v-for="group in model.groups"
-          :key="group.id"
-          label
-          small
-          class="mr-2"
-        >
-          {{ group.name }}
-        </v-chip>
-      </div>
-
-      <div>
-        <div class="mt-6 caption accent--text">
-          {{ $t('user.loginAt', { date: loginAt }) }}
+        <div class="mt-2 mt-md-4">
+          <v-chip
+            v-for="group in model.groups"
+            :key="group.id"
+            label
+            small
+            class="mr-2"
+          >
+            {{ group.name }}
+          </v-chip>
         </div>
-        <div class="caption accent--text">
-          {{ $t('general.createdAt', { date: createdAt }) }}
+
+        <div class="mt-2 mt-md-6">
+          <div class="caption accent--text">
+            {{ $t('user.loginAt', { date: loginAt }) }}
+          </div>
+          <div class="caption accent--text">
+            {{ $t('general.createdAt', { date: createdAt }) }}
+          </div>
         </div>
       </div>
     </div>

@@ -1,46 +1,46 @@
 <template>
-  <v-card>
-    <v-card-title>
-      <v-btn text small color="primary" @click="addGroup">
-        {{ $t('applications.groups.addNewGroup') }}
-      </v-btn>
+  <v-container>
+    <v-card>
+      <v-card-title>
+        <v-btn text small color="primary" @click="addGroup">
+          {{ $t('applications.groups.addNewGroup') }}
+        </v-btn>
 
-      <div class="flex-grow-1" />
+        <div class="flex-grow-1" />
 
-      <v-text-field
-        v-model="search"
-        append-icon="search"
-        :label="$t('general.search')"
-        single-line
-        hide-details
-      />
-    </v-card-title>
-    <v-data-table
-      :headers="headers"
-      :items="groups.data"
-      :footer-props="{ itemsPerPageOptions: [10, 50, 100] }"
-      :options.sync="options"
-      :server-items-length="groups.paginatorInfo.total"
-      :loading="$apollo.queries.groups.loading"
-      item-key="id"
-    >
-      <template v-slot:item.action="{ item }">
-        <v-icon
-          small
-          class="mr-2"
-          @click="editGroup(item)"
-        >
-          edit
-        </v-icon>
-        <v-icon
-          small
-          @click="deleteGroup(item)"
-        >
-          delete
-        </v-icon>
-      </template>
-    </v-data-table>
-  </v-card>
+        <v-text-field
+          v-model="search"
+          append-icon="search"
+          :label="$t('general.search')"
+          single-line
+          hide-details
+        />
+      </v-card-title>
+      <v-data-table
+        :headers="headers"
+        :items="groups.data"
+        :footer-props="{ itemsPerPageOptions: [10, 50, 100] }"
+        :options.sync="options"
+        :server-items-length="groups.paginatorInfo.total"
+        :loading="$apollo.queries.groups.loading"
+        item-key="id"
+      >
+        <template v-slot:item.action="{ item }">
+          <v-icon
+            class="mr-2"
+            @click="editGroup(item)"
+          >
+            edit
+          </v-icon>
+          <v-icon
+            @click="deleteGroup(item)"
+          >
+            delete
+          </v-icon>
+        </template>
+      </v-data-table>
+    </v-card>
+  </v-container>
 </template>
 
 <script lang="ts">

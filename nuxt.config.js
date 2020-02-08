@@ -88,11 +88,12 @@ export default {
       themes: {
         light: {
           primary: colors.blue.darken4,
+          secondary: colors.pink.base,
           accent: colors.blueGrey.darken1
         },
         dark: {
           primary: colors.blue.darken1,
-          secondary: colors.amber.darken3,
+          secondary: colors.pink.base,
           accent: colors.blueGrey.lighten2,
           info: colors.teal.lighten1,
           warning: colors.amber.base,

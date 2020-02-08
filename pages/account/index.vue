@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <div class="d-none d-sm-flex flex-column align-center">
       <!-- Avatar -->
       <v-avatar
@@ -29,7 +29,7 @@
       :value="me"
       :loading="$apollo.queries.me.loading"
     />
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts">

@@ -63,11 +63,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import MeQueryGQL from '~/graphql/queries/me.graphql'
+import LOGOUT from '~/graphql/mutations/logout.graphql'
 
 export default Vue.extend({
   data: () => ({
     openMenu: false,
-    img: 'https://randomuser.me/api/portraits/men/81.jpg',
+    img: null,
     me: {}
   }),
 
@@ -77,6 +78,12 @@ export default Vue.extend({
 
   methods: {
     async logout () {
+      await this.$apollo
+        .mutate({
+          mutation: LOGOUT
+        })
+        .then(({ data }) => data && data.logout)
+
       await this.$apolloHelpers.onLogout()
       this.$router.push('/auth/login')
     },
