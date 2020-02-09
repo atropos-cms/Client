@@ -1,27 +1,25 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-col
-        cols="12"
-        md="4"
-      >
-        <info :value="group" />
-      </v-col>
+  <v-row>
+    <v-col
+      cols="12"
+      md="4"
+    >
+      <info :value="group" />
+    </v-col>
 
-      <v-col>
-        <group-info
-          :value="group"
-          :loading="$apollo.queries.group.loading"
-        />
+    <v-col>
+      <group-info
+        :value="group"
+        :loading="$apollo.queries.group.loading"
+      />
 
-        <members
-          :value="group"
-          :loading="$apollo.queries.group.loading"
-          @refreshGroup="refreshGroup"
-        />
-      </v-col>
-    </v-row>
-  </v-container>
+      <members
+        :value="group"
+        :loading="$apollo.queries.group.loading"
+        @refreshGroup="refreshGroup"
+      />
+    </v-col>
+  </v-row>
 </template>
 
 <script lang="ts">

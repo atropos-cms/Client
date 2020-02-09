@@ -1,12 +1,12 @@
 <template>
-  <v-container>
+  <div>
     <div
       v-for="category in categories"
       :key="category.name"
     >
       <category :category="category" />
     </div>
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">

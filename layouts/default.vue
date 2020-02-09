@@ -5,10 +5,7 @@
 
     <!-- Content -->
     <v-content>
-      <v-container
-        class="pa-xl-10 pa-lg-8 pa-sm-4 pa-2"
-        fluid
-      >
+      <v-container class="pa-xl-10 pa-lg-8 pa-sm-4 pa-2">
         <nuxt />
       </v-container>
     </v-content>

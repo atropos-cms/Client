@@ -5,11 +5,24 @@
         <v-flex xs12 lg6 class="pa-4">
           <v-form @submit.prevent="onSubmit">
             <v-card-text>
+              <v-expand-transition>
+                <v-alert
+                  v-if="loginFailed"
+                  type="error"
+                  dense
+                  outlined
+                >
+                  {{ $t('auth.error.incorrectLogin') }}
+                </v-alert>
+              </v-expand-transition>
+            </v-card-text>
+
+            <v-card-text>
               <v-text-field
                 v-model="credentials.email"
                 autofocus
-                name="login"
-                label="Login"
+                name="email"
+                :label="$t('auth.email')"
                 type="text"
               />
               <v-text-field
@@ -18,7 +31,7 @@
                 :append-icon="showPassword ? 'visibility' : 'visibility_off'"
                 :type="showPassword ? 'text' : 'password'"
                 name="password"
-                label="Password"
+                :label="$t('auth.password')"
                 @click:append="showPassword = !showPassword"
               />
             </v-card-text>
@@ -30,7 +43,7 @@
                 block
                 large
               >
-                Login
+                {{ $t('auth.login') }}
               </v-btn>
             </v-card-actions>
           </v-form>
@@ -63,7 +76,8 @@ export default Vue.extend({
       password: 'password'
     } as LoginInput,
     showPassword: false,
-    loading: false
+    loading: false,
+    loginFailed: false
   }),
 
   methods: {
@@ -83,7 +97,7 @@ export default Vue.extend({
         await this.$apolloHelpers.onLogin(response.accessToken)
         this.$router.push('/')
       } catch (error) {
-        // this.$validationErrors(error)
+        this.loginFailed = true
       } finally {
         this.loading = false
       }

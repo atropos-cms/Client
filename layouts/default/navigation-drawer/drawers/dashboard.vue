@@ -1,11 +1,9 @@
 <template>
   <v-list shaped>
-
     <div
       v-for="category in categories"
       :key="category.name"
     >
-
       <v-subheader>{{ $t(category.title) }}</v-subheader>
       <v-list-item
         v-for="application in category.applications"
@@ -21,7 +19,6 @@
           <v-list-item-title v-text="$t(application.title)" />
         </v-list-item-content>
       </v-list-item>
-
     </div>
   </v-list>
 </template>

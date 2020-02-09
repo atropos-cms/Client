@@ -1,47 +1,45 @@
 <template>
-  <v-container>
-    <v-card>
-      <v-card-title>
-        <v-btn text small color="primary" @click="addUser">
-          {{ $t('applications.users.addNewUser') }}
-        </v-btn>
+  <v-card>
+    <v-card-title>
+      <v-btn text small color="primary" @click="addUser">
+        {{ $t('applications.users.addNewUser') }}
+      </v-btn>
 
-        <div class="flex-grow-1" />
+      <div class="flex-grow-1" />
 
-        <v-text-field
-          v-model="search"
-          append-icon="search"
-          :label="$t('general.search')"
-          single-line
-          hide-details
-        />
-      </v-card-title>
-      <v-data-table
-        v-model="selected"
-        :headers="headers"
-        :items="users.data"
-        :footer-props="{ itemsPerPageOptions: [10, 50, 100] }"
-        :options.sync="options"
-        :server-items-length="users.paginatorInfo.total"
-        :loading="$apollo.queries.users.loading"
-        item-key="id"
-      >
-        <template v-slot:item.action="{ item }">
-          <v-icon
-            class="mr-2"
-            @click="editUser(item)"
-          >
-            edit
-          </v-icon>
-          <v-icon
-            @click="deleteUser(item)"
-          >
-            delete
-          </v-icon>
-        </template>
-      </v-data-table>
-    </v-card>
-  </v-container>
+      <v-text-field
+        v-model="search"
+        append-icon="search"
+        :label="$t('general.search')"
+        single-line
+        hide-details
+      />
+    </v-card-title>
+    <v-data-table
+      v-model="selected"
+      :headers="headers"
+      :items="users.data"
+      :footer-props="{ itemsPerPageOptions: [10, 50, 100] }"
+      :options.sync="options"
+      :server-items-length="users.paginatorInfo.total"
+      :loading="$apollo.queries.users.loading"
+      item-key="id"
+    >
+      <template v-slot:item.action="{ item }">
+        <v-icon
+          class="mr-2"
+          @click="editUser(item)"
+        >
+          edit
+        </v-icon>
+        <v-icon
+          @click="deleteUser(item)"
+        >
+          delete
+        </v-icon>
+      </template>
+    </v-data-table>
+  </v-card>
 </template>
 
 <script lang="ts">

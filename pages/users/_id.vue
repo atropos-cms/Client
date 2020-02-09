@@ -1,21 +1,19 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-col
-        cols="12"
-        md="4"
-      >
-        <info :value="user" />
-      </v-col>
+  <v-row>
+    <v-col
+      cols="12"
+      md="4"
+    >
+      <info :value="user" />
+    </v-col>
 
-      <v-col>
-        <personal-info
-          :value="user"
-          :loading="$apollo.queries.user.loading"
-        />
-      </v-col>
-    </v-row>
-  </v-container>
+    <v-col>
+      <personal-info
+        :value="user"
+        :loading="$apollo.queries.user.loading"
+      />
+    </v-col>
+  </v-row>
 </template>
 
 <script lang="ts">
