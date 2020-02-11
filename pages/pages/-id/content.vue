@@ -3,6 +3,10 @@
     <v-col
       cols="12"
     >
+      <label class="v-label theme--light">
+        {{ $t('page.content') }}
+      </label>
+
       <editor
         autofocus
         holder-id="codex-editor"

@@ -23,13 +23,17 @@ export default Vue.extend({
   }),
 
   methods: {
-    async saveModel (mutation: DocumentNode, variables: object, updateConstructor = updateCallback) {
+    saveModel (mutation: DocumentNode, variables: object, updateConstructor = updateCallback) {
+      return this.saveCallback(() => this._wrappedSaveModel(mutation, variables, updateConstructor))
+    },
+
+    async saveCallback (callback: CallableFunction) {
       try {
         this.saving = true
         this.$emit('update:loading', true)
         Validation.reset()
 
-        await Promise.all([this._wrappedSaveModel(mutation, variables, updateConstructor), Timeout.set(600)])
+        await Promise.all([callback(), Timeout.set(600)])
       } catch (error) {
         await Timeout.set(300)
         Validation.catchValidationErrors(error)

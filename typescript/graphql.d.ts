@@ -1,6 +1,6 @@
 
 declare module '*/addGroupMembers.graphql' {
-  import { DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode } from 'graphql'
+  import { DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode, DocumentNode } from 'graphql'
   const defaultDocument: DocumentNode
   export const addGroupMembers: DocumentNode
 
@@ -47,6 +47,14 @@ declare module '*/login.graphql' {
   export default defaultDocument
 }
 
+declare module '*/logout.graphql' {
+
+  const defaultDocument: DocumentNode
+  export const logout: DocumentNode
+
+  export default defaultDocument
+}
+
 declare module '*/removeGroupMembers.graphql' {
 
   const defaultDocument: DocumentNode
@@ -75,6 +83,14 @@ declare module '*/updateMyPassword.graphql' {
 
   const defaultDocument: DocumentNode
   export const updateMyPassword: DocumentNode
+
+  export default defaultDocument
+}
+
+declare module '*/updatePage.graphql' {
+
+  const defaultDocument: DocumentNode
+  export const updatePage: DocumentNode
 
   export default defaultDocument
 }

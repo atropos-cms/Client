@@ -21,7 +21,7 @@
           {{ $t(application.title) }}
         </span>
         <!-- Application Name -->
-        <span class="caption text-md-center accent--text">
+        <span class="caption text-md-center muted--text">
           {{ $t(application.description) }}
         </span>
       </div>

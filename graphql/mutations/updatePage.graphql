@@ -1,5 +1,5 @@
-query Page($id: ID!) { 
-  page(id: $id) {
+mutation updatePage($id: ID!, $data: UpdatePageInput!) {
+  updatePage(id: $id, data: $data) {
     id
     title
     slug

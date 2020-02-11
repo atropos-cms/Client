@@ -6,7 +6,13 @@
           {{ model.name }}
         </div>
         <div>{{ model.email }}</div>
-        <div class="mt-3 caption accent--text">
+        <div
+          v-if="updatedAt"
+          class="mt-3 caption muted--text"
+        >
+          {{ $t('general.updatedAt', { date: updatedAt }) }}
+        </div>
+        <div class="caption muted--text">
           {{ $t('general.createdAt', { date: createdAt }) }}
         </div>
       </div>
@@ -63,6 +69,10 @@ export default mixins(isForm).extend({
     createdAt () {
       if (!this.model.createdAt) { return null }
       return dayjs(this.model.createdAt).format('LL')
+    },
+    updatedAt () {
+      if (!this.model.updatedAt) { return null }
+      return dayjs(this.model.updatedAt).format('LL')
     }
   },
 

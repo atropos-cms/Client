@@ -3,7 +3,7 @@
     v-if="hasNavigationDrawer"
     v-model="drawer"
     :mini-variant="miniDrawer"
-    :color="$vuetify.theme.dark ? 'grey darken-4' : 'grey lighten-4'"
+    :color="$vuetify.theme.dark ? 'black' : 'white'"
     clipped
     floating
     fixed

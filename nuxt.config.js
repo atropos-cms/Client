@@ -89,12 +89,14 @@ export default {
         light: {
           primary: colors.blue.darken4,
           secondary: colors.pink.base,
-          accent: colors.blueGrey.darken1
+          accent: colors.pink.darken1,
+          muted: colors.grey.darken2
         },
         dark: {
           primary: colors.blue.darken1,
           secondary: colors.pink.base,
-          accent: colors.blueGrey.lighten2,
+          accent: colors.pink.lighten2,
+          muted: colors.grey.base,
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,

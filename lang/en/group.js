@@ -5,5 +5,6 @@ export default {
   groupInfo: 'Group information',
   renameGroup: 'Rename group',
   deleteGroup: 'Delete group',
-  findAUser: 'Find a user'
+  findAUser: 'Find a user',
+  permissions: 'Permissions'
 }

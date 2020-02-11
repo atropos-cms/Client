@@ -112,6 +112,7 @@ export default Vue.extend({
       } as Options
     }
   },
+
   computed: {
     dialog: {
       get (): PromiseDialog | null {

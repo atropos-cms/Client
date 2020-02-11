@@ -1,35 +1,38 @@
 <template>
-  <v-card :loading="loading">
-    <v-card-title>
+  <v-expansion-panel>
+    <v-expansion-panel-header>
       {{ $t('group.groupInfo') }}
-    </v-card-title>
+    </v-expansion-panel-header>
 
-    <v-form ref="form" class="pa-4">
-      <v-row>
-        <v-col cols="12">
-          <v-textarea
-            v-model="model.description"
-            :error-messages="$v('data.description', 'group.description', { max: 1000 })"
-            :label="$t('group.description')"
-            auto-grow
-            counter
-          />
-        </v-col>
-      </v-row>
+    <v-expansion-panel-content>
+      <v-form ref="form">
+        <v-row>
+          <v-col cols="12">
+            <v-textarea
+              v-model="model.description"
+              :error-messages="$v('data.description', 'group.description', { max: 1000 })"
+              :label="$t('group.description')"
+              auto-grow
+              counter
+              :rows="2"
+            />
+          </v-col>
+        </v-row>
 
-      <div class="d-flex">
-        <div class="flex-grow-1" />
+        <div class="d-flex">
+          <div class="flex-grow-1" />
 
-        <v-btn
-          color="primary"
-          :loading="saving"
-          @click="submit"
-        >
-          {{ $t('general.save') }}
-        </v-btn>
-      </div>
-    </v-form>
-  </v-card>
+          <v-btn
+            color="primary"
+            :loading="saving"
+            @click="submit"
+          >
+            {{ $t('general.save') }}
+          </v-btn>
+        </div>
+      </v-form>
+    </v-expansion-panel-content>
+  </v-expansion-panel>
 </template>
 
 <script lang="ts">
@@ -54,6 +57,7 @@ export default mixins(isForm, savesModels).extend({
         callback: (store, data) => ({ user: { ...store.group, ...data.updateGroup } })
       })
         .then(this.updateModel)
+        .then(() => this.$emit('refreshGroup'))
     }
   }
 })

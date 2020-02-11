@@ -8,37 +8,51 @@
     </v-col>
 
     <v-col>
-      <group-info
-        :value="group"
-        :loading="$apollo.queries.group.loading"
-      />
+      <v-expansion-panels :value="2">
+        <group-info
+          :value="group"
+          :loading="$apollo.queries.group.loading"
+          @refreshGroup="refreshGroup"
+        />
 
-      <members
-        :value="group"
-        :loading="$apollo.queries.group.loading"
-        @refreshGroup="refreshGroup"
-      />
+        <members
+          :value="group"
+          :loading="$apollo.queries.group.loading"
+          class="mt-6"
+          @refreshGroup="refreshGroup"
+        />
+
+        <permissions
+          :value="group"
+          :loading="$apollo.queries.group.loading"
+          class="mt-6"
+          @refreshGroup="refreshGroup"
+        />
+      </v-expansion-panels>
     </v-col>
   </v-row>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import info from './-id/info.vue'
-import groupInfo from './-id/group-info.vue'
-import members from './-id/members.vue'
+import Info from './-id/info.vue'
+import GroupInfo from './-id/group-info.vue'
+import Members from './-id/members.vue'
+import Permissions from './-id/permissions.vue'
 import GROUP from '~/graphql/queries/group.graphql'
+import { Group } from '~/typescript/types'
 
 export default Vue.extend({
   components: {
-    info,
-    groupInfo,
-    members
+    Info,
+    GroupInfo,
+    Members,
+    Permissions
   },
 
   data: () => ({
     img: false,
-    group: {}
+    group: {} as Group
   }),
 
   apollo: {

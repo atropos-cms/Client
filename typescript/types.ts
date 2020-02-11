@@ -20,8 +20,9 @@ export type CreateAuthorRelation = {
 };
 
 export type CreatePageInput = {
-  title?: Maybe<Scalars['String']>,
+  title: Scalars['String'],
   slug?: Maybe<Scalars['String']>,
+  published?: Maybe<Scalars['Boolean']>,
   content?: Maybe<Scalars['String']>,
   author?: Maybe<CreateAuthorRelation>,
 };
@@ -78,13 +79,13 @@ export type LoginInput = {
 
 export type LogoutResponse = {
    __typename?: 'LogoutResponse',
-  status: Scalars['String'],
-  message?: Maybe<Scalars['String']>,
+  status?: Maybe<Scalars['Boolean']>,
 };
 
 export type Mutation = {
    __typename?: 'Mutation',
   login?: Maybe<AuthPayload>,
+  logout?: Maybe<LogoutResponse>,
   updateMe?: Maybe<User>,
   updateMyPassword?: Maybe<User>,
   createUser?: Maybe<User>,
@@ -233,6 +234,7 @@ export type Page = {
   id: Scalars['ID'],
   title: Scalars['String'],
   slug: Scalars['String'],
+  published: Scalars['Boolean'],
   content: Scalars['String'],
   createdAt: Scalars['DateTime'],
   updatedAt: Scalars['DateTime'],
@@ -393,8 +395,9 @@ export type UpdateOrCreateUserInput = {
 };
 
 export type UpdatePageInput = {
-  title?: Maybe<Scalars['String']>,
+  title: Scalars['String'],
   slug?: Maybe<Scalars['String']>,
+  published?: Maybe<Scalars['Boolean']>,
   content?: Maybe<Scalars['String']>,
 };
 
@@ -530,6 +533,16 @@ export type LoginMutation = (
   )> }
 );
 
+export type LogoutMutationVariables = {};
+
+export type LogoutMutation = (
+  { __typename?: 'Mutation' }
+  & { logout: Maybe<(
+    { __typename?: 'LogoutResponse' }
+    & Pick<LogoutResponse, 'status'>
+  )> }
+);
+
 export type RemoveGroupMembersMutationVariables = {
   id: Scalars['ID'],
   members: Array<Scalars['ID']>
@@ -577,6 +590,23 @@ export type UpdateMyPasswordMutation = (
   & { updateMyPassword: Maybe<(
     { __typename?: 'User' }
     & Pick<User, 'id'>
+  )> }
+);
+
+export type UpdatePageMutationVariables = {
+  id: Scalars['ID'],
+  data: UpdatePageInput
+};
+
+export type UpdatePageMutation = (
+  { __typename?: 'Mutation' }
+  & { updatePage: Maybe<(
+    { __typename?: 'Page' }
+    & Pick<Page, 'id' | 'title' | 'slug' | 'published' | 'createdAt' | 'updatedAt'>
+    & { author: (
+      { __typename?: 'User' }
+      & Pick<User, 'id' | 'fullName'>
+    ) }
   )> }
 );
 
@@ -648,7 +678,7 @@ export type PageQuery = (
   { __typename?: 'Query' }
   & { page: Maybe<(
     { __typename?: 'Page' }
-    & Pick<Page, 'id' | 'title' | 'slug' | 'createdAt' | 'updatedAt'>
+    & Pick<Page, 'id' | 'title' | 'slug' | 'published' | 'createdAt' | 'updatedAt'>
     & { author: (
       { __typename?: 'User' }
       & Pick<User, 'id' | 'fullName'>

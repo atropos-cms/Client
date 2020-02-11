@@ -8,6 +8,10 @@ query Group($id: ID!) {
     members {
       id
       fullName
+      email
+    }
+    permissions {
+      id
     }
   }
 }

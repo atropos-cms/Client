@@ -7,5 +7,6 @@ export default {
   remove: 'Remove',
   search: 'Search',
   save: 'Save',
-  createdAt: 'Created: {date}'
+  createdAt: 'Created: {date}',
+  updatedAt: 'Updated: {date}'
 }

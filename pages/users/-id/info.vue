@@ -36,10 +36,10 @@
         </div>
 
         <div class="mt-2 mt-md-6">
-          <div class="caption accent--text">
+          <div class="caption muted--text">
             {{ $t('user.loginAt', { date: loginAt }) }}
           </div>
-          <div class="caption accent--text">
+          <div class="caption muted--text">
             {{ $t('general.createdAt', { date: createdAt }) }}
           </div>
         </div>
