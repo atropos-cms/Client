@@ -43,7 +43,7 @@ import isForm from '~/mixins/isClonedForm.ts'
 import savesModels from '~/mixins/savesModels.ts'
 import SYNC_GROUP_PERMISSIONS from '~/graphql/mutations/syncGroupPermissions.graphql'
 import PERMISSIONS from '~/graphql/queries/permissions.graphql'
-import { Permission } from '~/typescript/types'
+import { Permission } from '~/typescript/graphql'
 
 export default mixins(isForm, savesModels).extend({
   data: () => ({
@@ -74,10 +74,10 @@ export default mixins(isForm, savesModels).extend({
         return this.model.permissions.push(permission)
       }
 
-      this.model.permissions = this.model.permissions.filter(p => p.id !== permission.id)
+      this.model.permissions = this.model.permissions.filter((p: Permission) => p.id !== permission.id)
     },
     submit () {
-      const permissions = this.model.permissions.map(p => p.id)
+      const permissions = this.model.permissions.map((p: Permission) => p.id)
 
       this.saveCallback(
         () => this.$apollo.mutate({

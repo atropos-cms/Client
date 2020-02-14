@@ -64,7 +64,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import LOGIN from '~/graphql/mutations/login.graphql'
-import { LoginInput } from '~/typescript/types'
+import { LoginInput } from '~/typescript/graphql'
 
 export default Vue.extend({
   layout: 'guest',

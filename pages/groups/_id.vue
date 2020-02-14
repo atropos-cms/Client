@@ -40,7 +40,7 @@ import GroupInfo from './-id/group-info.vue'
 import Members from './-id/members.vue'
 import Permissions from './-id/permissions.vue'
 import GROUP from '~/graphql/queries/group.graphql'
-import { Group } from '~/typescript/types'
+import { Group } from '~/typescript/graphql'
 
 export default Vue.extend({
   components: {

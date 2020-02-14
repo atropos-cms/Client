@@ -58,7 +58,7 @@ import Info from './-id/info.vue'
 import savesModels from '~/mixins/savesModels.ts'
 import PAGE from '~/graphql/queries/page.graphql'
 import UPDATE_PAGE from '~/graphql/mutations/updatePage.graphql'
-import { Page } from '~/typescript/types'
+import { Page } from '~/typescript/graphql'
 
 export default mixins(savesModels).extend({
   components: {

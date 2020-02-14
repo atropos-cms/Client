@@ -4,6 +4,6 @@ documents: "graphql/**/*.graphql"
 generates:
   typescript/graphql.d.ts:
     - typescript-graphql-files-modules
-  typescript/types.ts:
+  typescript/graphql.ts:
     - typescript
     - typescript-operations

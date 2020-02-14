@@ -58,7 +58,7 @@ import savesModels from '~/mixins/savesModels.ts'
 import ADD_GROUP_MEMBERS from '~/graphql/mutations/addGroupMembers.graphql'
 import REMOVE_GROUP_MEMBERS from '~/graphql/mutations/removeGroupMembers.graphql'
 import { Preset } from '~/components/dialogs/isDialog'
-import { User } from '~/typescript/types'
+import { User } from '~/typescript/graphql'
 
 export default mixins(isForm, savesModels).extend({
   data: () => ({
