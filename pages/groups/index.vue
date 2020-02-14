@@ -87,7 +87,8 @@ export default Vue.extend({
           search: this.search || undefined,
           page: this.options.page
         }
-      }
+      },
+      debounce: 200
     }
   },
 
