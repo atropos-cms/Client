@@ -1,26 +1,33 @@
 <template>
   <v-expansion-panel>
     <v-expansion-panel-header>
-      {{ $t('group.permissions') }}
+      {{ $t('group.permissionsTitle') }}
     </v-expansion-panel-header>
 
     <v-expansion-panel-content>
-      <v-row
-        v-for="permission in mapPermissions"
-        :key="permission.id"
-        align="center"
+      <div
+        v-for="(permissions, name) in groupedPermissions"
+        :key="name"
       >
-        <v-col cols="4">
-          <v-switch
-            :input-value="permission.active"
-            :label="permission.name"
-            @change="value => togglePermission(value, permission)"
-          />
-        </v-col>
-        <v-col cols="8" class="muted--text">
-          {{ permission.id }}
-        </v-col>
-      </v-row>
+        <v-subheader>{{ $t(`group.permissionCategories.${name}`) }}</v-subheader>
+
+        <v-row
+          v-for="permission in permissions"
+          :key="permission.id"
+          align="center"
+        >
+          <v-col cols="4">
+            <v-switch
+              :input-value="permission.active"
+              :label="$t(`group.permissions.${permission.name}.name`)"
+              @change="value => togglePermission(value, permission)"
+            />
+          </v-col>
+          <v-col cols="8" class="muted--text">
+            {{ $t(`group.permissions.${permission.name}.description`) }}
+          </v-col>
+        </v-row>
+      </div>
 
       <div class="d-flex">
         <div class="flex-grow-1" />
@@ -38,6 +45,7 @@
 </template>
 
 <script lang="ts">
+import { groupBy } from 'lodash'
 import mixins from 'vue-typed-mixins'
 import isForm from '~/mixins/isClonedForm.ts'
 import savesModels from '~/mixins/savesModels.ts'
@@ -65,6 +73,10 @@ export default mixins(isForm, savesModels).extend({
         ...p,
         active: !!modelPermissions.find(m => m.id === p.id)
       }))
+    },
+
+    groupedPermissions () {
+      return groupBy(this.mapPermissions, 'category')
     }
   },
 

@@ -2,5 +2,6 @@ query Permissions {
   permissions {
     id
     name
+    category
   }
 }

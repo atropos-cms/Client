@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import _ from 'lodash'
+import { cloneDeep } from 'lodash'
 
 export default Vue.extend({
   props: {
@@ -22,7 +22,7 @@ export default Vue.extend({
 
   data () {
     return {
-      model: _.cloneDeep(this.value)
+      model: cloneDeep(this.value)
     }
   },
 
@@ -36,7 +36,7 @@ export default Vue.extend({
 
   methods: {
     updateModel () {
-      this.model = _.cloneDeep(this.value)
+      this.model = cloneDeep(this.value)
     }
   }
 })

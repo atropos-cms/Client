@@ -6,5 +6,23 @@ export default {
   renameGroup: 'Rename group',
   deleteGroup: 'Delete group',
   findAUser: 'Find a user',
-  permissions: 'Permissions'
+  permissionsTitle: 'Permissions',
+  permissionCategories: {
+    administration: 'Administration',
+    content: 'Content'
+  },
+  permissions: {
+    createUsers: {
+      name: 'Create Users',
+      description: 'Create new users'
+    },
+    editUsers: {
+      name: 'Edit Users',
+      description: ''
+    },
+    deleteUsers: {
+      name: 'Delete Users',
+      description: ''
+    }
+  }
 }

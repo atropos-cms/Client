@@ -1,11 +1,11 @@
 import Vue from 'vue'
-import _ from 'lodash'
+import { trim } from 'lodash'
 import pageLayoutMap, { PageLayout, defaultPageLayout } from '~/utils/maps/pageLayoutMap'
 
 export default Vue.extend({
   computed: {
     pageLayout () : PageLayout {
-      const routePath = _.trim(this.$route.fullPath, '/')
+      const routePath = trim(this.$route.fullPath, '/')
       const pageLayout = pageLayoutMap.find((p) => {
         // If the regex property is an array of regexes,
         // check each of them for a match
