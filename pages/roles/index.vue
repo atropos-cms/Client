@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      <v-btn text small color="primary" @click="addRole">
+      <v-btn outlined color="primary" @click="addRole">
         {{ $t('applications.roles.addNewRole') }}
       </v-btn>
 
