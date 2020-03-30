@@ -16,14 +16,23 @@
           :key="permission.id"
           align="center"
         >
-          <v-col cols="4">
+          <v-col
+            cols="12"
+            sm="6"
+            md="4"
+          >
             <v-switch
               :input-value="permission.active"
               :label="$t(`group.permissions.${permission.name}.name`)"
               @change="value => togglePermission(value, permission)"
             />
           </v-col>
-          <v-col cols="8" class="muted--text">
+          <v-col
+            cols="12"
+            sm="6"
+            md="8"
+            class="muted--text"
+          >
             {{ $t(`group.permissions.${permission.name}.description`) }}
           </v-col>
         </v-row>
