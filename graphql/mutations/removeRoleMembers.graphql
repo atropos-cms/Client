@@ -1,0 +1,5 @@
+mutation removeRoleMembers($id: ID!, $members: [ID!]!) {
+  removeRoleMembers(id: $id, members: $members) {
+    id
+  }
+}

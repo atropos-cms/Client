@@ -7,7 +7,7 @@
           :loading="$apollo.queries.users.loading"
           :items="users"
           :search-input.sync="search"
-          :label="$t('group.findAUser')"
+          :label="$t('role.findAUser')"
           auto-select-first
           cache-items
           class="mx-4"

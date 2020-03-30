@@ -1,5 +1,0 @@
-mutation addGroupMembers($id: ID!, $members: [ID!]!) {
-  addGroupMembers(id: $id, members: $members) {
-    id
-  }
-}

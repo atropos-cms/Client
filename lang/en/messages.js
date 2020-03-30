@@ -1,12 +1,12 @@
 export default {
-  addMemberToGroupTitle: 'Add members to {name}',
-  removeMemberToGroupTitle: 'Remove member {fullName} from {name}',
-  removeMemberToGroupMessage: 'Member {fullName} won\'t receive emails from the group and might loos access to some resources.',
+  addMemberToRoleTitle: 'Add members to {name}',
+  removeMemberToRoleTitle: 'Remove member {fullName} from {name}',
+  removeMemberToRoleMessage: 'Member {fullName} won\'t receive emails from the role and might loos access to some resources.',
   createUserTitle: 'Create a new user',
-  createGroupTitle: 'Create a new group',
-  renameGroupTitle: 'Rename group',
+  createRoleTitle: 'Create a new role',
+  renameRoleTitle: 'Rename role',
   deleteUserTitle: 'Delete this user?',
-  deleteGroupTitle: 'Delete this group?',
+  deleteRoleTitle: 'Delete this role?',
   deleteUserMessage: 'You are about to delete the user <b>{fullName}</b>.<br> Are you sure you want to continue?',
-  deleteGroupMessage: 'You are about to delete the group <b>{name}</b>.<br>All group information, including its email addresses and settings, will be deleted. Members’ accounts aren\'t deleted.<br><br>You can\'t undo this action.'
+  deleteRoleMessage: 'You are about to delete the role <b>{name}</b>.<br>All role information, including its email addresses and settings, will be deleted. Members’ accounts aren\'t deleted.<br><br>You can\'t undo this action.'
 }

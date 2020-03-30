@@ -25,13 +25,13 @@
 
         <div class="mt-2 mt-md-4">
           <v-chip
-            v-for="group in model.groups"
-            :key="group.id"
+            v-for="role in model.roles"
+            :key="role.id"
             label
             small
             class="mr-2"
           >
-            {{ group.name }}
+            {{ role.name }}
           </v-chip>
         </div>
 

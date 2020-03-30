@@ -4,29 +4,29 @@
       cols="12"
       md="4"
     >
-      <info :value="group" />
+      <info :value="role" />
     </v-col>
 
     <v-col>
       <v-expansion-panels :value="2">
-        <group-info
-          :value="group"
-          :loading="$apollo.queries.group.loading"
-          @refreshGroup="refreshGroup"
+        <role-info
+          :value="role"
+          :loading="$apollo.queries.role.loading"
+          @refreshRole="refreshRole"
         />
 
         <members
-          :value="group"
-          :loading="$apollo.queries.group.loading"
+          :value="role"
+          :loading="$apollo.queries.role.loading"
           class="mt-6"
-          @refreshGroup="refreshGroup"
+          @refreshRole="refreshRole"
         />
 
         <permissions
-          :value="group"
-          :loading="$apollo.queries.group.loading"
+          :value="role"
+          :loading="$apollo.queries.role.loading"
           class="mt-6"
-          @refreshGroup="refreshGroup"
+          @refreshRole="refreshRole"
         />
       </v-expansion-panels>
     </v-col>
@@ -36,28 +36,28 @@
 <script lang="ts">
 import Vue from 'vue'
 import Info from './-id/info.vue'
-import GroupInfo from './-id/group-info.vue'
+import RoleInfo from './-id/role-info.vue'
 import Members from './-id/members.vue'
 import Permissions from './-id/permissions.vue'
-import GROUP from '~/graphql/queries/group.graphql'
-import { Group } from '~/typescript/graphql'
+import ROLE from '~/graphql/queries/role.graphql'
+import { Role } from '~/typescript/graphql'
 
 export default Vue.extend({
   components: {
     Info,
-    GroupInfo,
+    RoleInfo,
     Members,
     Permissions
   },
 
   data: () => ({
     img: false,
-    group: {} as Group
+    role: {} as Role
   }),
 
   apollo: {
-    group: {
-      query: GROUP,
+    role: {
+      query: ROLE,
       variables () {
         return {
           id: this.$route.params.id
@@ -67,8 +67,8 @@ export default Vue.extend({
   },
 
   methods: {
-    refreshGroup () {
-      this.$apollo.queries.group.refresh()
+    refreshRole () {
+      this.$apollo.queries.role.refresh()
     }
   }
 })

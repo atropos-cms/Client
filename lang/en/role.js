@@ -3,9 +3,9 @@ export default {
   members: 'Members',
   membersCount: 'Members',
   description: 'Description',
-  groupInfo: 'Group information',
-  renameGroup: 'Rename group',
-  deleteGroup: 'Delete group',
+  roleInfo: 'Role information',
+  renameRole: 'Rename role',
+  deleteRole: 'Delete role',
   findAUser: 'Find a user',
   permissionsTitle: 'Permissions',
   permissionCategories: {

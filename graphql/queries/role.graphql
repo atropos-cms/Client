@@ -1,5 +1,5 @@
-query Group($id: ID!) { 
-  group(id: $id) {
+query Role($id: ID!) { 
+  role(id: $id) {
     id
     name
     description

@@ -1,15 +1,15 @@
 <template>
   <v-expansion-panel>
     <v-expansion-panel-header>
-      {{ $t('group.permissionsTitle') }}
+      {{ $t('role.permissionsTitle') }}
     </v-expansion-panel-header>
 
     <v-expansion-panel-content>
       <div
-        v-for="(permissions, name) in groupedPermissions"
+        v-for="(permissions, name) in roleedPermissions"
         :key="name"
       >
-        <v-subheader>{{ $t(`group.permissionCategories.${name}`) }}</v-subheader>
+        <v-subheader>{{ $t(`role.permissionCategories.${name}`) }}</v-subheader>
 
         <v-row
           v-for="permission in permissions"
@@ -23,7 +23,7 @@
           >
             <v-switch
               :input-value="permission.active"
-              :label="$t(`group.permissions.${permission.name}.name`)"
+              :label="$t(`role.permissions.${permission.name}.name`)"
               @change="value => togglePermission(value, permission)"
             />
           </v-col>
@@ -33,7 +33,7 @@
             md="8"
             class="muted--text"
           >
-            {{ $t(`group.permissions.${permission.name}.description`) }}
+            {{ $t(`role.permissions.${permission.name}.description`) }}
           </v-col>
         </v-row>
       </div>
@@ -58,7 +58,7 @@ import { groupBy } from 'lodash'
 import mixins from 'vue-typed-mixins'
 import isForm from '~/mixins/isClonedForm.ts'
 import savesModels from '~/mixins/savesModels.ts'
-import SYNC_GROUP_PERMISSIONS from '~/graphql/mutations/syncGroupPermissions.graphql'
+import SYNC_ROLE_PERMISSIONS from '~/graphql/mutations/syncRolePermissions.graphql'
 import PERMISSIONS from '~/graphql/queries/permissions.graphql'
 import { Permission } from '~/typescript/graphql'
 
@@ -84,7 +84,7 @@ export default mixins(isForm, savesModels).extend({
       }))
     },
 
-    groupedPermissions () {
+    roleedPermissions () {
       return groupBy(this.mapPermissions, 'category')
     }
   },
@@ -102,7 +102,7 @@ export default mixins(isForm, savesModels).extend({
 
       this.saveCallback(
         () => this.$apollo.mutate({
-          mutation: SYNC_GROUP_PERMISSIONS,
+          mutation: SYNC_ROLE_PERMISSIONS,
           variables: {
             id: this.model.id,
             permissions

@@ -1,0 +1,5 @@
+mutation syncRolePermissions($id: ID!, $permissions: [ID!]!) {
+  syncRolePermissions(id: $id, permissions: $permissions) {
+    id
+  }
+}

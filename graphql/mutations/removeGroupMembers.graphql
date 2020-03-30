@@ -1,5 +1,0 @@
-mutation removeGroupMembers($id: ID!, $members: [ID!]!) {
-  removeGroupMembers(id: $id, members: $members) {
-    id
-  }
-}

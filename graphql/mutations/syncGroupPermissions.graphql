@@ -1,5 +1,0 @@
-mutation syncGroupPermissions($id: ID!, $permissions: [ID!]!) {
-  syncGroupPermissions(id: $id, permissions: $permissions) {
-    id
-  }
-}

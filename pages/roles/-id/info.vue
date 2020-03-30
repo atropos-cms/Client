@@ -22,23 +22,23 @@
 
     <v-list>
       <v-list-item-group>
-        <!-- Rename Group -->
-        <v-list-item @click="renameGroup">
+        <!-- Rename Role -->
+        <v-list-item @click="renameRole">
           <v-list-item-icon>
             <v-icon>edit</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>{{ $t('group.renameGroup') }}</v-list-item-title>
+            <v-list-item-title>{{ $t('role.renameRole') }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
-        <!-- Delete Group -->
-        <v-list-item @click="deleteGroup">
+        <!-- Delete Role -->
+        <v-list-item @click="deleteRole">
           <v-list-item-icon>
             <v-icon>delete</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>{{ $t('group.deleteGroup') }}</v-list-item-title>
+            <v-list-item-title>{{ $t('role.deleteRole') }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list-item-group>
@@ -48,11 +48,11 @@
 
 <script lang="ts">
 import mixins from 'vue-typed-mixins'
-import renameGroup from '../-modals/rename-group.vue'
+import renameRole from '../-modals/rename-role.vue'
 import dayjs from '~/utils/dayjs'
 import isForm from '~/mixins/isForm.ts'
-import UPDATE_GROUP from '~/graphql/mutations/updateGroup.graphql'
-import DELETE_GROUP from '~/graphql/mutations/deleteGroup.graphql'
+import UPDATE_ROLE from '~/graphql/mutations/updateRole.graphql'
+import DELETE_ROLE from '~/graphql/mutations/deleteRole.graphql'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default mixins(isForm).extend({
@@ -77,13 +77,13 @@ export default mixins(isForm).extend({
   },
 
   methods: {
-    async renameGroup () {
+    async renameRole () {
       await this.$dialog({
-        title: this.$t('messages.renameGroupTitle'),
-        component: renameGroup,
+        title: this.$t('messages.renameRoleTitle'),
+        component: renameRole,
         preset: Preset.Save,
         action: model => this.$apollo.mutate({
-          mutation: UPDATE_GROUP,
+          mutation: UPDATE_ROLE,
           variables: {
             id: this.model.id,
             data: model
@@ -91,18 +91,18 @@ export default mixins(isForm).extend({
         })
       })
     },
-    async deleteGroup () {
+    async deleteRole () {
       await this.$confirm({
-        title: this.$t('messages.deleteGroupTitle'),
-        message: this.$t('messages.deleteGroupMessage', this.model),
+        title: this.$t('messages.deleteRoleTitle'),
+        message: this.$t('messages.deleteRoleMessage', this.model),
         preset: Preset.Delete,
         action: () => this.$apollo.mutate({
-          mutation: DELETE_GROUP,
+          mutation: DELETE_ROLE,
           variables: {
             id: this.model.id
           }
         }).then(() => {
-          this.$router.push('/groups')
+          this.$router.push('/roles')
         })
       })
     }

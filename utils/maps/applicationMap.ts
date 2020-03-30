@@ -22,11 +22,11 @@ export const adminApps : Application[] = [
     url: '/users'
   },
   {
-    name: 'groups',
-    title: 'applications.groups.title',
-    description: 'applications.groups.description',
+    name: 'roles',
+    title: 'applications.roles.title',
+    description: 'applications.roles.description',
     icon: 'group',
-    url: '/groups'
+    url: '/roles'
   }
 ]
 

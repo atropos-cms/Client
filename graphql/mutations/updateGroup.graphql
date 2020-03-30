@@ -1,7 +1,0 @@
-mutation updateGroup($id: ID!, $data: UpdateOrCreateGroupInput!) {
-  updateGroup(id: $id, data: $data) {
-    id
-    name
-    description
-  }
-}

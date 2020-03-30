@@ -1,17 +1,17 @@
 
-declare module '*/addGroupMembers.graphql' {
+declare module '*/addRoleMembers.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
-  export const addGroupMembers: DocumentNode;
+  export const addRoleMembers: DocumentNode;
 
   export default defaultDocument;
 }
     
 
-declare module '*/createGroup.graphql' {
+declare module '*/createRole.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
-  export const createGroup: DocumentNode;
+  export const createRole: DocumentNode;
 
   export default defaultDocument;
 }
@@ -26,10 +26,10 @@ declare module '*/createUser.graphql' {
 }
     
 
-declare module '*/deleteGroup.graphql' {
+declare module '*/deleteRole.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
-  export const deleteGroup: DocumentNode;
+  export const deleteRole: DocumentNode;
 
   export default defaultDocument;
 }
@@ -62,28 +62,19 @@ declare module '*/logout.graphql' {
 }
     
 
-declare module '*/removeGroupMembers.graphql' {
+declare module '*/removeRoleMembers.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
-  export const removeGroupMembers: DocumentNode;
+  export const removeRoleMembers: DocumentNode;
 
   export default defaultDocument;
 }
     
 
-declare module '*/syncGroupPermissions.graphql' {
+declare module '*/syncRolePermissions.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
-  export const syncGroupPermissions: DocumentNode;
-
-  export default defaultDocument;
-}
-    
-
-declare module '*/updateGroup.graphql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const updateGroup: DocumentNode;
+  export const syncRolePermissions: DocumentNode;
 
   export default defaultDocument;
 }
@@ -116,28 +107,19 @@ declare module '*/updatePage.graphql' {
 }
     
 
+declare module '*/updateRole.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const updateRole: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/updateUser.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const updateUser: DocumentNode;
-
-  export default defaultDocument;
-}
-    
-
-declare module '*/group.graphql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const Group: DocumentNode;
-
-  export default defaultDocument;
-}
-    
-
-declare module '*/groups.graphql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const Groups: DocumentNode;
 
   export default defaultDocument;
 }
@@ -174,6 +156,24 @@ declare module '*/permissions.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const Permissions: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/role.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Role: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/roles.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Roles: DocumentNode;
 
   export default defaultDocument;
 }

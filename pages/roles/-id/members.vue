@@ -1,7 +1,7 @@
 <template>
   <v-expansion-panel>
     <v-expansion-panel-header>
-      {{ $t('group.members') }}
+      {{ $t('role.members') }}
     </v-expansion-panel-header>
 
     <v-expansion-panel-content>
@@ -55,8 +55,8 @@ import addMemberDialog from '../-modals/add-member.vue'
 import { i18n } from '~/plugins/vue-i18n'
 import isForm from '~/mixins/isClonedForm.ts'
 import savesModels from '~/mixins/savesModels.ts'
-import ADD_GROUP_MEMBERS from '~/graphql/mutations/addGroupMembers.graphql'
-import REMOVE_GROUP_MEMBERS from '~/graphql/mutations/removeGroupMembers.graphql'
+import ADD_ROLE_MEMBERS from '~/graphql/mutations/addRoleMembers.graphql'
+import REMOVE_ROLE_MEMBERS from '~/graphql/mutations/removeRoleMembers.graphql'
 import { Preset } from '~/components/dialogs/isDialog'
 import { User } from '~/typescript/graphql'
 
@@ -77,30 +77,30 @@ export default mixins(isForm, savesModels).extend({
   methods: {
     async addMember () {
       await this.$dialog({
-        title: this.$t('messages.addMemberToGroupTitle', this.model),
+        title: this.$t('messages.addMemberToRoleTitle', this.model),
         component: addMemberDialog,
         preset: Preset.Save,
         action: model => this.$apollo.mutate({
-          mutation: ADD_GROUP_MEMBERS,
+          mutation: ADD_ROLE_MEMBERS,
           variables: {
             id: this.model.id,
             members: model.selected
           }
-        }).then(() => this.$emit('refreshGroup'))
+        }).then(() => this.$emit('refreshRole'))
       })
     },
     async removeMember (user: User) {
       await this.$confirm({
-        title: this.$t('messages.removeMemberToGroupTitle', { full_name: user.fullName, name: this.model.name }),
-        message: this.$t('messages.removeMemberToGroupMessage', user),
+        title: this.$t('messages.removeMemberToRoleTitle', { full_name: user.fullName, name: this.model.name }),
+        message: this.$t('messages.removeMemberToRoleMessage', user),
         preset: Preset.Remove,
         action: () => this.$apollo.mutate({
-          mutation: REMOVE_GROUP_MEMBERS,
+          mutation: REMOVE_ROLE_MEMBERS,
           variables: {
             id: this.model.id,
             members: [user.id]
           }
-        }).then(() => this.$emit('refreshGroup'))
+        }).then(() => this.$emit('refreshRole'))
       })
     }
   }

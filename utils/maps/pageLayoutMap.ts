@@ -27,9 +27,9 @@ const pageLayoutMap : PageLayout[] = [
     navigationDrawerComponent: () => import('~/layouts/default/navigation-drawer/drawers/dashboard.vue')
   },
   {
-    name: 'groups',
-    title: 'applications.groups.title',
-    regex: [/^groups(.*)/],
+    name: 'roles',
+    title: 'applications.roles.title',
+    regex: [/^roles(.*)/],
     navigationDrawerComponent: () => import('~/layouts/default/navigation-drawer/drawers/dashboard.vue')
   },
   {

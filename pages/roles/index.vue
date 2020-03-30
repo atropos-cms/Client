@@ -1,8 +1,8 @@
 <template>
   <v-card>
     <v-card-title>
-      <v-btn text small color="primary" @click="addGroup">
-        {{ $t('applications.groups.addNewGroup') }}
+      <v-btn text small color="primary" @click="addRole">
+        {{ $t('applications.roles.addNewRole') }}
       </v-btn>
 
       <div class="flex-grow-1" />
@@ -17,22 +17,22 @@
     </v-card-title>
     <v-data-table
       :headers="headers"
-      :items="groups.data"
+      :items="roles.data"
       :footer-props="{ itemsPerPageOptions: [10, 50, 100] }"
       :options.sync="options"
-      :server-items-length="groups.paginatorInfo.total"
-      :loading="$apollo.queries.groups.loading"
+      :server-items-length="roles.paginatorInfo.total"
+      :loading="$apollo.queries.roles.loading"
       item-key="id"
     >
       <template v-slot:item.action="{ item }">
         <v-icon
           class="mr-2"
-          @click="editGroup(item)"
+          @click="editRole(item)"
         >
           edit
         </v-icon>
         <v-icon
-          @click="deleteGroup(item)"
+          @click="deleteRole(item)"
         >
           delete
         </v-icon>
@@ -43,18 +43,18 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import createGroup from './-modals/create-group.vue'
+import createRole from './-modals/create-role.vue'
 import { i18n } from '~/plugins/vue-i18n'
-import GROUPS from '~/graphql/queries/groups.graphql'
-import CREATE_GROUP from '~/graphql/mutations/createGroup.graphql'
-import DELETE_GROUP from '~/graphql/mutations/deleteGroup.graphql'
+import ROLES from '~/graphql/queries/roles.graphql'
+import CREATE_ROLE from '~/graphql/mutations/createRole.graphql'
+import DELETE_ROLE from '~/graphql/mutations/deleteRole.graphql'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default Vue.extend({
   data: () => ({
     headers: [
-      { text: i18n.t('group.name'), value: 'name' },
-      { text: i18n.t('group.membersCount'), value: 'membersCount', sortable: false },
+      { text: i18n.t('role.name'), value: 'name' },
+      { text: i18n.t('role.membersCount'), value: 'membersCount', sortable: false },
       { text: i18n.t('general.actions'), value: 'action', align: 'right', sortable: false }
     ],
     options: {
@@ -64,7 +64,7 @@ export default Vue.extend({
       sortDesc: [false]
     },
     search: '',
-    groups: {
+    roles: {
       paginatorInfo: {
         total: 0
       },
@@ -73,8 +73,8 @@ export default Vue.extend({
   }),
 
   apollo: {
-    groups: {
-      query: GROUPS,
+    roles: {
+      query: ROLES,
       variables () {
         const first = this.options.itemsPerPage
         const orderBy = this.options.sortBy.map((item, index) => ({
@@ -94,36 +94,36 @@ export default Vue.extend({
   },
 
   methods: {
-    async addGroup () {
+    async addRole () {
       await this.$dialog({
-        title: this.$t('messages.createGroupTitle'),
-        component: createGroup,
+        title: this.$t('messages.createRoleTitle'),
+        component: createRole,
         preset: Preset.Create,
         action: model => this.$apollo.mutate({
-          mutation: CREATE_GROUP,
+          mutation: CREATE_ROLE,
           variables: {
             data: model
           }
         }).then(() => {
-          this.$apollo.queries.groups.refetch()
+          this.$apollo.queries.roles.refetch()
         })
       })
     },
-    editGroup (group: {id: Number}) {
-      this.$router.push(`/groups/${group.id}`)
+    editRole (role: {id: Number}) {
+      this.$router.push(`/roles/${role.id}`)
     },
-    async deleteGroup (group: {id: Number}) {
+    async deleteRole (role: {id: Number}) {
       await this.$confirm({
-        title: this.$t('messages.deleteGroupTitle'),
-        message: this.$t('messages.deleteGroupMessage', group),
+        title: this.$t('messages.deleteRoleTitle'),
+        message: this.$t('messages.deleteRoleMessage', role),
         preset: Preset.Delete,
         action: () => this.$apollo.mutate({
-          mutation: DELETE_GROUP,
+          mutation: DELETE_ROLE,
           variables: {
-            id: group.id
+            id: role.id
           }
         }).then(() => {
-          this.$apollo.queries.groups.refetch()
+          this.$apollo.queries.roles.refetch()
         })
       })
     }

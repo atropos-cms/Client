@@ -14,9 +14,9 @@ export default {
     addNewUser: 'Add new user',
     description: 'Add or manage users'
   },
-  groups: {
-    title: 'Groups',
-    addNewGroup: 'Add new group',
-    description: 'Create groups and manage permissions'
+  roles: {
+    title: 'Roles',
+    addNewRole: 'Add new role',
+    description: 'Create roles and manage permissions'
   }
 }

@@ -14,7 +14,7 @@ query User($id: ID!) {
     updatedAt
     loginAt
 
-    groups {
+    roles {
       id
       name
     }

@@ -1,0 +1,5 @@
+mutation addRoleMembers($id: ID!, $members: [ID!]!) {
+  addRoleMembers(id: $id, members: $members) {
+    id
+  }
+}

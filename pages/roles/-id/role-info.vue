@@ -1,7 +1,7 @@
 <template>
   <v-expansion-panel>
     <v-expansion-panel-header>
-      {{ $t('group.groupInfo') }}
+      {{ $t('role.roleInfo') }}
     </v-expansion-panel-header>
 
     <v-expansion-panel-content>
@@ -10,8 +10,8 @@
           <v-col cols="12">
             <v-textarea
               v-model="model.description"
-              :error-messages="$v('data.description', 'group.description', { max: 1000 })"
-              :label="$t('group.description')"
+              :error-messages="$v('data.description', 'role.description', { max: 1000 })"
+              :label="$t('role.description')"
               auto-grow
               counter
               :rows="2"
@@ -39,25 +39,25 @@
 import mixins from 'vue-typed-mixins'
 import isForm from '~/mixins/isClonedForm.ts'
 import savesModels from '~/mixins/savesModels.ts'
-import UPDATE_GROUP from '~/graphql/mutations/updateGroup.graphql'
-import GROUP from '~/graphql/queries/group.graphql'
+import UPDATE_ROLE from '~/graphql/mutations/updateRole.graphql'
+import ROLE from '~/graphql/queries/role.graphql'
 
 export default mixins(isForm, savesModels).extend({
   methods: {
     submit () {
-      this.saveModel(UPDATE_GROUP, {
+      this.saveModel(UPDATE_ROLE, {
         id: this.model.id,
         data: {
           name: this.model.name,
           description: this.model.description
         }
       }, {
-        query: GROUP,
+        query: ROLE,
         variables: { id: this.model.id },
-        callback: (store, data) => ({ user: { ...store.group, ...data.updateGroup } })
+        callback: (store, data) => ({ user: { ...store.role, ...data.updateRole } })
       })
         .then(this.updateModel)
-        .then(() => this.$emit('refreshGroup'))
+        .then(() => this.$emit('refreshRole'))
     }
   }
 })
