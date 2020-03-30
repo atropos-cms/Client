@@ -27,24 +27,45 @@ export const adminApps : Application[] = [
     description: 'applications.roles.description',
     icon: 'group',
     url: '/roles'
+  },
+  {
+    name: 'settings',
+    title: 'applications.settings.title',
+    description: 'applications.settings.description',
+    icon: 'settings',
+    url: '/settings'
   }
 ]
 
-export const contentApps : Application[] = [
+export const websiteApps : Application[] = [
   {
-    name: 'pages',
-    title: 'applications.pages.title',
-    description: 'applications.pages.description',
-    icon: 'insert_drive_file',
-    url: '/pages'
+    name: 'content',
+    title: 'applications.website.content.title',
+    description: 'applications.website.content.description',
+    icon: 'widgets',
+    url: '/website/content'
+  },
+  {
+    name: 'design',
+    title: 'applications.website.design.title',
+    description: 'applications.website.design.description',
+    icon: 'style',
+    url: '/website/design'
+  },
+  {
+    name: 'websiteSettings',
+    title: 'applications.website.settings.title',
+    description: 'applications.website.settings.description',
+    icon: 'settings_applications',
+    url: '/website/settings'
   }
 ]
 
 const categoriesMap : Category[] = [
   {
     name: 'countent',
-    title: 'categories.content.title',
-    applications: contentApps
+    title: 'categories.website.title',
+    applications: websiteApps
   },
   {
     name: 'admin',
@@ -54,7 +75,7 @@ const categoriesMap : Category[] = [
 ]
 
 export const applicationsMap : Application[] = [
-  ...contentApps,
+  ...websiteApps,
   ...adminApps
 ]
 

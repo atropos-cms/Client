@@ -5,7 +5,7 @@ export default {
   content: 'Content',
   published: 'Published',
   author: 'Author: {fullName}',
-  newMore: 'New ...',
+  newContent: 'Add new content',
   new: {
     page: {
       title: 'Page',

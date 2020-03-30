@@ -9,35 +9,35 @@ export interface PageLayout {
 // definitions. The defined regex prop will be used to compare against the
 // current url.
 const pageLayoutMap : PageLayout[] = [
-  {
-    name: 'dashboard',
-    title: 'applications.dashboard.title',
-    regex: [/^$/, /^\//],
-    navigationDrawerComponent: () => import('~/layouts/default/navigation-drawer/drawers/dashboard.vue')
-  },
+  // {
+  //   name: 'dashboard',
+  //   title: 'applications.dashboard.title',
+  //   regex: [/^$/, /^\//],
+  //   navigationDrawerComponent: () => import('~/layouts/default/navigation-drawer/drawers/dashboard.vue')
+  // },
   {
     name: 'account',
     title: 'applications.account.title',
     regex: [/^account(.*)/]
-  },
-  {
-    name: 'users',
-    title: 'applications.users.title',
-    regex: [/^users(.*)/],
-    navigationDrawerComponent: () => import('~/layouts/default/navigation-drawer/drawers/dashboard.vue')
-  },
-  {
-    name: 'roles',
-    title: 'applications.roles.title',
-    regex: [/^roles(.*)/],
-    navigationDrawerComponent: () => import('~/layouts/default/navigation-drawer/drawers/dashboard.vue')
-  },
-  {
-    name: 'pages',
-    title: 'applications.pages.title',
-    regex: [/^pages(.*)/],
-    navigationDrawerComponent: () => import('~/layouts/default/navigation-drawer/drawers/dashboard.vue')
   }
+  // {
+  //   name: 'users',
+  //   title: 'applications.users.title',
+  //   regex: [/^users(.*)/],
+  //   navigationDrawerComponent: () => import('~/layouts/default/navigation-drawer/drawers/dashboard.vue')
+  // },
+  // {
+  //   name: 'roles',
+  //   title: 'applications.roles.title',
+  //   regex: [/^roles(.*)/],
+  //   navigationDrawerComponent: () => import('~/layouts/default/navigation-drawer/drawers/dashboard.vue')
+  // },
+  // {
+  //   name: 'content',
+  //   title: 'applications.content.title',
+  //   regex: [/^website\/content(.*)/],
+  //   navigationDrawerComponent: () => import('~/layouts/default/navigation-drawer/drawers/dashboard.vue')
+  // }
 ]
 
 // default page settings will be used when no other page matched
@@ -45,6 +45,6 @@ export const defaultPageLayout : PageLayout = {
   name: 'default',
   title: null,
   regex: [/.*/],
-  navigationDrawerComponent: () => import('~/layouts/default/navigation-drawer/drawers/temp.vue')
+  navigationDrawerComponent: () => import('~/layouts/default/navigation-drawer/drawers/dashboard.vue')
 }
 export default pageLayoutMap

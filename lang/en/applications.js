@@ -5,9 +5,19 @@ export default {
   dashboard: {
     title: 'Dashboard'
   },
-  pages: {
-    title: 'Pages',
-    description: 'Create pages and manage content'
+  website: {
+    content: {
+      title: 'Content',
+      description: 'Create and manage content'
+    },
+    design: {
+      title: 'Design',
+      description: ''
+    },
+    settings: {
+      title: 'Settings',
+      description: ''
+    }
   },
   users: {
     title: 'Users',
@@ -18,5 +28,9 @@ export default {
     title: 'Roles',
     addNewRole: 'Add new role',
     description: 'Create roles and manage permissions'
+  },
+  settings: {
+    title: 'Settings',
+    description: ''
   }
 }

@@ -1,13 +1,15 @@
 <template>
   <v-menu transition="slide-y-transition">
     <template v-slot:activator="{ on }">
-      <v-btn outlined color="primary" v-on="on">{{ $t('page.newMore') }}</v-btn>
+      <v-btn outlined color="primary" v-on="on">{{ $t('page.newContent') }}</v-btn>
     </template>
     <v-list>
       <!-- Page -->
-      <v-list-item>
+      <v-list-item
+        @click="() => {}"
+      >
         <v-list-item-icon>
-          <v-icon>mdi-home</v-icon>
+          <v-icon>description</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>{{ $t('page.new.page.title') }}</v-list-item-title>
@@ -16,9 +18,11 @@
       </v-list-item>
 
       <!-- Blog -->
-      <v-list-item>
+      <v-list-item
+        @click="() => {}"
+      >
         <v-list-item-icon>
-          <v-icon>mdi-home</v-icon>
+          <v-icon>dynamic_feed</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>{{ $t('page.new.blog.title') }}</v-list-item-title>
@@ -27,7 +31,9 @@
       </v-list-item>
 
       <!-- Events -->
-      <v-list-item>
+      <v-list-item
+        @click="() => {}"
+      >
         <v-list-item-icon>
           <v-icon>event</v-icon>
         </v-list-item-icon>
@@ -38,9 +44,11 @@
       </v-list-item>
 
       <!-- Link -->
-      <v-list-item>
+      <v-list-item
+        @click="() => {}"
+      >
         <v-list-item-icon>
-          <v-icon>fa-link</v-icon>
+          <v-icon>link</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>{{ $t('page.new.link.title') }}</v-list-item-title>
@@ -49,7 +57,9 @@
       </v-list-item>
 
       <!-- Folder -->
-      <v-list-item>
+      <v-list-item
+        @click="() => {}"
+      >
         <v-list-item-icon>
           <v-icon>folder</v-icon>
         </v-list-item-icon>
