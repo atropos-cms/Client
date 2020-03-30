@@ -1,6 +1,7 @@
 export default {
   name: 'Name',
   members: 'Members',
+  membersCount: 'Members',
   description: 'Description',
   groupInfo: 'Group information',
   renameGroup: 'Rename group',

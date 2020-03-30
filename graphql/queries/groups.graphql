@@ -8,7 +8,7 @@ query Groups($first: Int!, $page: Int, $search: String, $orderBy: [GroupsOrderBy
     data {
       id
       name
-      description
+      membersCount
     }
   }
 }

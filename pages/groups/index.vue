@@ -54,6 +54,7 @@ export default Vue.extend({
   data: () => ({
     headers: [
       { text: i18n.t('group.name'), value: 'name' },
+      { text: i18n.t('group.membersCount'), value: 'membersCount', sortable: false },
       { text: i18n.t('general.actions'), value: 'action', align: 'right', sortable: false }
     ],
     options: {
