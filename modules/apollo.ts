@@ -12,7 +12,7 @@ const link = onError(({ graphQLErrors }) => {
       if (err.message === 'UNAUTHENTICATED') {
         const cookies = new Cookie()
         cookies.remove(nuxtConfig.apollo.tokenName)
-        // window.location.replace('/auth/login')
+        window.location.replace('/auth/login')
       }
     }
   }
