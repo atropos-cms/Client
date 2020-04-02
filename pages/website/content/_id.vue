@@ -3,7 +3,7 @@
     <v-row>
       <v-col>
         <div class="title">
-          {{ page.title }}
+          {{ content.title }}
         </div>
       </v-col>
       <v-col cols="auto">
@@ -22,17 +22,17 @@
         md="8"
       >
         <v-card
-          :loading="$apollo.queries.page.loading"
+          :loading="$apollo.queries.content.loading"
           class="px-4 pt-4 mb-4"
         >
           <general
-            :value="page"
-            :loading="$apollo.queries.page.loading"
+            :value="content"
+            :loading="$apollo.queries.content.loading"
           />
         </v-card>
         <v-card class="pa-4">
           <content-editor
-            v-model="page"
+            v-model="content"
           />
         </v-card>
       </v-col>
@@ -42,8 +42,8 @@
         md="4"
       >
         <info
-          :value="page"
-          :loading="$apollo.queries.page.loading"
+          :value="content"
+          :loading="$apollo.queries.content.loading"
         />
       </v-col>
     </v-row>
@@ -56,9 +56,9 @@ import ContentEditor from './-id/content.vue'
 import General from './-id/general.vue'
 import Info from './-id/info.vue'
 import savesModels from '~/mixins/savesModels.ts'
-import PAGE from '~/graphql/queries/page.graphql'
-import UPDATE_PAGE from '~/graphql/mutations/updatePage.graphql'
-import { Page } from '~/typescript/graphql'
+import NAVIGATIONENTRY from '~/graphql/queries/navigationentry.graphql'
+import UPDATE_NAVIGATIONENTRY from '~/graphql/mutations/updateNavigationentry.graphql'
+import { Navigationentry } from '~/typescript/graphql'
 
 export default mixins(savesModels).extend({
   components: {
@@ -68,12 +68,12 @@ export default mixins(savesModels).extend({
   },
 
   data: () => ({
-    page: {} as Page
+    navigationentry: {} as Navigationentry
   }),
 
   apollo: {
-    page: {
-      query: PAGE,
+    navigationentry: {
+      query: NAVIGATIONENTRY,
       variables () {
         return {
           id: this.$route.params.id
@@ -84,18 +84,17 @@ export default mixins(savesModels).extend({
 
   methods: {
     submit () {
-      this.saveModel(UPDATE_PAGE, {
-        id: this.page.id,
+      this.saveModel(UPDATE_NAVIGATIONENTRY, {
+        id: this.navigationentry.id,
         data: {
-          title: this.page.title,
-          slug: this.page.slug,
-          published: this.page.published,
-          content: this.page.content
+          title: this.navigationentry.title,
+          slug: this.navigationentry.slug,
+          published: this.navigationentry.published
         }
       }, {
-        query: PAGE,
-        variables: { id: this.page.id },
-        callback: (store, data) => ({ page: { ...store.page, ...data.updatePage } })
+        query: NAVIGATIONENTRY,
+        variables: { id: this.navigationentry.id },
+        callback: (store, data) => ({ navigationentry: { ...store.navigationentry, ...data.updatePage } })
       })
     }
   }

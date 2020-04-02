@@ -98,10 +98,10 @@ declare module '*/updateMyPassword.graphql' {
 }
     
 
-declare module '*/updatePage.graphql' {
+declare module '*/updateNavigationentry.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
-  export const updatePage: DocumentNode;
+  export const updateNavigationentry: DocumentNode;
 
   export default defaultDocument;
 }
@@ -134,19 +134,19 @@ declare module '*/me.graphql' {
 }
     
 
-declare module '*/page.graphql' {
+declare module '*/navigationentries.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
-  export const Page: DocumentNode;
+  export const Navigationentries: DocumentNode;
 
   export default defaultDocument;
 }
     
 
-declare module '*/pages.graphql' {
+declare module '*/navigationentry.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
-  export const Pages: DocumentNode;
+  export const Navigationentry: DocumentNode;
 
   export default defaultDocument;
 }

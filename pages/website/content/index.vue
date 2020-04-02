@@ -7,22 +7,22 @@
 
     <v-list>
       <draggable
-        v-model="pages"
+        v-model="navigationentries"
         v-bind="dragOptions"
         @start="drag = true"
         @end="drag = false"
       >
         <transition-group type="transition" :name="!drag ? 'flip-list' : null">
           <template
-            v-for="page in pages"
+            v-for="content in navigationentries"
           >
             <v-hover
-              :key="page.id"
+              :key="content.id"
               v-slot:default="{ hover }"
             >
               <div>
                 <v-list-item
-                  @click="editPage(page)"
+                  @click="editContent(content)"
                 >
                   <v-list-item-icon>
                     <v-icon
@@ -34,13 +34,13 @@
                   </v-list-item-icon>
 
                   <v-list-item-content>
-                    <v-list-item-title v-text="page.title" />
+                    <v-list-item-title v-text="content.title" />
                   </v-list-item-content>
 
                   <v-list-item-icon>
                     <v-btn
                       icon
-                      @click.stop="editPage(page)"
+                      @click.stop="editContent(content)"
                     >
                       <v-icon
                         :class="{ 'grey--text lighten-1': hover }"
@@ -53,7 +53,7 @@
                   <v-list-item-icon>
                     <v-btn
                       icon
-                      @click.stop="editPage(page)"
+                      @click.stop="editContent(content)"
                     >
                       <v-icon
                         :class="{ 'grey--text lighten-1': hover }"
@@ -79,7 +79,7 @@
 import Vue from 'vue'
 import draggable from 'vuedraggable'
 import addButton from './-index/addButton.vue'
-import PAGES from '~/graphql/queries/pages.graphql'
+import NAVIGATIONENTRIES from '~/graphql/queries/navigationentries.graphql'
 
 export default Vue.extend({
   components: {
@@ -88,13 +88,13 @@ export default Vue.extend({
   },
 
   data: () => ({
-    pages: [],
+    navigationentries: [],
     drag: false
   }),
 
   apollo: {
-    pages: {
-      query: PAGES
+    navigationentries: {
+      query: NAVIGATIONENTRIES
     }
   },
 
@@ -110,8 +110,8 @@ export default Vue.extend({
   },
 
   methods: {
-    editPage (page: {id: Number}) {
-      this.$router.push(`/pages/${page.id}`)
+    editContent (content: {id: Number}) {
+      this.$router.push(`/navigationentries/${content.id}`)
     }
   }
 })

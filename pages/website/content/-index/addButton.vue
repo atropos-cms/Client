@@ -6,7 +6,7 @@
     <v-list>
       <!-- Page -->
       <v-list-item
-        @click="() => {}"
+        @click="addContent('Page')"
       >
         <v-list-item-icon>
           <v-icon>description</v-icon>
@@ -19,6 +19,7 @@
 
       <!-- Blog -->
       <v-list-item
+        disabled
         @click="() => {}"
       >
         <v-list-item-icon>
@@ -32,6 +33,7 @@
 
       <!-- Events -->
       <v-list-item
+        disabled
         @click="() => {}"
       >
         <v-list-item-icon>
@@ -45,6 +47,7 @@
 
       <!-- Link -->
       <v-list-item
+        disabled
         @click="() => {}"
       >
         <v-list-item-icon>
@@ -58,6 +61,7 @@
 
       <!-- Folder -->
       <v-list-item
+        disabled
         @click="() => {}"
       >
         <v-list-item-icon>
@@ -73,5 +77,33 @@
 </template>
 
 <script lang="ts">
-export default {}
+import createPage from '../-modals/create-page.vue'
+import { ContentType } from '~/typescript/graphql'
+import { Preset } from '~/components/dialogs/isDialog'
+import CREATE_NAVIGATIONENTRY from '~/graphql/mutations/createNavigationentry.graphql'
+
+export default {
+  methods: {
+    addContent (type: ContentType) {
+      console.log(type)
+      this.addPage()
+    },
+
+    async addPage () {
+      await this.$dialog({
+        title: this.$t('messages.createUserTitle'),
+        component: createPage,
+        preset: Preset.Create,
+        action: model => this.$apollo.mutate({
+          mutation: CREATE_NAVIGATIONENTRY,
+          variables: {
+            data: { ...model, type: 'Page' }
+          }
+        }).then(() => {
+          // this.$apollo.queries.users.refetch()
+        })
+      })
+    }
+  }
+}
 </script>

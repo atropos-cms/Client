@@ -1,10 +1,9 @@
-query Page($id: ID!) { 
-  page(id: $id) {
+query Navigationentry($id: ID!) {
+  navigationentry(id: $id) {
     id
     title
     slug
     published
-    content
     createdAt
     updatedAt
     author {

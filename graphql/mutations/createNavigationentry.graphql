@@ -1,10 +1,9 @@
-mutation updatePage($id: ID!, $data: UpdatePageInput!) {
-  updatePage(id: $id, data: $data) {
+mutation createNavigationentry($data: CreateNavigationentryInput!) {
+  createNavigationentry(data: $data) {
     id
     title
     slug
     published
-    content
     createdAt
     updatedAt
     author {

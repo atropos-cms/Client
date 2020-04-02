@@ -1,0 +1,14 @@
+mutation updateNavigationentry($id: ID!, $data: UpdateNavigationentryInput!) {
+  updateNavigationentry(id: $id, data: $data) {
+    id
+    title
+    slug
+    published
+    createdAt
+    updatedAt
+    author {
+      id
+      fullName
+    }
+  }
+}
