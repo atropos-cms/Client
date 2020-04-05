@@ -1,7 +1,9 @@
 <template>
   <v-menu transition="slide-y-transition">
     <template v-slot:activator="{ on }">
-      <v-btn outlined color="primary" v-on="on">{{ $t('page.newContent') }}</v-btn>
+      <v-btn outlined color="primary" v-on="on">
+        {{ $t('website.content.newContent') }}
+      </v-btn>
     </template>
     <v-list>
       <!-- Page -->
@@ -12,8 +14,8 @@
           <v-icon>description</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>{{ $t('page.new.page.title') }}</v-list-item-title>
-          <v-list-item-subtitle>{{ $t('page.new.page.subtitle') }}</v-list-item-subtitle>
+          <v-list-item-title>{{ $t('website.content.new.page.title') }}</v-list-item-title>
+          <v-list-item-subtitle>{{ $t('website.content.new.page.subtitle') }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -26,8 +28,8 @@
           <v-icon>dynamic_feed</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>{{ $t('page.new.blog.title') }}</v-list-item-title>
-          <v-list-item-subtitle>{{ $t('page.new.blog.subtitle') }}</v-list-item-subtitle>
+          <v-list-item-title>{{ $t('website.content.new.blog.title') }}</v-list-item-title>
+          <v-list-item-subtitle>{{ $t('website.content.new.blog.subtitle') }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -40,8 +42,8 @@
           <v-icon>event</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>{{ $t('page.new.events.title') }}</v-list-item-title>
-          <v-list-item-subtitle>{{ $t('page.new.events.subtitle') }}</v-list-item-subtitle>
+          <v-list-item-title>{{ $t('website.content.new.events.title') }}</v-list-item-title>
+          <v-list-item-subtitle>{{ $t('website.content.new.events.subtitle') }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -54,8 +56,8 @@
           <v-icon>link</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>{{ $t('page.new.link.title') }}</v-list-item-title>
-          <v-list-item-subtitle>{{ $t('page.new.link.subtitle') }}</v-list-item-subtitle>
+          <v-list-item-title>{{ $t('website.content.new.link.title') }}</v-list-item-title>
+          <v-list-item-subtitle>{{ $t('website.content.new.link.subtitle') }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -68,8 +70,8 @@
           <v-icon>folder</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>{{ $t('page.new.folder.title') }}</v-list-item-title>
-          <v-list-item-subtitle>{{ $t('page.new.folder.subtitle') }}</v-list-item-subtitle>
+          <v-list-item-title>{{ $t('website.content.new.folder.title') }}</v-list-item-title>
+          <v-list-item-subtitle>{{ $t('website.content.new.folder.subtitle') }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -85,8 +87,9 @@ import CREATE_NAVIGATIONENTRY from '~/graphql/mutations/createNavigationentry.gr
 export default {
   methods: {
     addContent (type: ContentType) {
-      console.log(type)
-      this.addPage()
+      if (type === ContentType.Page) {
+        this.addPage()
+      }
     },
 
     async addPage () {
@@ -100,7 +103,7 @@ export default {
             data: { ...model, type: 'Page' }
           }
         }).then(() => {
-          // this.$apollo.queries.users.refetch()
+          this.$emit('contentModified')
         })
       })
     }

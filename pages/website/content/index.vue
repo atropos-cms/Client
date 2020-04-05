@@ -1,9 +1,13 @@
 <template>
   <v-card>
     <v-card-title>
-      <add-button />
+      <add-button
+        @contentModified="contentModified"
+      />
       <div class="flex-grow-1" />
     </v-card-title>
+
+    <v-subheader>{{ $t('website.content.mainNavigation') }}</v-subheader>
 
     <v-list>
       <draggable
@@ -13,62 +17,12 @@
         @end="drag = false"
       >
         <transition-group type="transition" :name="!drag ? 'flip-list' : null">
-          <template
-            v-for="content in navigationentries"
-          >
-            <v-hover
-              :key="content.id"
-              v-slot:default="{ hover }"
-            >
-              <div>
-                <v-list-item
-                  @click="editContent(content)"
-                >
-                  <v-list-item-icon>
-                    <v-icon
-                      :class="{ 'grey--text lighten-1': hover }"
-                      color="transparent"
-                    >
-                      drag_indicator
-                    </v-icon>
-                  </v-list-item-icon>
-
-                  <v-list-item-content>
-                    <v-list-item-title v-text="content.title" />
-                  </v-list-item-content>
-
-                  <v-list-item-icon>
-                    <v-btn
-                      icon
-                      @click.stop="editContent(content)"
-                    >
-                      <v-icon
-                        :class="{ 'grey--text lighten-1': hover }"
-                        color="transparent"
-                      >
-                        edit
-                      </v-icon>
-                    </v-btn>
-                  </v-list-item-icon>
-                  <v-list-item-icon>
-                    <v-btn
-                      icon
-                      @click.stop="editContent(content)"
-                    >
-                      <v-icon
-                        :class="{ 'grey--text lighten-1': hover }"
-                        color="transparent"
-                      >
-                        delete
-                      </v-icon>
-                    </v-btn>
-                  </v-list-item-icon>
-                </v-list-item>
-
-                <v-divider />
-              </div>
-            </v-hover>
-          </template>
+          <list-entry
+            v-for="navigationentry in navigationentries"
+            :key="navigationentry.id"
+            :navigationentry="navigationentry"
+            @contentModified="contentModified"
+          />
         </transition-group>
       </draggable>
     </v-list>
@@ -79,12 +33,14 @@
 import Vue from 'vue'
 import draggable from 'vuedraggable'
 import addButton from './-index/addButton.vue'
+import listEntry from './-index/list/entry.vue'
 import NAVIGATIONENTRIES from '~/graphql/queries/navigationentries.graphql'
 
 export default Vue.extend({
   components: {
     addButton,
-    draggable
+    draggable,
+    listEntry
   },
 
   data: () => ({
@@ -111,7 +67,11 @@ export default Vue.extend({
 
   methods: {
     editContent (content: {id: Number}) {
-      this.$router.push(`/navigationentries/${content.id}`)
+      this.$router.push(`/website/content/${content.id}`)
+    },
+
+    contentModified () {
+      this.$apollo.queries.navigationentries.refetch()
     }
   }
 })

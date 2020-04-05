@@ -8,6 +8,15 @@ declare module '*/addRoleMembers.graphql' {
 }
     
 
+declare module '*/createNavigationentry.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const createNavigationentry: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/createRole.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

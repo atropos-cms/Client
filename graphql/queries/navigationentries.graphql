@@ -2,8 +2,7 @@ query Navigationentries {
   navigationentries {
     id
     title
-    createdAt
-    updatedAt
+    published
     author {
       id
       fullName

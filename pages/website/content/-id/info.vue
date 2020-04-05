@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      {{ $t('page.info') }}
+      {{ $t('website.content.navigationentry.info') }}
     </v-card-title>
 
     <v-row class="pa-4">
@@ -9,14 +9,14 @@
         <v-text-field
           v-model="model.slug"
           :error-messages="$v('slug', 'page.slug')"
-          :label="$t('page.slug')"
+          :label="$t('website.content.navigationentry.slug')"
         />
       </v-col>
 
       <v-col cols="12">
         <v-switch
           v-model="model.published"
-          :label="$t('page.published')"
+          :label="$t('website.content.navigationentry.published')"
           inset
         />
       </v-col>
@@ -26,7 +26,7 @@
 
     <div class="pa-4">
       <div class="caption muted--text">
-        {{ $t('page.author', { ...model.author }) }}
+        {{ $t('website.content.navigationentry.author', { ...model.author }) }}
       </div>
       <div
         v-if="updatedAt"

@@ -15,6 +15,8 @@ export type AuthPayload = {
   user: User;
 };
 
+export type Content = Page;
+
 export enum ContentType {
   Page = 'Page'
 }
@@ -29,12 +31,6 @@ export type CreateNavigationentryInput = {
   slug?: Maybe<Scalars['String']>;
   order?: Maybe<Scalars['Int']>;
   published?: Maybe<Scalars['Boolean']>;
-  author?: Maybe<CreateAuthorRelation>;
-};
-
-export type CreatePostInput = {
-  title?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['String']>;
   author?: Maybe<CreateAuthorRelation>;
 };
 
@@ -83,10 +79,6 @@ export type Mutation = {
   deleteNavigationentry?: Maybe<Navigationentry>;
   forceDeleteNavigationentry?: Maybe<Navigationentry>;
   restoreNavigationentry?: Maybe<Navigationentry>;
-  createPost?: Maybe<Post>;
-  updatePost?: Maybe<Post>;
-  deletePost?: Maybe<Post>;
-  restorePost?: Maybe<Post>;
 };
 
 
@@ -203,27 +195,6 @@ export type MutationRestoreNavigationentryArgs = {
   id: Scalars['ID'];
 };
 
-
-export type MutationCreatePostArgs = {
-  data: CreatePostInput;
-};
-
-
-export type MutationUpdatePostArgs = {
-  id: Scalars['ID'];
-  data: UpdatePostInput;
-};
-
-
-export type MutationDeletePostArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type MutationRestorePostArgs = {
-  id: Scalars['ID'];
-};
-
 export type Navigationentry = {
    __typename?: 'Navigationentry';
   id: Scalars['ID'];
@@ -231,7 +202,7 @@ export type Navigationentry = {
   slug: Scalars['String'];
   order: Scalars['Int'];
   published: Scalars['Boolean'];
-  type: ContentType;
+  content: Content;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
   deletedAt?: Maybe<Scalars['DateTime']>;
@@ -248,6 +219,13 @@ export type NewPasswordWithCodeInput = {
 export type OrderByClause = {
   field: Scalars['String'];
   order: SortOrder;
+};
+
+export type Page = {
+   __typename?: 'Page';
+  id: Scalars['ID'];
+  body?: Maybe<Scalars['String']>;
+  navigationentry: Navigationentry;
 };
 
 export type PageInfo = {
@@ -282,23 +260,6 @@ export type Permission = {
   roles: Array<Role>;
 };
 
-export type Post = {
-   __typename?: 'Post';
-  id: Scalars['ID'];
-  title: Scalars['String'];
-  content: Scalars['String'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  deletedAt?: Maybe<Scalars['DateTime']>;
-  author: User;
-};
-
-export type PostPaginator = {
-   __typename?: 'PostPaginator';
-  paginatorInfo: PaginatorInfo;
-  data: Array<Post>;
-};
-
 export type Query = {
    __typename?: 'Query';
   me?: Maybe<User>;
@@ -310,8 +271,6 @@ export type Query = {
   permissions: Array<Permission>;
   navigationentry?: Maybe<Navigationentry>;
   navigationentries: Array<Navigationentry>;
-  post?: Maybe<Post>;
-  posts?: Maybe<PostPaginator>;
 };
 
 
@@ -353,18 +312,6 @@ export type QueryNavigationentryArgs = {
 
 
 export type QueryNavigationentriesArgs = {
-  trashed?: Maybe<Trashed>;
-};
-
-
-export type QueryPostArgs = {
-  id: Scalars['Int'];
-};
-
-
-export type QueryPostsArgs = {
-  first: Scalars['Int'];
-  page?: Maybe<Scalars['Int']>;
   trashed?: Maybe<Trashed>;
 };
 
@@ -438,11 +385,6 @@ export type UpdateOrCreateUserInput = {
   email?: Maybe<Scalars['String']>;
 };
 
-export type UpdatePostInput = {
-  title?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['String']>;
-};
-
 export type UpdateUserPasswordInput = {
   currentPassword?: Maybe<Scalars['String']>;
   password?: Maybe<Scalars['String']>;
@@ -508,6 +450,23 @@ export type AddRoleMembersMutation = (
   & { addRoleMembers?: Maybe<(
     { __typename?: 'Role' }
     & Pick<Role, 'id'>
+  )> }
+);
+
+export type CreateNavigationentryMutationVariables = {
+  data: CreateNavigationentryInput;
+};
+
+
+export type CreateNavigationentryMutation = (
+  { __typename?: 'Mutation' }
+  & { createNavigationentry?: Maybe<(
+    { __typename?: 'Navigationentry' }
+    & Pick<Navigationentry, 'id' | 'title' | 'slug' | 'published' | 'createdAt' | 'updatedAt'>
+    & { author: (
+      { __typename?: 'User' }
+      & Pick<User, 'id' | 'fullName'>
+    ) }
   )> }
 );
 
@@ -709,7 +668,7 @@ export type NavigationentriesQuery = (
     & { author: (
       { __typename?: 'User' }
       & Pick<User, 'id' | 'fullName'>
-    ) }
+    ), content: { __typename: 'Page' } }
   )> }
 );
 

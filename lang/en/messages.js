@@ -8,5 +8,7 @@ export default {
   deleteUserTitle: 'Delete this user?',
   deleteRoleTitle: 'Delete this role?',
   deleteUserMessage: 'You are about to delete the user <b>{fullName}</b>.<br> Are you sure you want to continue?',
-  deleteRoleMessage: 'You are about to delete the role <b>{name}</b>.<br>All role information, including its email addresses and settings, will be deleted. Members’ accounts aren\'t deleted.<br><br>You can\'t undo this action.'
+  deleteRoleMessage: 'You are about to delete the role <b>{name}</b>.<br>All role information, including its email addresses and settings, will be deleted. Members’ accounts aren\'t deleted.<br><br>You can\'t undo this action.',
+  deleteNavigationentryTitle: 'Delete content?',
+  deleteNavigationentryMessage: 'This will delete the navigation entry <b>{title}</b>, including all of its content. Are you sure you want to continue?'
 }

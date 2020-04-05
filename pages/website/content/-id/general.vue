@@ -5,8 +5,8 @@
     >
       <v-text-field
         v-model="model.title"
-        :error-messages="$v('title', 'page.title')"
-        :label="$t('page.title')"
+        :error-messages="$v('title', 'website.content.navigationentry.title')"
+        :label="$t('website.content.navigationentry.title')"
       />
     </v-col>
   </v-row>

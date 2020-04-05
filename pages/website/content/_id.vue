@@ -3,7 +3,7 @@
     <v-row>
       <v-col>
         <div class="title">
-          {{ content.title }}
+          {{ navigationentry.title }}
         </div>
       </v-col>
       <v-col cols="auto">
@@ -22,12 +22,12 @@
         md="8"
       >
         <v-card
-          :loading="$apollo.queries.content.loading"
+          :loading="$apollo.queries.navigationentry.loading"
           class="px-4 pt-4 mb-4"
         >
           <general
-            :value="content"
-            :loading="$apollo.queries.content.loading"
+            :value="navigationentry"
+            :loading="$apollo.queries.navigationentry.loading"
           />
         </v-card>
         <v-card class="pa-4">
@@ -42,8 +42,8 @@
         md="4"
       >
         <info
-          :value="content"
-          :loading="$apollo.queries.content.loading"
+          :value="navigationentry"
+          :loading="$apollo.queries.navigationentry.loading"
         />
       </v-col>
     </v-row>
