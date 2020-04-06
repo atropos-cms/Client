@@ -79,23 +79,20 @@
 </template>
 
 <script lang="ts">
-import createPage from '../-modals/create-page.vue'
+import Vue from 'vue'
+import createContent from '../-modals/create-content.vue'
 import { ContentType } from '~/typescript/graphql'
 import { Preset } from '~/components/dialogs/isDialog'
 import CREATE_NAVIGATIONENTRY from '~/graphql/mutations/createNavigationentry.graphql'
 
-export default {
+export default Vue.extend({
   methods: {
-    addContent (type: ContentType) {
-      if (type === ContentType.Page) {
-        this.addPage()
-      }
-    },
+    async addContent (type: ContentType) {
+      const title = this.$t(`website.content.new.${type.toLowerCase()}.modal`)
 
-    async addPage () {
       await this.$dialog({
-        title: this.$t('messages.createUserTitle'),
-        component: createPage,
+        title,
+        component: createContent,
         preset: Preset.Create,
         action: model => this.$apollo.mutate({
           mutation: CREATE_NAVIGATIONENTRY,
@@ -108,5 +105,5 @@ export default {
       })
     }
   }
-}
+})
 </script>

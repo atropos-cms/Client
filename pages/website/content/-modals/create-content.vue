@@ -4,8 +4,8 @@
       <v-col cols="12">
         <v-text-field
           v-model="model.title"
-          :error-messages="$v('name', 'role.name')"
-          :label="$t('role.name')"
+          :error-messages="$v('name', 'website.content.navigationentry.title')"
+          :label="$t('website.content.navigationentry.title')"
           autofocus
         />
       </v-col>

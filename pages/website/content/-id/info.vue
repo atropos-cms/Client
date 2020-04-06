@@ -4,7 +4,16 @@
       {{ $t('website.content.navigationentry.info') }}
     </v-card-title>
 
-    <v-row class="pa-4">
+    <v-row class="px-4">
+      <v-col cols="12">
+        <div
+          v-if="updatedAt"
+          class="muted--text"
+        >
+          {{ $t('website.content.navigationentry.type', { type: type }) }}
+        </div>
+      </v-col>
+
       <v-col cols="12">
         <v-text-field
           v-model="model.slug"
@@ -55,6 +64,11 @@ export default mixins(isForm).extend({
     updatedAt () {
       if (!this.model.updatedAt) { return null }
       return dayjs(this.model.updatedAt).format('LL')
+    },
+    type () {
+      const type = this.model.content.__typename
+
+      return this.$t(`website.content.new.${type.toLowerCase()}.title`)
     }
   }
 })

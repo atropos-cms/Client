@@ -1,0 +1,6 @@
+mutation updatePage($id: ID!, $data: UpdatePageInput!) {
+  updatePage(id: $id, data: $data) {
+    id
+    body
+  }
+}

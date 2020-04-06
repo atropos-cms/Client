@@ -10,5 +10,12 @@ query Navigationentry($id: ID!) {
       id
       fullName
     }
+    content {
+      __typename
+      ... on Page {
+        id
+        body
+      }
+    }
   }
 }

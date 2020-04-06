@@ -10,5 +10,12 @@ mutation updateNavigationentry($id: ID!, $data: UpdateNavigationentryInput!) {
       id
       fullName
     }
+    content {
+      __typename
+      ... on Page {
+        id
+        body
+      }
+    }
   }
 }

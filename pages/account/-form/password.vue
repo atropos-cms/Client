@@ -66,11 +66,13 @@ export default mixins(isForm, savesModels).extend({
 
   methods: {
     async submit () {
-      await this.saveModel(UPDATE_MY_PASSWORD, { data: {
-        currentPassword: this.model.currentPassword,
-        password: this.model.password,
-        passwordConfirmation: this.model.passwordConfirmation
-      } })
+      await this.saveModel(UPDATE_MY_PASSWORD, {
+        data: {
+          currentPassword: this.model.currentPassword,
+          password: this.model.password,
+          passwordConfirmation: this.model.passwordConfirmation
+        }
+      })
 
       this.model = {}
     }

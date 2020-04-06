@@ -26,13 +26,14 @@
           class="px-4 pt-4 mb-4"
         >
           <general
-            :value="navigationentry"
+            v-model="navigationentry"
             :loading="$apollo.queries.navigationentry.loading"
           />
         </v-card>
         <v-card class="pa-4">
-          <content-editor
-            v-model="content"
+          <content-index
+            ref="contentComponent"
+            v-model="navigationentry"
           />
         </v-card>
       </v-col>
@@ -52,7 +53,7 @@
 
 <script lang="ts">
 import mixins from 'vue-typed-mixins'
-import ContentEditor from './-id/content.vue'
+import ContentIndex from './-id/content/index.vue'
 import General from './-id/general.vue'
 import Info from './-id/info.vue'
 import savesModels from '~/mixins/savesModels.ts'
@@ -62,7 +63,7 @@ import { Navigationentry } from '~/typescript/graphql'
 
 export default mixins(savesModels).extend({
   components: {
-    ContentEditor,
+    ContentIndex,
     General,
     Info
   },
