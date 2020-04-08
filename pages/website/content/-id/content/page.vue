@@ -47,6 +47,10 @@ export default mixins(isForm, savesModels).extend({
     }
   },
 
+  created () {
+    this.$emit('registerOnSaveHandler', { handler: this.saveHandler })
+  },
+
   methods: {
     onReady () {
       if (this.initialized) {
@@ -57,21 +61,17 @@ export default mixins(isForm, savesModels).extend({
       this.initialized = true
     },
 
-    save () {
-      console.time('t1')
+    saveHandler () {
       this.$refs.editor.save()
     },
 
-    onSave (response) {
+    onSave (response: object) {
       this.saveModel(UPDATE_PAGE, {
         id: this.content.id,
         data: {
           body: JSON.stringify(response)
         }
       })
-
-      console.timeEnd('t1')
-      console.log(JSON.stringify(response))
     }
   }
 })

@@ -13,8 +13,8 @@
       <draggable
         v-model="navigationentries"
         v-bind="dragOptions"
-        @start="drag = true"
-        @end="drag = false"
+        @start="onStart"
+        @end="onEnd"
       >
         <transition-group type="transition" :name="!drag ? 'flip-list' : null">
           <list-entry
@@ -30,13 +30,15 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import mixins from 'vue-typed-mixins'
 import draggable from 'vuedraggable'
 import addButton from './-index/addButton.vue'
 import listEntry from './-index/list/entry.vue'
+import savesModels from '~/mixins/savesModels.ts'
 import NAVIGATIONENTRIES from '~/graphql/queries/navigationentries.graphql'
+import SYNC_NAVIGATIONENTRY_ORDER from '~/graphql/mutations/syncNavigationentryOrder.graphql'
 
-export default Vue.extend({
+export default mixins(savesModels).extend({
   components: {
     addButton,
     draggable,
@@ -66,6 +68,33 @@ export default Vue.extend({
   },
 
   methods: {
+    onStart () {
+      this.drag = true
+    },
+    onEnd () {
+      this.drag = false
+
+      const data = this.navigationentries.map(n => n.id)
+
+      this.saveModel(SYNC_NAVIGATIONENTRY_ORDER, {
+        data
+      }, {
+        query: NAVIGATIONENTRIES,
+        callback: (store, data) => {
+          const updatedData = data.syncNavigationentryOrder.map((e) => {
+            const storeEntry = store.navigationentries.find(s => s.id === e.id)
+
+            return {
+              ...storeEntry,
+              ...e
+            }
+          })
+
+          return { navigationentries: updatedData }
+        }
+      })
+    },
+
     editContent (content: {id: Number}) {
       this.$router.push(`/website/content/${content.id}`)
     },

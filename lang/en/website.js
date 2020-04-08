@@ -4,7 +4,7 @@ export default {
       title: 'Title',
       slug: 'Slug',
       info: 'Info',
-      type: 'Type: {type}',
+      type: 'Type',
       content: 'Content',
       published: 'Published',
       author: 'Author: {fullName}'

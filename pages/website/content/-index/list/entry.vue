@@ -1,7 +1,7 @@
 <template>
   <page
     :navigationentry="navigationentry"
-    @contentModified="$emit('contentModified')"
+    v-on="$listeners"
   />
 </template>
 

@@ -19,33 +19,21 @@
     <v-row>
       <v-col
         cols="12"
-        md="8"
       >
-        <v-card
-          :loading="$apollo.queries.navigationentry.loading"
-          class="px-4 pt-4 mb-4"
-        >
-          <general
-            v-model="navigationentry"
+        <v-expansion-panels class="mb-4">
+          <info
+            :value="navigationentry"
             :loading="$apollo.queries.navigationentry.loading"
           />
-        </v-card>
+        </v-expansion-panels>
+
         <v-card class="pa-4">
           <content-index
             ref="contentComponent"
             v-model="navigationentry"
+            @registerOnSaveHandler="registerOnSaveHandler"
           />
         </v-card>
-      </v-col>
-
-      <v-col
-        cols="12"
-        md="4"
-      >
-        <info
-          :value="navigationentry"
-          :loading="$apollo.queries.navigationentry.loading"
-        />
       </v-col>
     </v-row>
   </v-form>
@@ -54,7 +42,6 @@
 <script lang="ts">
 import mixins from 'vue-typed-mixins'
 import ContentIndex from './-id/content/index.vue'
-import General from './-id/general.vue'
 import Info from './-id/info.vue'
 import savesModels from '~/mixins/savesModels.ts'
 import NAVIGATIONENTRY from '~/graphql/queries/navigationentry.graphql'
@@ -64,12 +51,12 @@ import { Navigationentry } from '~/typescript/graphql'
 export default mixins(savesModels).extend({
   components: {
     ContentIndex,
-    General,
     Info
   },
 
   data: () => ({
-    navigationentry: {} as Navigationentry
+    navigationentry: {} as Navigationentry,
+    onSaveHandlers: [] as (() => void)[]
   }),
 
   apollo: {
@@ -84,7 +71,12 @@ export default mixins(savesModels).extend({
   },
 
   methods: {
+    registerOnSaveHandler ({ handler }: { handler: () => void }) {
+      this.onSaveHandlers.push(handler)
+    },
     submit () {
+      this.onSaveHandlers.forEach(callback => callback())
+
       this.saveModel(UPDATE_NAVIGATIONENTRY, {
         id: this.navigationentry.id,
         data: {

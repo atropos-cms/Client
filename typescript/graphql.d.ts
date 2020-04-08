@@ -35,6 +35,15 @@ declare module '*/createUser.graphql' {
 }
     
 
+declare module '*/deleteNavigationentry.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const deleteNavigationentry: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/deleteRole.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -111,6 +120,15 @@ declare module '*/updateNavigationentry.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const updateNavigationentry: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/updatePage.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const updatePage: DocumentNode;
 
   export default defaultDocument;
 }

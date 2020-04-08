@@ -1,0 +1,6 @@
+mutation syncNavigationentryOrder($data: [ID!]!) {
+  syncNavigationentryOrder(data: $data) {
+    id
+    order
+  }
+}

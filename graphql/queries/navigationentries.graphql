@@ -3,12 +3,16 @@ query Navigationentries {
     id
     title
     published
+    order
     author {
       id
       fullName
     }
     content {
       __typename
+      ... on Page {
+        id
+      }
     }
   }
 }

@@ -6,6 +6,7 @@
       :is="componentType"
       ref="contentComponent"
       v-model="model"
+      v-on="$listeners"
     />
   </div>
 </template>
