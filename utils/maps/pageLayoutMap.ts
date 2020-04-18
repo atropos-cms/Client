@@ -45,6 +45,6 @@ export const defaultPageLayout : PageLayout = {
   name: 'default',
   title: null,
   regex: [/.*/],
-  navigationDrawerComponent: () => import('~/layouts/default/navigation-drawer/drawers/dashboard.vue')
+  navigationDrawerComponent: () => import('~/layouts/default/navigation-drawer/drawers/default.vue')
 }
 export default pageLayoutMap

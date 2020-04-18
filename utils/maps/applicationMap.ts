@@ -13,6 +13,17 @@ export interface Category {
   readonly applications : Application[]
 }
 
+export const dashboard : Application = {
+  name: 'dashboard',
+  title: 'applications.dashboard.title',
+  description: 'applications.dashboard.description',
+  icon: 'dashboard',
+  url: '/'
+}
+
+//
+// Application Maps
+//
 export const adminApps : Application[] = [
   {
     name: 'users',
@@ -61,9 +72,34 @@ export const websiteApps : Application[] = [
   }
 ]
 
+export const collaborationApps : Application[] = [
+  {
+    name: 'files',
+    title: 'applications.collaboration.files.title',
+    description: 'applications.collaboration.files.description',
+    icon: 'dns',
+    url: '/collaboration/files'
+  },
+  {
+    name: 'email',
+    title: 'applications.collaboration.email.title',
+    description: 'applications.collaboration.email.description',
+    icon: 'email',
+    url: '/collaboration/email'
+  }
+]
+
+//
+// Categories Map
+//
 const categoriesMap : Category[] = [
   {
-    name: 'countent',
+    name: 'collaboration',
+    title: 'categories.collaboration.title',
+    applications: collaborationApps
+  },
+  {
+    name: 'website',
     title: 'categories.website.title',
     applications: websiteApps
   },
@@ -75,6 +111,7 @@ const categoriesMap : Category[] = [
 ]
 
 export const applicationsMap : Application[] = [
+  ...collaborationApps,
   ...websiteApps,
   ...adminApps
 ]

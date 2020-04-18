@@ -5,6 +5,16 @@ export default {
   dashboard: {
     title: 'Dashboard'
   },
+  collaboration: {
+    files: {
+      title: 'Files',
+      description: ''
+    },
+    email: {
+      title: 'Email',
+      description: ''
+    }
+  },
   website: {
     content: {
       title: 'Content',

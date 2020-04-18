@@ -87,13 +87,13 @@ export default {
       dark: false,
       themes: {
         light: {
-          primary: colors.blue.darken4,
+          primary: colors.indigo.base,
           secondary: colors.pink.base,
           accent: colors.pink.darken1,
           muted: colors.grey.darken2
         },
         dark: {
-          primary: colors.blue.darken1,
+          primary: colors.indigo.accent2,
           secondary: colors.pink.base,
           accent: colors.pink.lighten2,
           muted: colors.grey.base,
