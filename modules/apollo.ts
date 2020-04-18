@@ -12,7 +12,11 @@ const link = onError(({ graphQLErrors }) => {
       if (err.message === 'UNAUTHENTICATED') {
         const cookies = new Cookie()
         cookies.remove(nuxtConfig.apollo.tokenName)
-        window.location.replace('/auth/login')
+
+        // wait a moment before reloading to give the browser time to remove the cookie
+        setTimeout(() => {
+          window.location.replace('/auth/login')
+        }, 300)
       }
     }
   }
