@@ -47,7 +47,6 @@
           {{ $t('general.createdAt', { date: createdAt }) }}
         </div>
       </div>
-
     </v-expansion-panel-content>
   </v-expansion-panel>
 </template>

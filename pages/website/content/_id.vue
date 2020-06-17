@@ -27,7 +27,7 @@
           />
         </v-expansion-panels>
 
-        <v-card class="pa-4">
+        <v-card outlined class="pa-4">
           <content-index
             ref="contentComponent"
             v-model="navigationentry"

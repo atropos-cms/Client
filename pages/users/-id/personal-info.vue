@@ -1,5 +1,5 @@
 <template>
-  <v-card :loading="loading">
+  <v-card outlined :loading="loading">
     <v-card-title>
       {{ $t('user.personalInfo') }}
     </v-card-title>

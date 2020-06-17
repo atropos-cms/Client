@@ -1,6 +1,6 @@
 <template>
-  <v-card>
-    <v-card-title>
+  <div>
+    <toolheader>
       <v-btn outlined color="primary" @click="addUser">
         {{ $t('applications.users.addNewUser') }}
       </v-btn>
@@ -14,7 +14,8 @@
         single-line
         hide-details
       />
-    </v-card-title>
+    </toolheader>
+
     <v-data-table
       v-model="selected"
       :headers="headers"
@@ -39,7 +40,7 @@
         </v-icon>
       </template>
     </v-data-table>
-  </v-card>
+  </div>
 </template>
 
 <script lang="ts">

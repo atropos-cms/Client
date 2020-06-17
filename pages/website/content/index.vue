@@ -1,11 +1,8 @@
 <template>
-  <v-card>
-    <v-card-title>
-      <add-button
-        @contentModified="contentModified"
-      />
-      <div class="flex-grow-1" />
-    </v-card-title>
+  <div>
+    <toolheader>
+      <add-button @contentModified="contentModified"/>
+    </toolheader>
 
     <v-subheader>{{ $t('website.content.mainNavigation') }}</v-subheader>
 
@@ -26,7 +23,7 @@
         </transition-group>
       </draggable>
     </v-list>
-  </v-card>
+  </div>
 </template>
 
 <script lang="ts">

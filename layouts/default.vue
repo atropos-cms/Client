@@ -4,10 +4,8 @@
     <default-layout />
 
     <!-- Content -->
-    <v-content
-      :class="$vuetify.theme.dark ? 'grey darken-4' : 'grey lighten-4'"
-    >
-      <v-container class="pa-xl-10 pa-lg-8 pa-sm-4 pa-2">
+    <v-content>
+      <v-container class="px-xl-10 px-lg-8 px-sm-4 px-2 py-0">
         <nuxt />
       </v-container>
     </v-content>

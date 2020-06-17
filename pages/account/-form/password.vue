@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mt-12">
+  <v-card outlined class="mt-12">
     <v-card-title>
       {{ $t('user.changePassword') }}
     </v-card-title>

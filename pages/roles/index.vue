@@ -1,6 +1,6 @@
 <template>
-  <v-card>
-    <v-card-title>
+  <div>
+    <toolheader>
       <v-btn outlined color="primary" @click="addRole">
         {{ $t('applications.roles.addNewRole') }}
       </v-btn>
@@ -14,7 +14,8 @@
         single-line
         hide-details
       />
-    </v-card-title>
+    </toolheader>
+
     <v-data-table
       :headers="headers"
       :items="roles.data"
@@ -38,7 +39,7 @@
         </v-icon>
       </template>
     </v-data-table>
-  </v-card>
+  </div>
 </template>
 
 <script lang="ts">

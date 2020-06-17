@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card outlined>
     <div class="d-flex flex-md-column pa-4">
       <div class="">
         <div class="title">
