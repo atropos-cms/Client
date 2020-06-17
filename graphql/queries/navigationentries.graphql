@@ -3,6 +3,7 @@ query Navigationentries {
     id
     title
     published
+    slug
     order
     author {
       id

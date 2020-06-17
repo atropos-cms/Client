@@ -3,7 +3,12 @@
     <div>
       <v-list-item @click="editNavigationentry(navigationentry)">
         <v-list-item-icon class="mr-4">
-          <v-icon :class="{ 'grey--text lighten-1': !navigationentry.published }">
+          <v-icon
+            :class="{
+              'grey--text lighten-1': !navigationentry.published,
+              'primary--text': navigationentry.published
+            }"
+          >
             description
           </v-icon>
         </v-list-item-icon>
@@ -12,6 +17,10 @@
           :class="{ 'grey--text lighten-1': !navigationentry.published }"
         >
           <v-list-item-title v-text="navigationentry.title" />
+        </v-list-item-content>
+
+        <v-list-item-content class="grey--text">
+          <v-list-item-title v-text="navigationentry.slug" />
         </v-list-item-content>
 
         <v-list-item-action>
