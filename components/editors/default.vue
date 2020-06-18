@@ -8,18 +8,15 @@ import { OutputData } from '@editorjs/editorjs'
 
 import Header from '@editorjs/header'
 import List from '@editorjs/list'
-import CodeTool from '@editorjs/code'
 import Paragraph from '@editorjs/paragraph'
 import Embed from '@editorjs/embed'
 import Table from '@editorjs/table'
-import Checklist from '@editorjs/checklist'
 import Marker from '@editorjs/marker'
 import Warning from '@editorjs/warning'
-import RawTool from '@editorjs/raw'
 import Quote from '@editorjs/quote'
-import InlineCode from '@editorjs/inline-code'
 import Delimiter from '@editorjs/delimiter'
 import SimpleImage from '@editorjs/simple-image'
+
 import Wrapper from './wrapper.vue'
 
 export default Vue.extend({
@@ -51,9 +48,6 @@ export default Vue.extend({
             class: List,
             inlineToolbar: true
           },
-          code: {
-            class: CodeTool
-          },
           paragraph: {
             class: Paragraph
           },
@@ -62,8 +56,9 @@ export default Vue.extend({
             config: {
               services: {
                 youtube: true,
-                coub: true,
-                imgur: true
+                imgur: true,
+                twitter: true,
+                instagram: true
               }
             }
           },
@@ -74,9 +69,6 @@ export default Vue.extend({
               rows: 2,
               cols: 3
             }
-          },
-          checklist: {
-            class: Checklist
           },
           Marker: {
             class: Marker,
@@ -91,7 +83,6 @@ export default Vue.extend({
               messagePlaceholder: 'Message'
             }
           },
-          raw: RawTool,
           quote: {
             class: Quote,
             inlineToolbar: true,
@@ -101,10 +92,6 @@ export default Vue.extend({
               captionPlaceholder: 'Quote\'s author'
             }
           },
-          inlineCode: {
-            class: InlineCode,
-            shortcut: 'CMD+SHIFT+M'
-          },
           delimiter: Delimiter,
           image: SimpleImage
         },
@@ -112,7 +99,7 @@ export default Vue.extend({
           this.$emit('onReady')
         },
         onChange: () => {
-          console.log('Now I know that Editor\'s content changed!')
+          this.$emit('onChange')
         },
         onSave: () => {
           this.$emit('onSave')
