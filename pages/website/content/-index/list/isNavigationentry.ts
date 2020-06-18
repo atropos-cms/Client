@@ -1,12 +1,12 @@
 import Vue from 'vue'
-import { Navigationentry } from '~/typescript/types'
+import { Navigationentry } from '~/typescript/graphql.ts'
 import DELETE_NAVIGATIONENTRY from '~/graphql/mutations/deleteNavigationentry.graphql'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default Vue.extend({
   props: {
     navigationentry: {
-      type: Navigationentry,
+      type: Object as () => Navigationentry,
       required: true,
       default: null
     }

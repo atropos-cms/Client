@@ -1,7 +1,7 @@
 <template>
   <div>
     <toolheader>
-      <add-button @contentModified="contentModified"/>
+      <add-button @contentModified="contentModified" />
     </toolheader>
 
     <v-subheader>{{ $t('website.content.mainNavigation') }}</v-subheader>

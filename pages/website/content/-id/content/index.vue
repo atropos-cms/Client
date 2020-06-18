@@ -32,6 +32,7 @@ export default mixins(isForm).extend({
 
   methods: {
     save () {
+      console.log('deprecated')
       this.$refs.contentComponent.save()
     }
   }

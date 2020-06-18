@@ -9,23 +9,34 @@
 
       <editor
         ref="editor"
+        :data="initData"
+      />
+
+      <!-- <editor
         autofocus
         holder-id="codex-editor"
         save-button-id="save-button"
         :init-data="initData"
         @save="onSave"
         @ready="onReady"
-      />
+      /> -->
     </v-col>
   </v-row>
 </template>
 
 <script lang="ts">
 import mixins from 'vue-typed-mixins'
-import { Editor } from 'vue-editor-js'
+import { OutputData } from '@editorjs/editorjs'
+import { Content } from '~/typescript/graphql'
+import Editor from '~/components/editors/default.vue'
 import savesModels from '~/mixins/savesModels.ts'
 import UPDATE_PAGE from '~/graphql/mutations/updatePage.graphql'
 import isForm from '~/mixins/isForm.ts'
+
+interface EmptyContent {
+  id: null,
+  body: null
+}
 
 export default mixins(isForm, savesModels).extend({
   components: {
@@ -33,14 +44,13 @@ export default mixins(isForm, savesModels).extend({
   },
 
   data: () => ({
-    initData: {},
-    initialized: false
+    initData: {}
   }),
 
   computed: {
-    content () : Object {
+    content () : Content | EmptyContent {
       if (!this.model.content) {
-        return {}
+        return { id: null, body: null }
       }
 
       return this.model.content
@@ -49,23 +59,13 @@ export default mixins(isForm, savesModels).extend({
 
   created () {
     this.$emit('registerOnSaveHandler', { handler: this.saveHandler })
+    this.initData = JSON.parse(this.content.body || '')
   },
 
   methods: {
-    onReady () {
-      if (this.initialized) {
-        return
-      }
+    async saveHandler () {
+      const response = await this.$refs.editor.save() as OutputData
 
-      this.initData = JSON.parse(this.content.body)
-      this.initialized = true
-    },
-
-    saveHandler () {
-      this.$refs.editor.save()
-    },
-
-    onSave (response: object) {
       this.saveModel(UPDATE_PAGE, {
         id: this.content.id,
         data: {

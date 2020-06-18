@@ -4,11 +4,11 @@
     <default-layout />
 
     <!-- Content -->
-    <v-content>
+    <v-main>
       <v-container class="px-xl-10 px-lg-8 px-sm-4 px-2 py-0">
         <nuxt />
       </v-container>
-    </v-content>
+    </v-main>
 
     <!-- Doalogs -->
     <dialogs />
