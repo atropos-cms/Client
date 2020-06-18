@@ -97,7 +97,7 @@ export default Vue.extend({
         action: model => this.$apollo.mutate({
           mutation: CREATE_NAVIGATIONENTRY,
           variables: {
-            data: { ...model, type: 'Page' }
+            data: { ...model, type }
           }
         }).then(() => {
           this.$emit('contentModified')

@@ -4,6 +4,14 @@ export default {
   membersCount: 'Members',
   description: 'Description',
   roleInfo: 'Role information',
+  email: 'Email',
+  emailAddress: 'Group email',
+  mailingList: 'Mailing list',
+  mailingListItem: {
+    disabled: 'Disabled',
+    members: 'Members only',
+    public: 'Public'
+  },
   renameRole: 'Rename role',
   deleteRole: 'Delete role',
   findAUser: 'Find a user',
@@ -13,16 +21,16 @@ export default {
     content: 'Content'
   },
   permissions: {
-    createUsers: {
-      name: 'Create Users',
-      description: 'Create new users'
+    'administration-users': {
+      name: 'Manage Users',
+      description: 'Allows creating, editing, and deleting users.'
     },
-    editUsers: {
-      name: 'Edit Users',
-      description: ''
+    'administration-roles': {
+      name: 'Manage Roles',
+      description: 'Allows creating, editing, and deleting roles.'
     },
-    deleteUsers: {
-      name: 'Delete Users',
+    'administration-settings': {
+      name: 'Settings',
       description: ''
     }
   }

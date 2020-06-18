@@ -28,13 +28,6 @@ export default mixins(isForm).extend({
     renderContent () : boolean {
       return !!this.componentType && !!this.model.content.id
     }
-  },
-
-  methods: {
-    save () {
-      console.log('deprecated')
-      this.$refs.contentComponent.save()
-    }
   }
 })
 </script>

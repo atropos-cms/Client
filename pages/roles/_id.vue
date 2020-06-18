@@ -8,8 +8,14 @@
     </v-col>
 
     <v-col>
-      <v-expansion-panels :value="2">
+      <v-expansion-panels :value="1">
         <role-info
+          :value="role"
+          :loading="$apollo.queries.role.loading"
+          @refreshRole="refreshRole"
+        />
+
+        <email
           :value="role"
           :loading="$apollo.queries.role.loading"
           @refreshRole="refreshRole"
@@ -18,14 +24,12 @@
         <members
           :value="role"
           :loading="$apollo.queries.role.loading"
-          class="mt-6"
           @refreshRole="refreshRole"
         />
 
         <permissions
           :value="role"
           :loading="$apollo.queries.role.loading"
-          class="mt-6"
           @refreshRole="refreshRole"
         />
       </v-expansion-panels>
@@ -36,6 +40,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Info from './-id/info.vue'
+import Email from './-id/email.vue'
 import RoleInfo from './-id/role-info.vue'
 import Members from './-id/members.vue'
 import Permissions from './-id/permissions.vue'
@@ -45,6 +50,7 @@ import { Role } from '~/typescript/graphql'
 export default Vue.extend({
   components: {
     Info,
+    Email,
     RoleInfo,
     Members,
     Permissions

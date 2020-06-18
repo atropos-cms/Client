@@ -3,6 +3,8 @@ query Role($id: ID!) {
     id
     name
     description
+    emailAddress
+    mailingList
     createdAt
     updatedAt
     members {

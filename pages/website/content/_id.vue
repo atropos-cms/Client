@@ -27,7 +27,11 @@
           />
         </v-expansion-panels>
 
-        <v-card outlined class="pa-4">
+        <v-card
+          outlined
+          class="pa-4"
+          :loading="$apollo.queries.navigationentry.loading"
+        >
           <content-index
             ref="contentComponent"
             v-model="navigationentry"

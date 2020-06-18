@@ -3,5 +3,7 @@ mutation createRole($data: UpdateOrCreateRoleInput!) {
     id
     name
     description
+    emailAddress
+    mailingList
   }
 }
