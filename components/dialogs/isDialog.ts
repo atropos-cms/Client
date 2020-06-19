@@ -33,8 +33,8 @@ interface PromiseDialog extends Dialog {
 
 interface Button {
   text: string,
-  color: string,
-  solid: Boolean
+  color?: string,
+  solid?: Boolean
 }
 interface Options {
   width?: Width,
@@ -52,55 +52,65 @@ const buttonPresets : ButtonPreset = {
   [Preset.Create]: {
     confirm: {
       text: 'general.create',
-      color: 'primary'
+      color: 'primary',
+      solid: false
     },
     cancel: {
       text: 'general.cancel',
-      color: 'grey'
+      color: 'grey',
+      solid: false
     }
   },
 
   [Preset.Delete]: {
     confirm: {
       text: 'general.delete',
-      color: 'red darken-1'
+      color: 'red darken-1',
+      solid: false
     },
     cancel: {
       text: 'general.cancel',
-      color: 'primary'
+      color: 'primary',
+      solid: false
     }
   },
 
   [Preset.Ok]: {
     confirm: {
       text: 'general.ok',
-      color: 'primary'
+      color: 'primary',
+      solid: false
     },
     cancel: {
       text: 'general.cancel',
-      color: 'grey darken-1'
+      color: 'grey darken-1',
+      solid: false
     }
   },
 
   [Preset.Remove]: {
     confirm: {
       text: 'general.remove',
-      color: 'red darken-1'
+      color: 'red darken-1',
+      solid: false
     },
     cancel: {
       text: 'general.cancel',
-      color: 'primary'
+      color: 'primary',
+      solid: false
     }
   },
 
   [Preset.Save]: {
     confirm: {
       text: 'general.save',
-      color: 'primary'
+      color: 'primary',
+      solid: false
     },
     cancel: {
       text: 'general.cancel',
-      color: 'grey darken-1'
+      color: 'grey darken-1',
+      solid: false
     }
   }
 }

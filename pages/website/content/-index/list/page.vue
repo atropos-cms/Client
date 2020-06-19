@@ -9,7 +9,7 @@
               'primary--text': navigationentry.published
             }"
           >
-            description
+            mdi-file-document-outline
           </v-icon>
         </v-list-item-icon>
 

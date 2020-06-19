@@ -29,12 +29,16 @@ class Validation {
   }
 
   static catchValidationErrors (error : GraphQLErrorResponse) {
-    state.errors = []
     for (const errors of error.graphQLErrors) {
-      for (const [key, validation] of Object.entries(errors.extensions.validation)) {
-        state.errors.push({ key, validation })
+      const validationErrors = errors.extensions.validation || {}
+      for (const [key, validation] of Object.entries(validationErrors)) {
+        this.addError({ key, validation })
       }
     }
+  }
+
+  static addError (error : ValidationError) {
+    state.errors.push(error)
   }
 
   static errors () : ValidationError[] {
@@ -42,7 +46,7 @@ class Validation {
   }
 
   static errorFor (key: string) : ValidationError | undefined {
-    return state.errors.find(e => e.key === key)
+    return state.errors.find(e => (e.key === key) || (e.key === `data.${key}`))
   }
 
   static firstErrorMessage (key: string) : string | undefined {

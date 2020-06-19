@@ -10,7 +10,7 @@
           <v-col cols="12">
             <v-text-field
               v-model="model.emailAddress"
-              :error-messages="$v('data.emailAddress', 'role.emailAddress')"
+              :error-messages="$v('emailAddress', 'role.emailAddress')"
               :label="$t('role.emailAddress')"
             />
           </v-col>
@@ -22,7 +22,7 @@
 
             <v-radio-group
               v-model="model.mailingList"
-              :error-messages="$v('data.mailingList', 'role.mailingList')"
+              :error-messages="$v('mailingList', 'role.mailingList')"
               row
             >
               <v-radio :label="$t('role.mailingListItem.disabled')" value="Disabled"></v-radio>

@@ -17,7 +17,7 @@
         @click="addContent('Page')"
       >
         <v-list-item-icon>
-          <v-icon>description</v-icon>
+          <v-icon>mdi-file-document-outline</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>{{ $t('website.content.new.page.title') }}</v-list-item-title>
@@ -31,7 +31,7 @@
         @click="() => {}"
       >
         <v-list-item-icon>
-          <v-icon>dynamic_feed</v-icon>
+          <v-icon>mdi-post-outline</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>{{ $t('website.content.new.blog.title') }}</v-list-item-title>
@@ -45,7 +45,7 @@
         @click="() => {}"
       >
         <v-list-item-icon>
-          <v-icon>event</v-icon>
+          <v-icon>mdi-calendar-outline</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>{{ $t('website.content.new.events.title') }}</v-list-item-title>
@@ -59,7 +59,7 @@
         @click="() => {}"
       >
         <v-list-item-icon>
-          <v-icon>link</v-icon>
+          <v-icon>mdi-link</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>{{ $t('website.content.new.link.title') }}</v-list-item-title>
@@ -73,7 +73,7 @@
         @click="() => {}"
       >
         <v-list-item-icon>
-          <v-icon>folder</v-icon>
+          <v-icon>mdi-folder-outline</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>{{ $t('website.content.new.folder.title') }}</v-list-item-title>

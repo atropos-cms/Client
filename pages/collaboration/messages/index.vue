@@ -35,7 +35,6 @@
         ></v-divider>
       </template>
     </v-list>
-
   </div>
 </template>
 
@@ -90,7 +89,6 @@ export default Vue.extend({
         preset: Preset.Ok,
         confirmButton: {
           text: 'collaboration.messages.send',
-          color: 'primary',
           solid: true
         },
         options: {

@@ -105,7 +105,7 @@ export default {
       }
     },
     icons: {
-      iconfont: 'md'
+      iconfont: 'mdi'
     }
   },
   /*
