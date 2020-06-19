@@ -1,4 +1,5 @@
 export type Maybe<T> = T | null;
+export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -6,11 +7,12 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** A datetime string with iso8601 format, e.g. `2019-02-01T03:45:27+00:00` */
   DateTime: any;
 };
 
 export type AuthPayload = {
-   __typename?: 'AuthPayload';
+  __typename?: 'AuthPayload';
   accessToken: Scalars['String'];
   user: User;
 };
@@ -18,11 +20,16 @@ export type AuthPayload = {
 export type Content = Page;
 
 export enum ContentType {
+  /** Page */
   Page = 'Page'
 }
 
 export type CreateAuthorRelation = {
   connect?: Maybe<Scalars['ID']>;
+};
+
+export type CreateFolderInput = {
+  name: Scalars['String'];
 };
 
 export type CreateNavigationentryInput = {
@@ -35,12 +42,18 @@ export type CreateNavigationentryInput = {
 };
 
 
+export type Folder = {
+  __typename?: 'Folder';
+  id: Scalars['ID'];
+  name?: Maybe<Scalars['String']>;
+};
+
 export type ForgotPasswordInput = {
   email: Scalars['String'];
 };
 
 export type ForgotPasswordResponse = {
-   __typename?: 'ForgotPasswordResponse';
+  __typename?: 'ForgotPasswordResponse';
   status: Scalars['String'];
   message?: Maybe<Scalars['String']>;
 };
@@ -51,12 +64,12 @@ export type LoginInput = {
 };
 
 export type LogoutResponse = {
-   __typename?: 'LogoutResponse';
+  __typename?: 'LogoutResponse';
   status?: Maybe<Scalars['Boolean']>;
 };
 
 export type Mutation = {
-   __typename?: 'Mutation';
+  __typename?: 'Mutation';
   login?: Maybe<AuthPayload>;
   logout?: Maybe<LogoutResponse>;
   updateMe?: Maybe<User>;
@@ -79,7 +92,13 @@ export type Mutation = {
   deleteNavigationentry?: Maybe<Navigationentry>;
   forceDeleteNavigationentry?: Maybe<Navigationentry>;
   restoreNavigationentry?: Maybe<Navigationentry>;
+  syncNavigationentryOrder?: Maybe<Array<Maybe<Navigationentry>>>;
   updatePage?: Maybe<Page>;
+  createFolder?: Maybe<Folder>;
+  updateFolder?: Maybe<Folder>;
+  deleteFolder?: Maybe<Folder>;
+  forceDeleteFolder?: Maybe<Folder>;
+  restoreFolder?: Maybe<Folder>;
 };
 
 
@@ -197,13 +216,44 @@ export type MutationRestoreNavigationentryArgs = {
 };
 
 
+export type MutationSyncNavigationentryOrderArgs = {
+  data: Array<Scalars['ID']>;
+};
+
+
 export type MutationUpdatePageArgs = {
   id: Scalars['ID'];
   data: UpdatePageInput;
 };
 
+
+export type MutationCreateFolderArgs = {
+  data: CreateFolderInput;
+};
+
+
+export type MutationUpdateFolderArgs = {
+  id: Scalars['ID'];
+  data: UpdateFolderInput;
+};
+
+
+export type MutationDeleteFolderArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationForceDeleteFolderArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationRestoreFolderArgs = {
+  id: Scalars['ID'];
+};
+
 export type Navigationentry = {
-   __typename?: 'Navigationentry';
+  __typename?: 'Navigationentry';
   id: Scalars['ID'];
   title: Scalars['String'];
   slug: Scalars['String'];
@@ -223,44 +273,65 @@ export type NewPasswordWithCodeInput = {
   passwordConfirmation: Scalars['String'];
 };
 
+/** Allows ordering a list of records. */
 export type OrderByClause = {
+  /** The column that is used for ordering. */
   field: Scalars['String'];
+  /** The direction that is used for ordering. */
   order: SortOrder;
 };
 
 export type Page = {
-   __typename?: 'Page';
+  __typename?: 'Page';
   id: Scalars['ID'];
-  body?: Maybe<Scalars['String']>;
+  body: Scalars['String'];
   navigationentry: Navigationentry;
 };
 
+/** Pagination information about the corresponding list of items. */
 export type PageInfo = {
-   __typename?: 'PageInfo';
+  __typename?: 'PageInfo';
+  /** When paginating forwards, are there more items? */
   hasNextPage: Scalars['Boolean'];
+  /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
+  /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']>;
+  /** Total number of node in connection. */
   total?: Maybe<Scalars['Int']>;
+  /** Count of nodes in current request. */
   count?: Maybe<Scalars['Int']>;
+  /** Current page of request. */
   currentPage?: Maybe<Scalars['Int']>;
+  /** Last page in connection. */
   lastPage?: Maybe<Scalars['Int']>;
 };
 
+/** Pagination information about the corresponding list of items. */
 export type PaginatorInfo = {
-   __typename?: 'PaginatorInfo';
+  __typename?: 'PaginatorInfo';
+  /** Total count of available items in the page. */
   count: Scalars['Int'];
+  /** Current pagination page. */
   currentPage: Scalars['Int'];
+  /** Index of first item in the current page. */
   firstItem?: Maybe<Scalars['Int']>;
+  /** If collection has more pages. */
   hasMorePages: Scalars['Boolean'];
+  /** Index of last item in the current page. */
   lastItem?: Maybe<Scalars['Int']>;
+  /** Last page number of the collection. */
   lastPage: Scalars['Int'];
+  /** Number of items per page in the collection. */
   perPage: Scalars['Int'];
+  /** Total items available in the collection. */
   total: Scalars['Int'];
 };
 
 export type Permission = {
-   __typename?: 'Permission';
+  __typename?: 'Permission';
   id: Scalars['ID'];
   name: Scalars['String'];
   category?: Maybe<Scalars['String']>;
@@ -268,7 +339,7 @@ export type Permission = {
 };
 
 export type Query = {
-   __typename?: 'Query';
+  __typename?: 'Query';
   me?: Maybe<User>;
   user?: Maybe<User>;
   users?: Maybe<UserPaginator>;
@@ -278,6 +349,8 @@ export type Query = {
   permissions: Array<Permission>;
   navigationentry?: Maybe<Navigationentry>;
   navigationentries: Array<Navigationentry>;
+  folder?: Maybe<Folder>;
+  folders: Array<Folder>;
 };
 
 
@@ -322,6 +395,16 @@ export type QueryNavigationentriesArgs = {
   trashed?: Maybe<Trashed>;
 };
 
+
+export type QueryFolderArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryFoldersArgs = {
+  trashed?: Maybe<Trashed>;
+};
+
 export type RegisterInput = {
   name: Scalars['String'];
   email: Scalars['String'];
@@ -330,10 +413,12 @@ export type RegisterInput = {
 };
 
 export type Role = {
-   __typename?: 'Role';
+  __typename?: 'Role';
   id: Scalars['ID'];
   name: Scalars['String'];
   description?: Maybe<Scalars['String']>;
+  emailAddress?: Maybe<Scalars['String']>;
+  mailingList?: Maybe<RoleMailingList>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
   permissions: Array<Permission>;
@@ -348,27 +433,53 @@ export enum RoleColumn {
   UpdatedAt = 'updatedAt'
 }
 
+export enum RoleMailingList {
+  /** Disabled */
+  Disabled = 'Disabled',
+  /** Members */
+  Members = 'Members',
+  /** Public */
+  Public = 'Public'
+}
+
+/** A paginated list of Role items. */
 export type RolePaginator = {
-   __typename?: 'RolePaginator';
+  __typename?: 'RolePaginator';
+  /** Pagination information about the list of items. */
   paginatorInfo: PaginatorInfo;
+  /** A list of Role items. */
   data: Array<Role>;
 };
 
+/** Order by clause for the `orderBy` argument on the query `roles`. */
 export type RolesOrderByOrderByClause = {
+  /** The column that is used for ordering. */
   field: RoleColumn;
+  /** The direction that is used for ordering. */
   order: SortOrder;
 };
 
+/** The available directions for ordering a list of records. */
 export enum SortOrder {
+  /** Sort records in ascending order. */
   Asc = 'ASC',
+  /** Sort records in descending order. */
   Desc = 'DESC'
 }
 
+/** Specify if you want to include or exclude trashed results from a query. */
 export enum Trashed {
+  /** Only return trashed results. */
   Only = 'ONLY',
+  /** Return both trashed and non-trashed results. */
   With = 'WITH',
+  /** Only return non-trashed results. */
   Without = 'WITHOUT'
 }
+
+export type UpdateFolderInput = {
+  name: Scalars['String'];
+};
 
 export type UpdateNavigationentryInput = {
   title?: Maybe<Scalars['String']>;
@@ -379,6 +490,8 @@ export type UpdateNavigationentryInput = {
 export type UpdateOrCreateRoleInput = {
   name?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
+  emailAddress?: Maybe<Scalars['String']>;
+  mailingList?: Maybe<RoleMailingList>;
 };
 
 export type UpdateOrCreateUserInput = {
@@ -402,7 +515,7 @@ export type UpdateUserPasswordInput = {
 };
 
 export type User = {
-   __typename?: 'User';
+  __typename?: 'User';
   id: Scalars['ID'];
   firstName?: Maybe<Scalars['String']>;
   lastName?: Maybe<Scalars['String']>;
@@ -438,21 +551,27 @@ export enum UserColumn {
   DeletedAt = 'deletedAt'
 }
 
+/** A paginated list of User items. */
 export type UserPaginator = {
-   __typename?: 'UserPaginator';
+  __typename?: 'UserPaginator';
+  /** Pagination information about the list of items. */
   paginatorInfo: PaginatorInfo;
+  /** A list of User items. */
   data: Array<User>;
 };
 
+/** Order by clause for the `orderBy` argument on the query `users`. */
 export type UsersOrderByOrderByClause = {
+  /** The column that is used for ordering. */
   field: UserColumn;
+  /** The direction that is used for ordering. */
   order: SortOrder;
 };
 
-export type AddRoleMembersMutationVariables = {
+export type AddRoleMembersMutationVariables = Exact<{
   id: Scalars['ID'];
   members: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type AddRoleMembersMutation = (
@@ -463,9 +582,9 @@ export type AddRoleMembersMutation = (
   )> }
 );
 
-export type CreateNavigationentryMutationVariables = {
+export type CreateNavigationentryMutationVariables = Exact<{
   data: CreateNavigationentryInput;
-};
+}>;
 
 
 export type CreateNavigationentryMutation = (
@@ -480,22 +599,22 @@ export type CreateNavigationentryMutation = (
   )> }
 );
 
-export type CreateRoleMutationVariables = {
+export type CreateRoleMutationVariables = Exact<{
   data: UpdateOrCreateRoleInput;
-};
+}>;
 
 
 export type CreateRoleMutation = (
   { __typename?: 'Mutation' }
   & { createRole?: Maybe<(
     { __typename?: 'Role' }
-    & Pick<Role, 'id' | 'name' | 'description'>
+    & Pick<Role, 'id' | 'name' | 'description' | 'emailAddress' | 'mailingList'>
   )> }
 );
 
-export type CreateUserMutationVariables = {
+export type CreateUserMutationVariables = Exact<{
   data: UpdateOrCreateUserInput;
-};
+}>;
 
 
 export type CreateUserMutation = (
@@ -506,9 +625,9 @@ export type CreateUserMutation = (
   )> }
 );
 
-export type DeleteNavigationentryMutationVariables = {
+export type DeleteNavigationentryMutationVariables = Exact<{
   id: Scalars['ID'];
-};
+}>;
 
 
 export type DeleteNavigationentryMutation = (
@@ -519,9 +638,9 @@ export type DeleteNavigationentryMutation = (
   )> }
 );
 
-export type DeleteRoleMutationVariables = {
+export type DeleteRoleMutationVariables = Exact<{
   id: Scalars['ID'];
-};
+}>;
 
 
 export type DeleteRoleMutation = (
@@ -532,9 +651,9 @@ export type DeleteRoleMutation = (
   )> }
 );
 
-export type DeleteUserMutationVariables = {
+export type DeleteUserMutationVariables = Exact<{
   id: Scalars['ID'];
-};
+}>;
 
 
 export type DeleteUserMutation = (
@@ -545,9 +664,9 @@ export type DeleteUserMutation = (
   )> }
 );
 
-export type LoginMutationVariables = {
+export type LoginMutationVariables = Exact<{
   data: LoginInput;
-};
+}>;
 
 
 export type LoginMutation = (
@@ -558,7 +677,7 @@ export type LoginMutation = (
   )> }
 );
 
-export type LogoutMutationVariables = {};
+export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 
 
 export type LogoutMutation = (
@@ -569,10 +688,10 @@ export type LogoutMutation = (
   )> }
 );
 
-export type RemoveRoleMembersMutationVariables = {
+export type RemoveRoleMembersMutationVariables = Exact<{
   id: Scalars['ID'];
   members: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type RemoveRoleMembersMutation = (
@@ -583,10 +702,23 @@ export type RemoveRoleMembersMutation = (
   )> }
 );
 
-export type SyncRolePermissionsMutationVariables = {
+export type SyncNavigationentryOrderMutationVariables = Exact<{
+  data: Array<Scalars['ID']>;
+}>;
+
+
+export type SyncNavigationentryOrderMutation = (
+  { __typename?: 'Mutation' }
+  & { syncNavigationentryOrder?: Maybe<Array<Maybe<(
+    { __typename?: 'Navigationentry' }
+    & Pick<Navigationentry, 'id' | 'order'>
+  )>>> }
+);
+
+export type SyncRolePermissionsMutationVariables = Exact<{
   id: Scalars['ID'];
   permissions: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type SyncRolePermissionsMutation = (
@@ -597,9 +729,9 @@ export type SyncRolePermissionsMutation = (
   )> }
 );
 
-export type UpdateMeMutationVariables = {
+export type UpdateMeMutationVariables = Exact<{
   data: UpdateOrCreateUserInput;
-};
+}>;
 
 
 export type UpdateMeMutation = (
@@ -610,9 +742,9 @@ export type UpdateMeMutation = (
   )> }
 );
 
-export type UpdateMyPasswordMutationVariables = {
+export type UpdateMyPasswordMutationVariables = Exact<{
   data: UpdateUserPasswordInput;
-};
+}>;
 
 
 export type UpdateMyPasswordMutation = (
@@ -623,10 +755,10 @@ export type UpdateMyPasswordMutation = (
   )> }
 );
 
-export type UpdateNavigationentryMutationVariables = {
+export type UpdateNavigationentryMutationVariables = Exact<{
   id: Scalars['ID'];
   data: UpdateNavigationentryInput;
-};
+}>;
 
 
 export type UpdateNavigationentryMutation = (
@@ -644,10 +776,10 @@ export type UpdateNavigationentryMutation = (
   )> }
 );
 
-export type UpdatePageMutationVariables = {
+export type UpdatePageMutationVariables = Exact<{
   id: Scalars['ID'];
   data: UpdatePageInput;
-};
+}>;
 
 
 export type UpdatePageMutation = (
@@ -658,24 +790,24 @@ export type UpdatePageMutation = (
   )> }
 );
 
-export type UpdateRoleMutationVariables = {
+export type UpdateRoleMutationVariables = Exact<{
   id: Scalars['ID'];
   data: UpdateOrCreateRoleInput;
-};
+}>;
 
 
 export type UpdateRoleMutation = (
   { __typename?: 'Mutation' }
   & { updateRole?: Maybe<(
     { __typename?: 'Role' }
-    & Pick<Role, 'id' | 'name' | 'description'>
+    & Pick<Role, 'id' | 'name' | 'description' | 'emailAddress' | 'mailingList'>
   )> }
 );
 
-export type UpdateUserMutationVariables = {
+export type UpdateUserMutationVariables = Exact<{
   id: Scalars['ID'];
   data: UpdateOrCreateUserInput;
-};
+}>;
 
 
 export type UpdateUserMutation = (
@@ -686,7 +818,7 @@ export type UpdateUserMutation = (
   )> }
 );
 
-export type MeQueryVariables = {};
+export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type MeQuery = (
@@ -697,14 +829,14 @@ export type MeQuery = (
   )> }
 );
 
-export type NavigationentriesQueryVariables = {};
+export type NavigationentriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type NavigationentriesQuery = (
   { __typename?: 'Query' }
   & { navigationentries: Array<(
     { __typename?: 'Navigationentry' }
-    & Pick<Navigationentry, 'id' | 'title' | 'published'>
+    & Pick<Navigationentry, 'id' | 'title' | 'published' | 'slug' | 'order'>
     & { author: (
       { __typename?: 'User' }
       & Pick<User, 'id' | 'fullName'>
@@ -715,9 +847,9 @@ export type NavigationentriesQuery = (
   )> }
 );
 
-export type NavigationentryQueryVariables = {
+export type NavigationentryQueryVariables = Exact<{
   id: Scalars['ID'];
-};
+}>;
 
 
 export type NavigationentryQuery = (
@@ -735,7 +867,7 @@ export type NavigationentryQuery = (
   )> }
 );
 
-export type PermissionsQueryVariables = {};
+export type PermissionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type PermissionsQuery = (
@@ -746,16 +878,16 @@ export type PermissionsQuery = (
   )> }
 );
 
-export type RoleQueryVariables = {
+export type RoleQueryVariables = Exact<{
   id: Scalars['ID'];
-};
+}>;
 
 
 export type RoleQuery = (
   { __typename?: 'Query' }
   & { role?: Maybe<(
     { __typename?: 'Role' }
-    & Pick<Role, 'id' | 'name' | 'description' | 'createdAt' | 'updatedAt'>
+    & Pick<Role, 'id' | 'name' | 'description' | 'emailAddress' | 'mailingList' | 'createdAt' | 'updatedAt'>
     & { members: Array<(
       { __typename?: 'User' }
       & Pick<User, 'id' | 'fullName' | 'email'>
@@ -766,12 +898,12 @@ export type RoleQuery = (
   )> }
 );
 
-export type RolesQueryVariables = {
+export type RolesQueryVariables = Exact<{
   first: Scalars['Int'];
   page?: Maybe<Scalars['Int']>;
   search?: Maybe<Scalars['String']>;
   orderBy?: Maybe<Array<RolesOrderByOrderByClause>>;
-};
+}>;
 
 
 export type RolesQuery = (
@@ -788,9 +920,9 @@ export type RolesQuery = (
   )> }
 );
 
-export type UserQueryVariables = {
+export type UserQueryVariables = Exact<{
   id: Scalars['ID'];
-};
+}>;
 
 
 export type UserQuery = (
@@ -805,12 +937,12 @@ export type UserQuery = (
   )> }
 );
 
-export type UsersQueryVariables = {
+export type UsersQueryVariables = Exact<{
   first: Scalars['Int'];
   page?: Maybe<Scalars['Int']>;
   search?: Maybe<Scalars['String']>;
   orderBy?: Maybe<Array<UsersOrderByOrderByClause>>;
-};
+}>;
 
 
 export type UsersQuery = (

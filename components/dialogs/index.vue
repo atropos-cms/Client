@@ -26,7 +26,7 @@
         <div class="flex-grow-1" />
         <v-btn
           :color="cancelButton.color"
-          text
+          :text="!cancelButton.solid"
           @click.native="cancel"
         >
           {{ $t(cancelButton.text) }}
@@ -34,7 +34,7 @@
         <v-btn
           :color="confirmButton.color"
           :loading="loading"
-          text
+          :text="!confirmButton.solid"
           @click.native="agree"
         >
           {{ $t(confirmButton.text) }}

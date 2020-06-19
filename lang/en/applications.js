@@ -10,8 +10,8 @@ export default {
       title: 'Files',
       description: ''
     },
-    email: {
-      title: 'Email',
+    messages: {
+      title: 'Messages',
       description: ''
     }
   },
@@ -31,12 +31,10 @@ export default {
   },
   users: {
     title: 'Users',
-    addNewUser: 'Add new user',
     description: 'Add or manage users'
   },
   roles: {
     title: 'Roles',
-    addNewRole: 'Add new role',
     description: 'Create roles and manage permissions'
   },
   settings: {

@@ -81,11 +81,11 @@ export const collaborationApps : Application[] = [
     url: '/collaboration/files'
   },
   {
-    name: 'email',
-    title: 'applications.collaboration.email.title',
-    description: 'applications.collaboration.email.description',
+    name: 'messages',
+    title: 'applications.collaboration.messages.title',
+    description: 'applications.collaboration.messages.description',
     icon: 'email',
-    url: '/collaboration/email'
+    url: '/collaboration/messages'
   }
 ]
 

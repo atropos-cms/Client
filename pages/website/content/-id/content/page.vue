@@ -33,11 +33,6 @@ import savesModels from '~/mixins/savesModels.ts'
 import UPDATE_PAGE from '~/graphql/mutations/updatePage.graphql'
 import isForm from '~/mixins/isForm.ts'
 
-interface EmptyContent {
-  id: null,
-  body: null
-}
-
 export default mixins(isForm, savesModels).extend({
   components: {
     Editor
@@ -48,18 +43,14 @@ export default mixins(isForm, savesModels).extend({
   }),
 
   computed: {
-    content () : Content | EmptyContent {
-      if (!this.model.content) {
-        return { id: null, body: null }
-      }
-
+    content () : Content {
       return this.model.content
     }
   },
 
   created () {
     this.$emit('registerOnSaveHandler', { handler: this.saveHandler })
-    this.initData = JSON.parse(this.content.body || '')
+    this.initData = JSON.parse(this.content.body)
   },
 
   methods: {

@@ -1,8 +1,14 @@
 <template>
   <v-menu transition="slide-y-transition">
     <template v-slot:activator="{ on }">
-      <v-btn outlined color="primary" v-on="on">
-        {{ $t('website.content.newContent') }}
+      <v-btn
+        absolute
+        dark
+        fab
+        color="pink"
+        v-on="on"
+      >
+        <v-icon>mdi-plus</v-icon>
       </v-btn>
     </template>
     <v-list>

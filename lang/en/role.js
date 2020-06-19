@@ -5,11 +5,12 @@ export default {
   description: 'Description',
   roleInfo: 'Role information',
   email: 'Email',
-  emailAddress: 'Group email',
+  emailAddress: 'Role email',
   mailingList: 'Mailing list',
   mailingListItem: {
     disabled: 'Disabled',
     members: 'Members only',
+    registered: 'Registered users',
     public: 'Public'
   },
   renameRole: 'Rename role',

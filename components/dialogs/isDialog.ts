@@ -10,6 +10,7 @@ export enum Preset {
 }
 
 export enum Width {
+  Large = 1200,
   Normal = 600,
   Small = 380,
 }
@@ -32,11 +33,12 @@ interface PromiseDialog extends Dialog {
 
 interface Button {
   text: string,
-  color: string
+  color: string,
+  solid: Boolean
 }
 interface Options {
-  width: Width,
-  persistent: Boolean
+  width?: Width,
+  persistent?: Boolean
 }
 
 type ButtonPreset = {
@@ -50,7 +52,7 @@ const buttonPresets : ButtonPreset = {
   [Preset.Create]: {
     confirm: {
       text: 'general.create',
-      color: 'primary darken-1'
+      color: 'primary'
     },
     cancel: {
       text: 'general.cancel',
@@ -72,7 +74,7 @@ const buttonPresets : ButtonPreset = {
   [Preset.Ok]: {
     confirm: {
       text: 'general.ok',
-      color: 'primary darken-1'
+      color: 'primary'
     },
     cancel: {
       text: 'general.cancel',
@@ -94,7 +96,7 @@ const buttonPresets : ButtonPreset = {
   [Preset.Save]: {
     confirm: {
       text: 'general.save',
-      color: 'primary darken-1'
+      color: 'primary'
     },
     cancel: {
       text: 'general.cancel',

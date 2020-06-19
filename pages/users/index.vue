@@ -1,8 +1,14 @@
 <template>
   <div>
     <toolheader>
-      <v-btn outlined color="primary" @click="addUser">
-        {{ $t('applications.users.addNewUser') }}
+      <v-btn
+        absolute
+        dark
+        fab
+        color="pink"
+        @click="addUser"
+      >
+        <v-icon>mdi-plus</v-icon>
       </v-btn>
 
       <div class="flex-grow-1" />

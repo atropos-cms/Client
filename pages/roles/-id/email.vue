@@ -27,6 +27,7 @@
             >
               <v-radio :label="$t('role.mailingListItem.disabled')" value="Disabled"></v-radio>
               <v-radio :label="$t('role.mailingListItem.members')" value="Members"></v-radio>
+              <v-radio :label="$t('role.mailingListItem.registered')" value="Registered"></v-radio>
               <v-radio :label="$t('role.mailingListItem.public')" value="Public"></v-radio>
             </v-radio-group>
           </v-col>

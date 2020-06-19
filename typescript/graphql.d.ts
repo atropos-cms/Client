@@ -89,6 +89,15 @@ declare module '*/removeRoleMembers.graphql' {
 }
     
 
+declare module '*/syncNavigationentryOrder.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const syncNavigationentryOrder: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/syncRolePermissions.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
