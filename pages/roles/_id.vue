@@ -8,7 +8,7 @@
     </v-col>
 
     <v-col>
-      <v-expansion-panels :value="1">
+      <v-expansion-panels :value="0">
         <role-info
           :value="role"
           :loading="$apollo.queries.role.loading"

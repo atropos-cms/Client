@@ -41,6 +41,10 @@ export type CreateNavigationentryInput = {
   author?: Maybe<CreateAuthorRelation>;
 };
 
+export type CreateWorkspaceInput = {
+  name: Scalars['String'];
+};
+
 
 export type Folder = {
   __typename?: 'Folder';
@@ -94,6 +98,14 @@ export type Mutation = {
   restoreNavigationentry?: Maybe<Navigationentry>;
   syncNavigationentryOrder?: Maybe<Array<Maybe<Navigationentry>>>;
   updatePage?: Maybe<Page>;
+  createWorkspace?: Maybe<Workspace>;
+  updateWorkspace?: Maybe<Workspace>;
+  deleteWorkspace?: Maybe<Workspace>;
+  forceDeleteWorkspace?: Maybe<Workspace>;
+  restoreWorkspace?: Maybe<Workspace>;
+  syncWorkspaceRoles?: Maybe<Workspace>;
+  addRoleToWorkspace?: Maybe<Workspace>;
+  removeRoleFromWorkspace?: Maybe<Workspace>;
   createFolder?: Maybe<Folder>;
   updateFolder?: Maybe<Folder>;
   deleteFolder?: Maybe<Folder>;
@@ -227,6 +239,50 @@ export type MutationUpdatePageArgs = {
 };
 
 
+export type MutationCreateWorkspaceArgs = {
+  data: CreateWorkspaceInput;
+};
+
+
+export type MutationUpdateWorkspaceArgs = {
+  id: Scalars['ID'];
+  data: UpdateWorkspaceInput;
+};
+
+
+export type MutationDeleteWorkspaceArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationForceDeleteWorkspaceArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationRestoreWorkspaceArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationSyncWorkspaceRolesArgs = {
+  id: Scalars['ID'];
+  roles: Array<Scalars['ID']>;
+};
+
+
+export type MutationAddRoleToWorkspaceArgs = {
+  id: Scalars['ID'];
+  roles: Array<Scalars['ID']>;
+};
+
+
+export type MutationRemoveRoleFromWorkspaceArgs = {
+  id: Scalars['ID'];
+  roles: Array<Scalars['ID']>;
+};
+
+
 export type MutationCreateFolderArgs = {
   data: CreateFolderInput;
 };
@@ -349,6 +405,8 @@ export type Query = {
   permissions: Array<Permission>;
   navigationentry?: Maybe<Navigationentry>;
   navigationentries: Array<Navigationentry>;
+  workspace?: Maybe<Workspace>;
+  workspaces: Array<Workspace>;
   folder?: Maybe<Folder>;
   folders: Array<Folder>;
 };
@@ -396,6 +454,18 @@ export type QueryNavigationentriesArgs = {
 };
 
 
+export type QueryWorkspaceArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryWorkspacesArgs = {
+  search?: Maybe<Scalars['String']>;
+  orderBy?: Maybe<Array<WorkspacesOrderByOrderByClause>>;
+  trashed?: Maybe<Trashed>;
+};
+
+
 export type QueryFolderArgs = {
   id: Scalars['ID'];
 };
@@ -438,6 +508,8 @@ export enum RoleMailingList {
   Disabled = 'Disabled',
   /** Members */
   Members = 'Members',
+  /** Registered */
+  Registered = 'Registered',
   /** Public */
   Public = 'Public'
 }
@@ -495,13 +567,13 @@ export type UpdateOrCreateRoleInput = {
 };
 
 export type UpdateOrCreateUserInput = {
-  firstName?: Maybe<Scalars['String']>;
-  lastName?: Maybe<Scalars['String']>;
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  email: Scalars['String'];
   street?: Maybe<Scalars['String']>;
   postcode?: Maybe<Scalars['String']>;
   city?: Maybe<Scalars['String']>;
   country?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['String']>;
 };
 
 export type UpdatePageInput = {
@@ -512,6 +584,10 @@ export type UpdateUserPasswordInput = {
   currentPassword?: Maybe<Scalars['String']>;
   password?: Maybe<Scalars['String']>;
   passwordConfirmation?: Maybe<Scalars['String']>;
+};
+
+export type UpdateWorkspaceInput = {
+  name: Scalars['String'];
 };
 
 export type User = {
@@ -564,6 +640,27 @@ export type UserPaginator = {
 export type UsersOrderByOrderByClause = {
   /** The column that is used for ordering. */
   field: UserColumn;
+  /** The direction that is used for ordering. */
+  order: SortOrder;
+};
+
+export type Workspace = {
+  __typename?: 'Workspace';
+  id: Scalars['ID'];
+  name?: Maybe<Scalars['String']>;
+  roles: Array<Role>;
+  rolesCount: Scalars['Int'];
+};
+
+/** Allowed column names for the `orderBy` argument on the query `workspaces`. */
+export enum WorkspacesOrderByColumn {
+  Name = 'NAME'
+}
+
+/** Order by clause for the `orderBy` argument on the query `workspaces`. */
+export type WorkspacesOrderByOrderByClause = {
+  /** The column that is used for ordering. */
+  field: WorkspacesOrderByColumn;
   /** The direction that is used for ordering. */
   order: SortOrder;
 };
@@ -622,6 +719,19 @@ export type CreateUserMutation = (
   & { createUser?: Maybe<(
     { __typename?: 'User' }
     & Pick<User, 'id' | 'firstName' | 'lastName' | 'initials' | 'email' | 'street' | 'postcode' | 'city' | 'country'>
+  )> }
+);
+
+export type CreateWorkspaceMutationVariables = Exact<{
+  data: CreateWorkspaceInput;
+}>;
+
+
+export type CreateWorkspaceMutation = (
+  { __typename?: 'Mutation' }
+  & { createWorkspace?: Maybe<(
+    { __typename?: 'Workspace' }
+    & Pick<Workspace, 'name'>
   )> }
 );
 
@@ -956,5 +1066,19 @@ export type UsersQuery = (
       { __typename?: 'User' }
       & Pick<User, 'id' | 'firstName' | 'lastName' | 'fullName' | 'email'>
     )> }
+  )> }
+);
+
+export type WorkspacesQueryVariables = Exact<{
+  search?: Maybe<Scalars['String']>;
+  orderBy?: Maybe<Array<RolesOrderByOrderByClause>>;
+}>;
+
+
+export type WorkspacesQuery = (
+  { __typename?: 'Query' }
+  & { workspaces: Array<(
+    { __typename?: 'Workspace' }
+    & Pick<Workspace, 'id' | 'name'>
   )> }
 );

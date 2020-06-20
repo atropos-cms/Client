@@ -19,6 +19,7 @@ export interface Dialog {
   title: string | VueI18N.TranslateResult,
   message?: string | VueI18N.TranslateResult,
   component?: VueConstructor<Vue>,
+  model?: Object,
   preset?: Preset,
   action?: (model: any) => Promise<void | undefined> | any,
   confirmButton?: Button,

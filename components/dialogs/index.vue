@@ -47,6 +47,7 @@
 <script lang="ts">
 import mixins from 'vue-typed-mixins'
 import Timeout from 'await-timeout'
+import { cloneDeep } from 'lodash'
 import isDialog from './isDialog'
 import Validation from '~/utils/validation/index'
 import FlowControlException from '~/utils/exceptions/FlowControlException'
@@ -84,8 +85,13 @@ export default mixins(isDialog).extend({
   },
 
   watch: {
-    show () {
-      this.model = {}
+    show (value) {
+      if (value && this.dialog) {
+        // When the dialog becomes visible, set the model
+        this.model = cloneDeep(this.dialog.model || {})
+      } else {
+        this.model = {}
+      }
     }
   }
 })

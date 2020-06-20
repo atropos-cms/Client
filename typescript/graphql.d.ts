@@ -35,6 +35,15 @@ declare module '*/createUser.graphql' {
 }
     
 
+declare module '*/createWorkspace.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const createWorkspace: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/deleteNavigationentry.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -228,6 +237,15 @@ declare module '*/users.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const Users: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/workspaces.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Workspaces: DocumentNode;
 
   export default defaultDocument;
 }
