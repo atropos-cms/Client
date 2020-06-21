@@ -1,6 +1,5 @@
 <template>
   <div class="d-flex flex-column">
-
     <v-img
       class="my-16"
       height="200px"
@@ -26,7 +25,6 @@
         {{ message }}
       </v-card-text>
     </v-card>
-
   </div>
 </template>
 

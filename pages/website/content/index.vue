@@ -43,7 +43,6 @@
         </draggable>
       </v-list>
     </template>
-
   </div>
 </template>
 

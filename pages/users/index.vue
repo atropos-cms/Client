@@ -26,7 +26,7 @@
       v-model="selected"
       :headers="headers"
       :items="users.data"
-      :footer-props="{ itemsPerPageOptions: [10, 50, 100] }"
+      :footer-props="{ itemsPerPageOptions: [15, 50, 100] }"
       :options.sync="options"
       :server-items-length="users.paginatorInfo.total"
       :loading="$apollo.queries.users.loading"

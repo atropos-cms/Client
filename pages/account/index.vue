@@ -5,12 +5,14 @@
       <v-avatar
         :size="128"
         :color="$vuetify.theme.dark ? 'grey darken-3' : 'blue-grey lighten-5'"
+        class="mt-6"
       >
-        <img
+        <v-img
           v-if="img"
-          src="https://vuetifyjs.com/apple-touch-icon-180x180.png"
-          alt="avatar"
-        >
+          height="200px"
+          contain
+          :src="require('~/static/svgs/undraw_male_avatar_323b.svg')"
+        />
         <span v-else>{{ me.initials }}</span>
       </v-avatar>
 
@@ -45,7 +47,7 @@ export default Vue.extend({
   },
 
   data: () => ({
-    img: false,
+    img: true,
     me: {}
   }),
 

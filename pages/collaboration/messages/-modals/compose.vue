@@ -8,7 +8,7 @@
       chips
       :error-messages="$v('recippients', 'account.recippients')"
       :label="$t('collaboration.messages.recippients')"
-    ></v-select>
+    />
 
     <v-text-field
       v-model="model.subject"
@@ -21,7 +21,7 @@
       v-model="model.body"
       auto-grow
       :rows="10"
-    ></v-textarea>
+    />
   </div>
 </template>
 

@@ -5,21 +5,26 @@
 
       <v-row dense>
         <!-- Loader -->
-        <v-col
+        <template
           v-if="$apollo.queries.workspaces.loading && !hasWorkspaces"
-          cols="12"
-          md="4"
-          lg="3"
-          xl="2"
-          class="d-flex align-stretch"
         >
-          <v-card outlined class="d-flex flex-grow-1 flex-column">
-            <v-skeleton-loader
+          <v-col
+            v-for="i in [1, 2]"
+            :key="i"
+            cols="12"
+            md="4"
+            lg="3"
+            xl="2"
+            class="d-flex align-stretch"
+          >
+            <v-card outlined class="d-flex flex-grow-1 flex-column">
+              <v-skeleton-loader
                 class="mb-6"
                 type="card, list-item-three-line, actions"
-            />
-          </v-card>
-        </v-col>
+              />
+            </v-card>
+          </v-col>
+        </template>
 
         <!-- Workspace -->
         <workspace
@@ -30,7 +35,7 @@
         />
       </v-row>
 
-      <v-divider class="my-4"/>
+      <v-divider class="my-4" />
     </template>
 
     <!-- Add new workspace -->
@@ -44,7 +49,9 @@
             :src="require('~/static/svgs/undraw_folder_39kl.svg')"
           />
 
-          <v-card-title class="headline">{{ $t('messages.createWorkspaceTitle') }}</v-card-title>
+          <v-card-title class="headline">
+            {{ $t('messages.createWorkspaceTitle') }}
+          </v-card-title>
 
           <v-card-subtitle>{{ $t('messages.createWorkspaceMessage') }}</v-card-subtitle>
 
@@ -55,7 +62,7 @@
               color="primary"
               @click="createWorkspace"
             >
-            {{ $t('collaboration.files.createWorkspace') }}
+              {{ $t('collaboration.files.createWorkspace') }}
             </v-btn>
           </v-card-actions>
         </v-card>

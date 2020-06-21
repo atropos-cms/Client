@@ -16,23 +16,23 @@
       <template v-for="(item, index) in items">
         <v-list-item
           :key="item.title"
-          @click="openItem"
           :class="{'primary--text v-list-item--active': item.unread}"
+          @click="openItem"
         >
           <v-list-item-content>
-            <v-list-item-title v-html="item.title"></v-list-item-title>
-            <v-list-item-subtitle v-html="item.subtitle"></v-list-item-subtitle>
+            <v-list-item-title v-html="item.title" />
+            <v-list-item-subtitle v-html="item.subtitle" />
           </v-list-item-content>
 
           <v-list-item-action>
-            <v-list-item-action-text v-text="item.date"></v-list-item-action-text>
+            <v-list-item-action-text v-text="item.date" />
           </v-list-item-action>
         </v-list-item>
 
         <v-divider
           v-if="index + 1 < items.length"
           :key="index"
-        ></v-divider>
+        />
       </template>
     </v-list>
   </div>

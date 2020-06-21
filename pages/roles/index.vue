@@ -25,7 +25,7 @@
     <v-data-table
       :headers="headers"
       :items="roles.data"
-      :footer-props="{ itemsPerPageOptions: [10, 50, 100] }"
+      :footer-props="{ itemsPerPageOptions: [1, 50, 100] }"
       :options.sync="options"
       :server-items-length="roles.paginatorInfo.total"
       :loading="$apollo.queries.roles.loading"
