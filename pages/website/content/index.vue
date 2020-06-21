@@ -4,25 +4,46 @@
       <add-button @contentModified="contentModified" />
     </toolheader>
 
-    <v-subheader>{{ $t('website.content.mainNavigation') }}</v-subheader>
+    <!-- No Content -->
+    <div v-if="!hasContent">
+      <v-img
+        class="white--text align-end ma-8"
+        height="300px"
+        contain
+        :src="require('~/static/svgs/undraw_content_vbqo.svg')"
+      />
 
-    <v-list>
-      <draggable
-        v-model="navigationentries"
-        v-bind="dragOptions"
-        @start="onStart"
-        @end="onEnd"
-      >
-        <transition-group type="transition" :name="!drag ? 'flip-list' : null">
-          <list-entry
-            v-for="navigationentry in navigationentries"
-            :key="navigationentry.id"
-            :navigationentry="navigationentry"
-            @contentModified="contentModified"
-          />
-        </transition-group>
-      </draggable>
-    </v-list>
+      <h4 class="text-h4 text-center">
+        {{ $t('messages.noContentTitle') }}
+      </h4>
+      <div class="text-subtitle-1 text-center">
+        {{ $t('messages.noContentMessage') }}
+      </div>
+    </div>
+
+    <!-- Content List -->
+    <template v-else>
+      <v-subheader>{{ $t('website.content.mainNavigation') }}</v-subheader>
+
+      <v-list>
+        <draggable
+          v-model="navigationentries"
+          v-bind="dragOptions"
+          @start="onStart"
+          @end="onEnd"
+        >
+          <transition-group type="transition" :name="!drag ? 'flip-list' : null">
+            <list-entry
+              v-for="navigationentry in navigationentries"
+              :key="navigationentry.id"
+              :navigationentry="navigationentry"
+              @contentModified="contentModified"
+            />
+          </transition-group>
+        </draggable>
+      </v-list>
+    </template>
+
   </div>
 </template>
 
@@ -54,6 +75,9 @@ export default mixins(savesModels).extend({
   },
 
   computed: {
+    hasContent () {
+      return this.navigationentries.length > 0
+    },
     dragOptions () {
       return {
         animation: 200,

@@ -12,5 +12,7 @@ export default {
   deleteNavigationentryTitle: 'Delete content?',
   deleteNavigationentryMessage: 'This will delete the navigation entry <b>{title}</b>, including all of its content. Are you sure you want to continue?',
   createWorkspaceTitle: 'Create a new Workspace',
-  createWorkspaceMessage: 'Create a new workspace to collaborate with your team and share files and documents.'
+  createWorkspaceMessage: 'Create a new workspace to collaborate with your team and share files and documents.',
+  noContentTitle: 'Your website has currently no content.',
+  noContentMessage: 'Click the + icon to add new pages, blogs, and galleries.'
 }

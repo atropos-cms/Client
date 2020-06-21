@@ -22,6 +22,11 @@ export default {
         subtitle: 'Share stories, thoughts, and adventures',
         modal: 'Start a new blog'
       },
+      gallery: {
+        title: 'Gallery',
+        subtitle: 'Showcase photos of events and share memories',
+        modal: 'Create a new gallery'
+      },
       events: {
         title: 'Events',
         subtitle: 'Showcase upcomming events',

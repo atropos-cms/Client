@@ -1,15 +1,33 @@
 <template>
-  <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
+  <div class="d-flex flex-column">
+
+    <v-img
+      class="my-16"
+      height="200px"
+      contain
+      :src="errorType.img"
+    />
+    <h1 class="text-h4 text-md-h2 text-center">
+      {{ errorType.title }}
     </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/">
-      Home page
-    </NuxtLink>
-  </v-app>
+
+    <div class="mt-6 text-center">
+      <NuxtLink to="/">
+        {{ $t('error.homePage') }}
+      </NuxtLink>
+    </div>
+
+    <v-card
+      v-if="message"
+      outlined
+      class="mt-16"
+    >
+      <v-card-text>
+        {{ message }}
+      </v-card-text>
+    </v-card>
+
+  </div>
 </template>
 
 <script>
@@ -23,16 +41,32 @@ export default {
   },
   data () {
     return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred'
+      pageNotFound: {
+        title: this.$t('error.messages.pageNotFound'),
+        img: require('~/static/svgs/undraw_page_not_found_su7k.svg')
+      },
+      otherError: {
+        title: this.$t('error.messages.otherError'),
+        img: require('~/static/svgs/undraw_server_down_s4lk.svg')
+      }
+    }
+  },
+  computed: {
+    errorType () {
+      return this.error.statusCode === 404 ? this.pageNotFound : this.otherError
+    },
+    message () {
+      if (this.error.statusCode !== 404) {
+        return this.error.message
+      }
+
+      return null
     }
   },
   head () {
-    const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError
-    return {
-      title
-    }
+    const { title } = this.errorType
+
+    return { title }
   }
 }
 </script>

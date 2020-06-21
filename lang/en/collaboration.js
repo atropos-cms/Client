@@ -7,6 +7,7 @@ export default {
   },
   files: {
     workspaces: 'Workspaces',
+    viewWorkspace: 'View workspace',
     createWorkspace: 'Create Workspace',
     renameWorkspace: 'Rename Workspace',
     newFolder: 'New folder',

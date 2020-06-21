@@ -39,6 +39,20 @@
         </v-list-item-content>
       </v-list-item>
 
+      <!-- Gallery -->
+      <v-list-item
+        disabled
+        @click="() => {}"
+      >
+        <v-list-item-icon>
+          <v-icon>mdi-image-multiple-outline</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>{{ $t('website.content.new.gallery.title') }}</v-list-item-title>
+          <v-list-item-subtitle>{{ $t('website.content.new.gallery.subtitle') }}</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+
       <!-- Events -->
       <v-list-item
         disabled
@@ -66,6 +80,8 @@
           <v-list-item-subtitle>{{ $t('website.content.new.link.subtitle') }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
+
+      <v-divider />
 
       <!-- Folder -->
       <v-list-item
