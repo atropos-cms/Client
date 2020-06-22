@@ -1,0 +1,5 @@
+mutation deleteFolder($id: ID!) {
+  deleteFolder(id: $id) {
+    id
+  }
+}

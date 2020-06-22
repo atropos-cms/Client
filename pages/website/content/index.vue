@@ -49,7 +49,7 @@
 <script lang="ts">
 import mixins from 'vue-typed-mixins'
 import draggable from 'vuedraggable'
-import addButton from './-index/addButton.vue'
+import addButton from './-index/add-button.vue'
 import listEntry from './-index/list/entry.vue'
 import savesModels from '~/mixins/savesModels.ts'
 import NAVIGATIONENTRIES from '~/graphql/queries/navigationentries.graphql'

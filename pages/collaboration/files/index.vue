@@ -40,7 +40,7 @@
 
     <!-- Add new workspace -->
     <v-row dense>
-      <v-col cols="3">
+      <v-col cols="12" md="4" lg="3" xl="2" class="d-flex align-stretch">
         <v-card outlined>
           <v-img
             class="white--text align-end ma-2"

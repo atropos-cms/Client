@@ -14,5 +14,7 @@ export default {
   createWorkspaceTitle: 'Create a new Workspace',
   createWorkspaceMessage: 'Create a new workspace to collaborate with your team and share files and documents.',
   noContentTitle: 'Your website has currently no content.',
-  noContentMessage: 'Click the + icon to add new pages, blogs, and galleries.'
+  noContentMessage: 'Click the + button to add new pages, blogs, and galleries.',
+  folderEmptyTitle: 'This folder is currently empty.',
+  folderEmptyMessage: 'Drag files here or use the + button to create folders and upload files.'
 }

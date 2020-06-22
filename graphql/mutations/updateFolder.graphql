@@ -1,0 +1,7 @@
+mutation updateFolder($id: ID!, $data: UpdateFolderInput!) {
+  updateFolder(id: $id, data: $data) {
+    id
+    name
+    updatedAt
+  }
+}

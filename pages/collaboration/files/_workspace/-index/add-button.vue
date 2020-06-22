@@ -61,13 +61,18 @@
 <script lang="ts">
 import Vue from 'vue'
 import createFolder from '../../-modals/create-folder.vue'
-import { Workspace } from '~/typescript/graphql.ts'
+import CREATE_FOLDER from '~/graphql/mutations/createFolder.graphql'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default Vue.extend({
   props: {
-    workspace: {
-      type: Object as () => Workspace,
+    workspaceId: {
+      type: Number,
+      required: true,
+      default: null
+    },
+    parentId: {
+      type: Number,
       required: true,
       default: null
     }
@@ -81,7 +86,23 @@ export default Vue.extend({
         title,
         component: createFolder,
         preset: Preset.Create,
-        action: model => console.log(model)
+        model: {
+          name: '',
+          workspace: {
+            connect: this.workspaceId
+          },
+          parent: {
+            connect: this.parentId
+          }
+        },
+        action: model => this.$apollo.mutate({
+          mutation: CREATE_FOLDER,
+          variables: {
+            data: model
+          }
+        }).then(() => {
+          this.$emit('contentModified')
+        })
       })
     }
   }

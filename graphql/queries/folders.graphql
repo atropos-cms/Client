@@ -1,0 +1,7 @@
+query Folders($workspace_id: ID!, $parent_id: ID) {
+  folders(workspace_id: $workspace_id, parent_id: $parent_id)  {
+    id
+    name
+    updatedAt
+  }
+}
