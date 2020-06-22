@@ -1,0 +1,6 @@
+query Workspaces($search: String, $orderBy: [WorkspacesOrderByOrderByClause!]) {
+  workspaces(search: $search, orderBy: $orderBy)  {
+    id
+    name
+  }
+}
