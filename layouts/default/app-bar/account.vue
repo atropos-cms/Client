@@ -53,7 +53,7 @@
         <v-spacer />
 
         <v-btn depressed @click="logout">
-          Logout
+          {{ $t('auth.logout') }}
         </v-btn>
       </v-card-actions>
     </v-card>
