@@ -48,8 +48,6 @@ import mixins from 'vue-typed-mixins'
 import ContentIndex from './-id/content/index.vue'
 import Info from './-id/info.vue'
 import savesModels from '~/mixins/savesModels.ts'
-import NAVIGATIONENTRY from '~/graphql/queries/navigationentry.graphql'
-import UPDATE_NAVIGATIONENTRY from '~/graphql/mutations/updateNavigationentry.graphql'
 import { Navigationentry } from '~/typescript/graphql'
 
 export default mixins(savesModels).extend({
@@ -65,7 +63,7 @@ export default mixins(savesModels).extend({
 
   apollo: {
     navigationentry: {
-      query: NAVIGATIONENTRY,
+      query: require('~/graphql/queries/navigationentry.graphql'),
       variables () {
         return {
           id: this.$route.params.id
@@ -81,7 +79,7 @@ export default mixins(savesModels).extend({
     submit () {
       this.onSaveHandlers.forEach(callback => callback())
 
-      this.saveModel(UPDATE_NAVIGATIONENTRY, {
+      this.saveModel(require('~/graphql/mutations/updateNavigationentry.graphql'), {
         id: this.navigationentry.id,
         data: {
           title: this.navigationentry.title,
@@ -89,7 +87,7 @@ export default mixins(savesModels).extend({
           published: this.navigationentry.published
         }
       }, {
-        query: NAVIGATIONENTRY,
+        query: require('~/graphql/queries/navigationentry.graphql'),
         variables: { id: this.navigationentry.id },
         callback: (store, data) => ({ navigationentry: { ...store.navigationentry, ...data.updatePage } })
       })

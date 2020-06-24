@@ -52,8 +52,6 @@ import draggable from 'vuedraggable'
 import addButton from './-index/add-button.vue'
 import listEntry from './-index/list/entry.vue'
 import savesModels from '~/mixins/savesModels.ts'
-import NAVIGATIONENTRIES from '~/graphql/queries/navigationentries.graphql'
-import SYNC_NAVIGATIONENTRY_ORDER from '~/graphql/mutations/syncNavigationentryOrder.graphql'
 
 export default mixins(savesModels).extend({
   components: {
@@ -69,7 +67,7 @@ export default mixins(savesModels).extend({
 
   apollo: {
     navigationentries: {
-      query: NAVIGATIONENTRIES
+      query: require('~/graphql/queries/navigationentries.graphql')
     }
   },
 
@@ -96,10 +94,10 @@ export default mixins(savesModels).extend({
 
       const data = this.navigationentries.map(n => n.id)
 
-      this.saveModel(SYNC_NAVIGATIONENTRY_ORDER, {
+      this.saveModel(require('~/graphql/mutations/syncNavigationentryOrder.graphql'), {
         data
       }, {
-        query: NAVIGATIONENTRIES,
+        query: require('~/graphql/queries/navigationentries.graphql'),
         callback: (store, data) => {
           const updatedData = data.syncNavigationentryOrder.map((e) => {
             const storeEntry = store.navigationentries.find(s => s.id === e.id)

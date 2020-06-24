@@ -86,13 +86,11 @@
 import mixins from 'vue-typed-mixins'
 import isForm from '~/mixins/isClonedForm.ts'
 import savesModels from '~/mixins/savesModels.ts'
-import UPDATE_ME from '~/graphql/mutations/updateMe.graphql'
-import ME from '~/graphql/queries/me.graphql'
 
 export default mixins(isForm, savesModels).extend({
   methods: {
     submit () {
-      this.saveModel(UPDATE_ME, {
+      this.saveModel(require('~/graphql/mutations/updateMe.graphql'), {
         data: {
           first_name: this.model.first_name,
           last_name: this.model.last_name,
@@ -102,7 +100,7 @@ export default mixins(isForm, savesModels).extend({
           country: this.model.country
         }
       }, {
-        query: ME,
+        query: require('~/graphql/queries/me.graphql'),
         callback: (store, data) => ({ me: { ...store.me, ...data.updateMe } })
       })
         .then(this.updateModel)

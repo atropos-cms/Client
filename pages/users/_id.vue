@@ -20,7 +20,6 @@
 import Vue from 'vue'
 import info from './-id/info.vue'
 import personalInfo from './-id/personal-info.vue'
-import USER from '~/graphql/queries/user.graphql'
 
 export default Vue.extend({
   components: {
@@ -35,7 +34,7 @@ export default Vue.extend({
 
   apollo: {
     user: {
-      query: USER,
+      query: require('~/graphql/queries/user.graphql'),
       variables () {
         return {
           id: this.$route.params.id

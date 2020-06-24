@@ -38,7 +38,6 @@
 import Vue from 'vue'
 import Password from './-form/password.vue'
 import PersonalInfo from './-form/personal-info.vue'
-import ME from '~/graphql/queries/me.graphql'
 
 export default Vue.extend({
   components: {
@@ -52,7 +51,7 @@ export default Vue.extend({
   }),
 
   apollo: {
-    me: { query: ME }
+    me: { query: require('~/graphql/queries/me.graphql') }
   }
 })
 </script>

@@ -52,9 +52,6 @@
 import Vue from 'vue'
 import createRole from './-modals/create-role.vue'
 import { i18n } from '~/plugins/vue-i18n'
-import ROLES from '~/graphql/queries/roles.graphql'
-import CREATE_ROLE from '~/graphql/mutations/createRole.graphql'
-import DELETE_ROLE from '~/graphql/mutations/deleteRole.graphql'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default Vue.extend({
@@ -81,7 +78,7 @@ export default Vue.extend({
 
   apollo: {
     roles: {
-      query: ROLES,
+      query: require('~/graphql/queries/roles.graphql'),
       variables () {
         const first = this.options.itemsPerPage
         const orderBy = this.options.sortBy.map((item, index) => ({
@@ -107,7 +104,7 @@ export default Vue.extend({
         component: createRole,
         preset: Preset.Create,
         action: model => this.$apollo.mutate({
-          mutation: CREATE_ROLE,
+          mutation: require('~/graphql/mutations/createRole.graphql'),
           variables: {
             data: model
           }
@@ -125,7 +122,7 @@ export default Vue.extend({
         message: this.$t('messages.deleteRoleMessage', role),
         preset: Preset.Delete,
         action: () => this.$apollo.mutate({
-          mutation: DELETE_ROLE,
+          mutation: require('~/graphql/mutations/deleteRole.graphql'),
           variables: {
             id: role.id
           }

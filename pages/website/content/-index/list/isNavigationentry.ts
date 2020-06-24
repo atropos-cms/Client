@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import { Navigationentry } from '~/typescript/graphql.ts'
-import DELETE_NAVIGATIONENTRY from '~/graphql/mutations/deleteNavigationentry.graphql'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default Vue.extend({
@@ -22,7 +21,7 @@ export default Vue.extend({
         message: this.$t('messages.deleteNavigationentryMessage', navigationentry),
         preset: Preset.Delete,
         action: () => this.$apollo.mutate({
-          mutation: DELETE_NAVIGATIONENTRY,
+          mutation: require('~/graphql/mutations/deleteNavigationentry.graphql'),
           variables: {
             id: navigationentry.id
           }

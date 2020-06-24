@@ -1,0 +1,7 @@
+mutation updateFile($id: ID!, $data: UpdateFileInput!) {
+  updateFile(id: $id, data: $data) {
+    id
+    name
+    updatedAt
+  }
+}

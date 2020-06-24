@@ -39,20 +39,18 @@
 import mixins from 'vue-typed-mixins'
 import isForm from '~/mixins/isClonedForm.ts'
 import savesModels from '~/mixins/savesModels.ts'
-import UPDATE_ROLE from '~/graphql/mutations/updateRole.graphql'
-import ROLE from '~/graphql/queries/role.graphql'
 
 export default mixins(isForm, savesModels).extend({
   methods: {
     submit () {
-      this.saveModel(UPDATE_ROLE, {
+      this.saveModel(require('~/graphql/mutations/updateRole.graphql'), {
         id: this.model.id,
         data: {
           name: this.model.name,
           description: this.model.description
         }
       }, {
-        query: ROLE,
+        query: require('~/graphql/queries/role.graphql'),
         variables: { id: this.model.id },
         callback: (store, data) => ({ user: { ...store.role, ...data.updateRole } })
       })

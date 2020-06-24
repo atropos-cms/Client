@@ -53,9 +53,6 @@
 import Vue from 'vue'
 import createUser from './-modals/create-user.vue'
 import { i18n } from '~/plugins/vue-i18n'
-import USERS from '~/graphql/queries/users.graphql'
-import CREATE_USER from '~/graphql/mutations/createUser.graphql'
-import DELETE_USER from '~/graphql/mutations/deleteUser.graphql'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default Vue.extend({
@@ -84,7 +81,7 @@ export default Vue.extend({
 
   apollo: {
     users: {
-      query: USERS,
+      query: require('~/graphql/queries/users.graphql'),
       variables () {
         const first = this.options.itemsPerPage
         const orderBy = this.options.sortBy.map((item, index) => ({
@@ -110,7 +107,7 @@ export default Vue.extend({
         component: createUser,
         preset: Preset.Create,
         action: model => this.$apollo.mutate({
-          mutation: CREATE_USER,
+          mutation: require('~/graphql/mutations/createUser.graphql'),
           variables: {
             data: model
           }
@@ -128,7 +125,7 @@ export default Vue.extend({
         message: this.$t('messages.deleteUserMessage', user),
         preset: Preset.Delete,
         action: () => this.$apollo.mutate({
-          mutation: DELETE_USER,
+          mutation: require('~/graphql/mutations/deleteUser.graphql'),
           variables: {
             id: user.id
           }

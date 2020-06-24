@@ -51,8 +51,6 @@ import mixins from 'vue-typed-mixins'
 import renameRole from '../-modals/rename-role.vue'
 import dayjs from '~/utils/dayjs'
 import isForm from '~/mixins/isForm.ts'
-import UPDATE_ROLE from '~/graphql/mutations/updateRole.graphql'
-import DELETE_ROLE from '~/graphql/mutations/deleteRole.graphql'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default mixins(isForm).extend({
@@ -83,7 +81,7 @@ export default mixins(isForm).extend({
         component: renameRole,
         preset: Preset.Save,
         action: model => this.$apollo.mutate({
-          mutation: UPDATE_ROLE,
+          mutation: require('~/graphql/mutations/updateRole.graphql'),
           variables: {
             id: this.model.id,
             data: model
@@ -97,7 +95,7 @@ export default mixins(isForm).extend({
         message: this.$t('messages.deleteRoleMessage', this.model),
         preset: Preset.Delete,
         action: () => this.$apollo.mutate({
-          mutation: DELETE_ROLE,
+          mutation: require('~/graphql/mutations/deleteRole.graphql'),
           variables: {
             id: this.model.id
           }

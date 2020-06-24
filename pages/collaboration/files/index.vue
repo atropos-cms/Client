@@ -75,8 +75,6 @@
 import Vue from 'vue'
 import workspace from './-index/workspace.vue'
 import createWorkspace from './-modals/create-workspace.vue'
-import WORKSPACES from '~/graphql/queries/workspaces.graphql'
-import CREATE_WORKSPACE from '~/graphql/mutations/createWorkspace.graphql'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default Vue.extend({
@@ -86,7 +84,7 @@ export default Vue.extend({
 
   apollo: {
     workspaces: {
-      query: WORKSPACES,
+      query: require('~/graphql/queries/workspaces.graphql'),
       variables () {
         return {
           orderBy: [{
@@ -113,7 +111,7 @@ export default Vue.extend({
         component: createWorkspace,
         preset: Preset.Create,
         action: model => this.$apollo.mutate({
-          mutation: CREATE_WORKSPACE,
+          mutation: require('~/graphql/mutations/createWorkspace.graphql'),
           variables: {
             data: model
           }

@@ -2,6 +2,12 @@
   <div>
     <v-btn
       icon
+      @click="downloadSelected"
+    >
+      <v-icon>mdi-download</v-icon>
+    </v-btn>
+    <v-btn
+      icon
       @click="editSelected"
     >
       <v-icon>mdi-pencil</v-icon>
@@ -19,9 +25,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import renameFileOrFolder from '../../-modals/rename-file-or-folder.vue'
-import UPDATE_FOLDER from '~/graphql/mutations/updateFolder.graphql'
-import { Workspace, Folder } from '~/typescript/graphql.ts'
-import DELETE_FOLDER from '~/graphql/mutations/deleteFolder.graphql'
+import { Workspace, Folder, File } from '~/typescript/graphql.ts'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default Vue.extend({
@@ -32,7 +36,7 @@ export default Vue.extend({
       default: null
     },
     selected: {
-      type: Array,
+      type: Array as () => (Folder | File)[],
       required: true,
       default: null
     },
@@ -43,19 +47,30 @@ export default Vue.extend({
     }
   },
 
+  computed: {
+    firstSelected () : Folder | File {
+      return this.selected[0]
+    }
+  },
+
   methods: {
+    downloadSelected () {
+
+    },
     async editSelected () {
-      const selectedItem = this.selected[0] as Folder
+      const mutation = (this.firstSelected.__typename === 'Folder')
+        ? require('~/graphql/mutations/updateFolder.graphql')
+        : require('~/graphql/mutations/updateFile.graphql')
 
       await this.$dialog({
         title: this.$t('general.rename'),
         component: renameFileOrFolder,
         preset: Preset.Save,
-        model: selectedItem,
+        model: this.firstSelected,
         action: model => this.$apollo.mutate({
-          mutation: UPDATE_FOLDER,
+          mutation,
           variables: {
-            id: selectedItem.id,
+            id: this.firstSelected.id,
             data: {
               name: model.name
             }
@@ -66,12 +81,14 @@ export default Vue.extend({
       })
     },
     deleteSelected () {
-      const selectedItem = this.selected[0] as Folder
+      const mutation = (this.firstSelected.__typename === 'Folder')
+        ? require('~/graphql/mutations/deleteFolder.graphql')
+        : require('~/graphql/mutations/deleteFile.graphql')
 
       this.$apollo.mutate({
-        mutation: DELETE_FOLDER,
+        mutation,
         variables: {
-          id: selectedItem.id
+          id: this.firstSelected.id
         }
       }).then(() => {
         this.$emit('contentModified')

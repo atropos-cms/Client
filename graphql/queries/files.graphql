@@ -1,0 +1,11 @@
+query Files($workspace_id: ID!, $parent_id: ID) {
+  files(workspace_id: $workspace_id, parent_id: $parent_id)  {
+    id
+    uuid
+    name
+    size
+    fileExtension
+    mimeType
+    updatedAt
+  }
+}

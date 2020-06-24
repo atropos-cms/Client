@@ -58,8 +58,6 @@ import { groupBy } from 'lodash'
 import mixins from 'vue-typed-mixins'
 import isForm from '~/mixins/isClonedForm.ts'
 import savesModels from '~/mixins/savesModels.ts'
-import SYNC_ROLE_PERMISSIONS from '~/graphql/mutations/syncRolePermissions.graphql'
-import PERMISSIONS from '~/graphql/queries/permissions.graphql'
 import { Permission } from '~/typescript/graphql'
 
 export default mixins(isForm, savesModels).extend({
@@ -70,7 +68,7 @@ export default mixins(isForm, savesModels).extend({
 
   apollo: {
     permissions: {
-      query: PERMISSIONS
+      query: require('~/graphql/queries/permissions.graphql')
     }
   },
 
@@ -102,7 +100,7 @@ export default mixins(isForm, savesModels).extend({
 
       this.saveCallback(
         () => this.$apollo.mutate({
-          mutation: SYNC_ROLE_PERMISSIONS,
+          mutation: require('~/graphql/mutations/syncRolePermissions.graphql'),
           variables: {
             id: this.model.id,
             permissions

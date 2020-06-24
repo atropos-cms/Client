@@ -45,7 +45,6 @@
 
 <script lang="ts">
 import mixins from 'vue-typed-mixins'
-import USERS from '~/graphql/queries/users.graphql'
 import isForm from '~/mixins/isForm.ts'
 
 export default mixins(isForm).extend({
@@ -62,7 +61,7 @@ export default mixins(isForm).extend({
 
   apollo: {
     users: {
-      query: USERS,
+      query: require('~/graphql/queries/users.graphql'),
       variables () {
         return {
           first: 100,

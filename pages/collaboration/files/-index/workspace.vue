@@ -121,8 +121,6 @@ import Vue from 'vue'
 import manageMembers from '../-modals/manage-members.vue'
 import renameWorkspace from '../-modals/rename-workspace.vue'
 import { Workspace } from '~/typescript/graphql.ts'
-import UPDATE_WORKSPACE from '~/graphql/mutations/updateWorkspace.graphql'
-import DELETE_WORKSPACE from '~/graphql/mutations/deleteWorkspace.graphql'
 import { Preset } from '~/components/dialogs/isDialog'
 
 export default Vue.extend({
@@ -149,7 +147,7 @@ export default Vue.extend({
           name: this.workspace.name
         },
         action: model => this.$apollo.mutate({
-          mutation: UPDATE_WORKSPACE,
+          mutation: require('~/graphql/mutations/updateWorkspace.graphql'),
           variables: {
             id: this.workspace.id,
             data: model
@@ -170,7 +168,7 @@ export default Vue.extend({
           name: this.workspace.name
         },
         action: model => this.$apollo.mutate({
-          mutation: UPDATE_WORKSPACE,
+          mutation: require('~/graphql/mutations/updateWorkspace.graphql'),
           variables: {
             id: this.workspace.id,
             data: model
@@ -186,7 +184,7 @@ export default Vue.extend({
         message: this.$t('messages.deleteWorkspaceMessage', this.workspace),
         preset: Preset.Delete,
         action: () => this.$apollo.mutate({
-          mutation: DELETE_WORKSPACE,
+          mutation: require('~/graphql/mutations/deleteWorkspace.graphql'),
           variables: {
             id: this.workspace.id
           }

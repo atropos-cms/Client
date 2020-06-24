@@ -55,8 +55,6 @@ import addMemberDialog from '../-modals/add-member.vue'
 import { i18n } from '~/plugins/vue-i18n'
 import isForm from '~/mixins/isClonedForm.ts'
 import savesModels from '~/mixins/savesModels.ts'
-import ADD_ROLE_MEMBERS from '~/graphql/mutations/addRoleMembers.graphql'
-import REMOVE_ROLE_MEMBERS from '~/graphql/mutations/removeRoleMembers.graphql'
 import { Preset } from '~/components/dialogs/isDialog'
 import { User } from '~/typescript/graphql'
 
@@ -81,7 +79,7 @@ export default mixins(isForm, savesModels).extend({
         component: addMemberDialog,
         preset: Preset.Save,
         action: model => this.$apollo.mutate({
-          mutation: ADD_ROLE_MEMBERS,
+          mutation: require('~/graphql/mutations/addRoleMembers.graphql'),
           variables: {
             id: this.model.id,
             members: model.selected
@@ -95,7 +93,7 @@ export default mixins(isForm, savesModels).extend({
         message: this.$t('messages.removeMemberToRoleMessage', user),
         preset: Preset.Remove,
         action: () => this.$apollo.mutate({
-          mutation: REMOVE_ROLE_MEMBERS,
+          mutation: require('~/graphql/mutations/removeRoleMembers.graphql'),
           variables: {
             id: this.model.id,
             members: [user.id]

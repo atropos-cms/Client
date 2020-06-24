@@ -38,7 +38,6 @@
 <script lang="ts">
 import mixins from 'vue-typed-mixins'
 import usesPageLayout from '../layout-composer/usesPageLayout'
-import MeQueryGQL from '~/graphql/queries/me.graphql'
 
 export default mixins(usesPageLayout).extend({
   data: () => ({
@@ -48,7 +47,7 @@ export default mixins(usesPageLayout).extend({
   }),
 
   apollo: {
-    me: { query: MeQueryGQL }
+    me: { query: require('~/graphql/queries/me.graphql') }
   },
 
   computed: {

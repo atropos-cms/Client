@@ -62,8 +62,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import MeQueryGQL from '~/graphql/queries/me.graphql'
-import LOGOUT from '~/graphql/mutations/logout.graphql'
 
 export default Vue.extend({
   data: () => ({
@@ -73,14 +71,14 @@ export default Vue.extend({
   }),
 
   apollo: {
-    me: { query: MeQueryGQL }
+    me: { query: require('~/graphql/queries/me.graphql') }
   },
 
   methods: {
     async logout () {
       await this.$apollo
         .mutate({
-          mutation: LOGOUT
+          mutation: require('~/graphql/mutations/logout.graphql')
         })
         .then(({ data }) => data && data.logout)
 

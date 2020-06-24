@@ -44,7 +44,6 @@ import Email from './-id/email.vue'
 import RoleInfo from './-id/role-info.vue'
 import Members from './-id/members.vue'
 import Permissions from './-id/permissions.vue'
-import ROLE from '~/graphql/queries/role.graphql'
 import { Role } from '~/typescript/graphql'
 
 export default Vue.extend({
@@ -63,7 +62,7 @@ export default Vue.extend({
 
   apollo: {
     role: {
-      query: ROLE,
+      query: require('~/graphql/queries/role.graphql'),
       variables () {
         return {
           id: this.$route.params.id

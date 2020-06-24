@@ -63,7 +63,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import LOGIN from '~/graphql/mutations/login.graphql'
 import { LoginInput } from '~/typescript/graphql'
 
 export default Vue.extend({
@@ -89,7 +88,7 @@ export default Vue.extend({
 
         const response = await this.$apollo
           .mutate({
-            mutation: LOGIN,
+            mutation: require('~/graphql/mutations/login.graphql'),
             variables: { data: credentials }
           })
           .then(({ data }) => data && data.login)

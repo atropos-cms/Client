@@ -9,12 +9,25 @@ export type Scalars = {
   Float: number;
   /** A datetime string with iso8601 format, e.g. `2019-02-01T03:45:27+00:00` */
   DateTime: any;
+  Upload: any;
 };
 
 export type AuthPayload = {
   __typename?: 'AuthPayload';
   accessToken: Scalars['String'];
   user: User;
+};
+
+export type ConnectAuthorRelation = {
+  connect: Scalars['ID'];
+};
+
+export type ConnectParentFolderRelation = {
+  connect?: Maybe<Scalars['ID']>;
+};
+
+export type ConnectWorkspaceRelation = {
+  connect: Scalars['ID'];
 };
 
 export type Content = Page;
@@ -24,11 +37,15 @@ export enum ContentType {
   Page = 'Page'
 }
 
-export type CreateAuthorRelation = {
-  connect?: Maybe<Scalars['ID']>;
+export type CreateFileInput = {
+  workspace: ConnectWorkspaceRelation;
+  parent: ConnectParentFolderRelation;
+  name?: Maybe<Scalars['String']>;
 };
 
 export type CreateFolderInput = {
+  workspace: ConnectWorkspaceRelation;
+  parent: ConnectParentFolderRelation;
   name: Scalars['String'];
 };
 
@@ -38,7 +55,7 @@ export type CreateNavigationentryInput = {
   slug?: Maybe<Scalars['String']>;
   order?: Maybe<Scalars['Int']>;
   published?: Maybe<Scalars['Boolean']>;
-  author?: Maybe<CreateAuthorRelation>;
+  author?: Maybe<ConnectAuthorRelation>;
 };
 
 export type CreateWorkspaceInput = {
@@ -46,10 +63,65 @@ export type CreateWorkspaceInput = {
 };
 
 
+export type File = {
+  __typename?: 'File';
+  id: Scalars['ID'];
+  uuid?: Maybe<Scalars['String']>;
+  workspace?: Maybe<Workspace>;
+  name?: Maybe<Scalars['String']>;
+  mimeType?: Maybe<Scalars['String']>;
+  originalFilename?: Maybe<Scalars['String']>;
+  fileExtension?: Maybe<Scalars['String']>;
+  sha256Checksum?: Maybe<Scalars['String']>;
+  size?: Maybe<Scalars['Int']>;
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  deletedAt?: Maybe<Scalars['DateTime']>;
+  parent?: Maybe<Folder>;
+};
+
+export enum FileColumn {
+  Name = 'name',
+  Size = 'size',
+  CreatedAt = 'createdAt',
+  UpdatedAt = 'updatedAt',
+  DeletedAt = 'deletedAt'
+}
+
+/** Order by clause for the `orderBy` argument on the query `files`. */
+export type FilesOrderByOrderByClause = {
+  /** The column that is used for ordering. */
+  field: FileColumn;
+  /** The direction that is used for ordering. */
+  order: SortOrder;
+};
+
 export type Folder = {
   __typename?: 'Folder';
   id: Scalars['ID'];
+  uuid?: Maybe<Scalars['String']>;
+  workspace?: Maybe<Workspace>;
   name?: Maybe<Scalars['String']>;
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  deletedAt?: Maybe<Scalars['DateTime']>;
+  parent?: Maybe<Folder>;
+  children?: Maybe<Folder>;
+};
+
+export enum FolderColumn {
+  Name = 'name',
+  CreatedAt = 'createdAt',
+  UpdatedAt = 'updatedAt',
+  DeletedAt = 'deletedAt'
+}
+
+/** Order by clause for the `orderBy` argument on the query `folders`. */
+export type FoldersOrderByOrderByClause = {
+  /** The column that is used for ordering. */
+  field: FolderColumn;
+  /** The direction that is used for ordering. */
+  order: SortOrder;
 };
 
 export type ForgotPasswordInput = {
@@ -111,6 +183,11 @@ export type Mutation = {
   deleteFolder?: Maybe<Folder>;
   forceDeleteFolder?: Maybe<Folder>;
   restoreFolder?: Maybe<Folder>;
+  createFile?: Maybe<File>;
+  updateFile?: Maybe<File>;
+  deleteFile?: Maybe<File>;
+  forceDeleteFile?: Maybe<File>;
+  restoreFile?: Maybe<File>;
 };
 
 
@@ -308,6 +385,33 @@ export type MutationRestoreFolderArgs = {
   id: Scalars['ID'];
 };
 
+
+export type MutationCreateFileArgs = {
+  file: Scalars['Upload'];
+  data: CreateFileInput;
+};
+
+
+export type MutationUpdateFileArgs = {
+  id: Scalars['ID'];
+  data: UpdateFileInput;
+};
+
+
+export type MutationDeleteFileArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationForceDeleteFileArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationRestoreFileArgs = {
+  id: Scalars['ID'];
+};
+
 export type Navigationentry = {
   __typename?: 'Navigationentry';
   id: Scalars['ID'];
@@ -409,6 +513,8 @@ export type Query = {
   workspaces: Array<Workspace>;
   folder?: Maybe<Folder>;
   folders: Array<Folder>;
+  file?: Maybe<File>;
+  files: Array<File>;
 };
 
 
@@ -467,11 +573,29 @@ export type QueryWorkspacesArgs = {
 
 
 export type QueryFolderArgs = {
+  workspace_id: Scalars['ID'];
   id: Scalars['ID'];
 };
 
 
 export type QueryFoldersArgs = {
+  workspace_id: Scalars['ID'];
+  parent_id?: Maybe<Scalars['ID']>;
+  orderBy?: Maybe<Array<FoldersOrderByOrderByClause>>;
+  trashed?: Maybe<Trashed>;
+};
+
+
+export type QueryFileArgs = {
+  workspace_id: Scalars['ID'];
+  id: Scalars['ID'];
+};
+
+
+export type QueryFilesArgs = {
+  workspace_id: Scalars['ID'];
+  parent_id?: Maybe<Scalars['ID']>;
+  orderBy?: Maybe<Array<FilesOrderByOrderByClause>>;
   trashed?: Maybe<Trashed>;
 };
 
@@ -549,6 +673,10 @@ export enum Trashed {
   Without = 'WITHOUT'
 }
 
+export type UpdateFileInput = {
+  name: Scalars['String'];
+};
+
 export type UpdateFolderInput = {
   name: Scalars['String'];
 };
@@ -589,6 +717,7 @@ export type UpdateUserPasswordInput = {
 export type UpdateWorkspaceInput = {
   name: Scalars['String'];
 };
+
 
 export type User = {
   __typename?: 'User';
@@ -648,19 +777,25 @@ export type Workspace = {
   __typename?: 'Workspace';
   id: Scalars['ID'];
   name?: Maybe<Scalars['String']>;
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  deletedAt?: Maybe<Scalars['DateTime']>;
   roles: Array<Role>;
   rolesCount: Scalars['Int'];
+  folders?: Maybe<Folder>;
 };
 
-/** Allowed column names for the `orderBy` argument on the query `workspaces`. */
-export enum WorkspacesOrderByColumn {
-  Name = 'NAME'
+export enum WorkspaceColumn {
+  Name = 'name',
+  CreatedAt = 'createdAt',
+  UpdatedAt = 'updatedAt',
+  DeletedAt = 'deletedAt'
 }
 
 /** Order by clause for the `orderBy` argument on the query `workspaces`. */
 export type WorkspacesOrderByOrderByClause = {
   /** The column that is used for ordering. */
-  field: WorkspacesOrderByColumn;
+  field: WorkspaceColumn;
   /** The direction that is used for ordering. */
   order: SortOrder;
 };
@@ -676,6 +811,33 @@ export type AddRoleMembersMutation = (
   & { addRoleMembers?: Maybe<(
     { __typename?: 'Role' }
     & Pick<Role, 'id'>
+  )> }
+);
+
+export type CreateFileMutationVariables = Exact<{
+  file: Scalars['Upload'];
+  data: CreateFileInput;
+}>;
+
+
+export type CreateFileMutation = (
+  { __typename?: 'Mutation' }
+  & { createFile?: Maybe<(
+    { __typename?: 'File' }
+    & Pick<File, 'id'>
+  )> }
+);
+
+export type CreateFolderMutationVariables = Exact<{
+  data: CreateFolderInput;
+}>;
+
+
+export type CreateFolderMutation = (
+  { __typename?: 'Mutation' }
+  & { createFolder?: Maybe<(
+    { __typename?: 'Folder' }
+    & Pick<Folder, 'id'>
   )> }
 );
 
@@ -731,7 +893,20 @@ export type CreateWorkspaceMutation = (
   { __typename?: 'Mutation' }
   & { createWorkspace?: Maybe<(
     { __typename?: 'Workspace' }
-    & Pick<Workspace, 'name'>
+    & Pick<Workspace, 'id' | 'name'>
+  )> }
+);
+
+export type DeleteFolderMutationVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type DeleteFolderMutation = (
+  { __typename?: 'Mutation' }
+  & { deleteFolder?: Maybe<(
+    { __typename?: 'Folder' }
+    & Pick<Folder, 'id'>
   )> }
 );
 
@@ -771,6 +946,19 @@ export type DeleteUserMutation = (
   & { deleteUser?: Maybe<(
     { __typename?: 'User' }
     & Pick<User, 'id'>
+  )> }
+);
+
+export type DeleteWorkspaceMutationVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type DeleteWorkspaceMutation = (
+  { __typename?: 'Mutation' }
+  & { deleteWorkspace?: Maybe<(
+    { __typename?: 'Workspace' }
+    & Pick<Workspace, 'id'>
   )> }
 );
 
@@ -836,6 +1024,20 @@ export type SyncRolePermissionsMutation = (
   & { syncRolePermissions?: Maybe<(
     { __typename?: 'Role' }
     & Pick<Role, 'id'>
+  )> }
+);
+
+export type UpdateFolderMutationVariables = Exact<{
+  id: Scalars['ID'];
+  data: UpdateFolderInput;
+}>;
+
+
+export type UpdateFolderMutation = (
+  { __typename?: 'Mutation' }
+  & { updateFolder?: Maybe<(
+    { __typename?: 'Folder' }
+    & Pick<Folder, 'id' | 'name' | 'updatedAt'>
   )> }
 );
 
@@ -925,6 +1127,48 @@ export type UpdateUserMutation = (
   & { updateUser?: Maybe<(
     { __typename?: 'User' }
     & Pick<User, 'id' | 'firstName' | 'lastName' | 'initials' | 'email' | 'street' | 'postcode' | 'city' | 'country'>
+  )> }
+);
+
+export type UpdateWorkspaceMutationVariables = Exact<{
+  id: Scalars['ID'];
+  data: UpdateWorkspaceInput;
+}>;
+
+
+export type UpdateWorkspaceMutation = (
+  { __typename?: 'Mutation' }
+  & { updateWorkspace?: Maybe<(
+    { __typename?: 'Workspace' }
+    & Pick<Workspace, 'id' | 'name'>
+  )> }
+);
+
+export type FilesQueryVariables = Exact<{
+  workspace_id: Scalars['ID'];
+  parent_id?: Maybe<Scalars['ID']>;
+}>;
+
+
+export type FilesQuery = (
+  { __typename?: 'Query' }
+  & { files: Array<(
+    { __typename?: 'File' }
+    & Pick<File, 'id' | 'uuid' | 'name' | 'size' | 'mimeType' | 'updatedAt'>
+  )> }
+);
+
+export type FoldersQueryVariables = Exact<{
+  workspace_id: Scalars['ID'];
+  parent_id?: Maybe<Scalars['ID']>;
+}>;
+
+
+export type FoldersQuery = (
+  { __typename?: 'Query' }
+  & { folders: Array<(
+    { __typename?: 'Folder' }
+    & Pick<Folder, 'id' | 'uuid' | 'name' | 'updatedAt'>
   )> }
 );
 
@@ -1069,9 +1313,22 @@ export type UsersQuery = (
   )> }
 );
 
+export type WorkspaceQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type WorkspaceQuery = (
+  { __typename?: 'Query' }
+  & { workspace?: Maybe<(
+    { __typename?: 'Workspace' }
+    & Pick<Workspace, 'id' | 'name'>
+  )> }
+);
+
 export type WorkspacesQueryVariables = Exact<{
   search?: Maybe<Scalars['String']>;
-  orderBy?: Maybe<Array<RolesOrderByOrderByClause>>;
+  orderBy?: Maybe<Array<WorkspacesOrderByOrderByClause>>;
 }>;
 
 

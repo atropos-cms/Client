@@ -8,6 +8,24 @@ declare module '*/addRoleMembers.graphql' {
 }
     
 
+declare module '*/createFile.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const createFile: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/createFolder.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const createFolder: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/createNavigationentry.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -44,6 +62,15 @@ declare module '*/createWorkspace.graphql' {
 }
     
 
+declare module '*/deleteFolder.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const deleteFolder: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/deleteNavigationentry.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -66,6 +93,15 @@ declare module '*/deleteUser.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const deleteUser: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/deleteWorkspace.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const deleteWorkspace: DocumentNode;
 
   export default defaultDocument;
 }
@@ -111,6 +147,15 @@ declare module '*/syncRolePermissions.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const syncRolePermissions: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/updateFolder.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const updateFolder: DocumentNode;
 
   export default defaultDocument;
 }
@@ -165,6 +210,33 @@ declare module '*/updateUser.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const updateUser: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/updateWorkspace.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const updateWorkspace: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/files.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Files: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/folders.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Folders: DocumentNode;
 
   export default defaultDocument;
 }
@@ -237,6 +309,15 @@ declare module '*/users.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const Users: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/workspace.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Workspace: DocumentNode;
 
   export default defaultDocument;
 }

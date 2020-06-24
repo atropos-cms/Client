@@ -30,7 +30,6 @@ import { OutputData } from '@editorjs/editorjs'
 import { Content } from '~/typescript/graphql'
 import Editor from '~/components/editors/default.vue'
 import savesModels from '~/mixins/savesModels.ts'
-import UPDATE_PAGE from '~/graphql/mutations/updatePage.graphql'
 import isForm from '~/mixins/isForm.ts'
 
 export default mixins(isForm, savesModels).extend({
@@ -57,7 +56,7 @@ export default mixins(isForm, savesModels).extend({
     async saveHandler () {
       const response = await this.$refs.editor.save() as OutputData
 
-      this.saveModel(UPDATE_PAGE, {
+      this.saveModel(require('~/graphql/mutations/updatePage.graphql'), {
         id: this.content.id,
         data: {
           body: JSON.stringify(response)

@@ -105,7 +105,6 @@ import Vue from 'vue'
 import createContent from '../-modals/create-content.vue'
 import { ContentType } from '~/typescript/graphql'
 import { Preset } from '~/components/dialogs/isDialog'
-import CREATE_NAVIGATIONENTRY from '~/graphql/mutations/createNavigationentry.graphql'
 
 export default Vue.extend({
   methods: {
@@ -117,7 +116,7 @@ export default Vue.extend({
         component: createContent,
         preset: Preset.Create,
         action: model => this.$apollo.mutate({
-          mutation: CREATE_NAVIGATIONENTRY,
+          mutation: require('~/graphql/mutations/createNavigationentry.graphql'),
           variables: {
             data: { ...model, type }
           }

@@ -1,4 +1,5 @@
 import ApolloClient from 'apollo-client'
+import { createUploadLink } from 'apollo-upload-client'
 import { GraphQLError } from 'graphql'
 import { onError } from 'apollo-link-error'
 import { BatchHttpLink } from 'apollo-link-batch-http'
@@ -15,12 +16,19 @@ const link = onError(({ graphQLErrors }) => {
   }
 })
 
-const cache = new InMemoryCache()
-const batchHttpLink = new BatchHttpLink({
+const httpOptions = {
   uri: 'http://tenant.atropos-server.test/graphql'
-})
+}
+
+const cache = new InMemoryCache()
+const httpLink = ApolloLink.split(
+  operation => operation.getContext().hasUpload,
+  createUploadLink(httpOptions),
+  new BatchHttpLink(httpOptions)
+)
+
 const apolloClient = new ApolloClient({
-  link: ApolloLink.from([link, batchHttpLink]),
+  link: ApolloLink.from([link, httpLink]),
   cache,
   defaultOptions: {
     watchQuery: {
