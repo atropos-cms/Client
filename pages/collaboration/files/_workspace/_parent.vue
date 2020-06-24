@@ -8,7 +8,7 @@
         @contentModified="contentModified"
       />
 
-      <v-spacer></v-spacer>
+      <v-spacer />
 
       <action-buttons
         v-if="workspace && hasSelection"
@@ -53,7 +53,9 @@
           <v-icon
             :color="mimeTypeColor(item)"
             class="mr-2"
-          >{{ mimeTypeIcon(item) }}</v-icon>
+          >
+            {{ mimeTypeIcon(item) }}
+          </v-icon>
           <span>{{ item.name }}</span>
           <span
             v-if="item.fileExtension"

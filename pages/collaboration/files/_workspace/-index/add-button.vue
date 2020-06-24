@@ -61,7 +61,8 @@
         type="file"
         style="display: none"
         multiple
-        @change="handleObjectChange">
+        @change="handleObjectChange"
+      >
     </form>
   </v-menu>
 </template>
