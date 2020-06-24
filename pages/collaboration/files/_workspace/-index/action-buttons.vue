@@ -54,8 +54,17 @@ export default Vue.extend({
   },
 
   methods: {
-    downloadSelected () {
+    async downloadSelected () {
+      const mutation = require('~/graphql/mutations/downloadFile.graphql')
 
+      const { data } = await this.$apollo.mutate({
+        mutation,
+        variables: {
+          id: this.firstSelected.id
+        }
+      })
+
+      location.href = (data.downloadFile.downloadLink)
     },
     async editSelected () {
       const mutation = (this.firstSelected.__typename === 'Folder')

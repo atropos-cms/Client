@@ -1,0 +1,5 @@
+mutation downloadFile($id: ID!) {
+  downloadFile(id: $id) {
+    downloadLink
+  }
+}
