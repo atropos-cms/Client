@@ -7,6 +7,7 @@ export default {
   },
   files: {
     workspaces: 'Workspaces',
+    workspaceInfo: 'Workspace info',
     viewWorkspace: 'View workspace',
     createWorkspace: 'Create Workspace',
     renameWorkspace: 'Rename Workspace',
@@ -16,6 +17,12 @@ export default {
     manageWorkspaceMembers: 'Manage members',
     workspaceEmpty: 'The workspace is currently empty',
     viewBin: 'View bin',
-    deleteWorkspace: 'Delete workspace'
+    roles: 'Roles',
+    findRole: 'Find role',
+    deleteWorkspace: 'Delete workspace',
+    actions: {
+      download: 'Download',
+      delete: 'Delete'
+    }
   }
 }

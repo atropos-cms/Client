@@ -5,6 +5,7 @@
         v-if="parameters"
         :workspace-id="parameters.workspace"
         :parent-id="parameters.parent"
+        @unselectAll="unselectAll"
         @contentModified="contentModified"
       />
 
@@ -48,6 +49,7 @@
         hide-default-footer
         @click:row="selectRow"
         @dblclick:row="openFileOrFolder"
+        class="unselectable"
       >
         <template v-slot:item.name="{ item }">
           <v-icon
@@ -78,9 +80,11 @@
 <script lang="ts">
 import mixins from 'vue-typed-mixins'
 import filesize from 'filesize'
+import { downloadFileOrFolder } from './-index/downloadFile'
 import addButton from './-index/add-button.vue'
 import actionButtons from './-index/action-buttons.vue'
 import mimeTypeIcons from './-index/mimeTypeIcons'
+import { Folder, File } from '~/typescript/graphql.ts'
 import dayjs from '~/utils/dayjs'
 
 export default mixins(mimeTypeIcons).extend({
@@ -168,7 +172,10 @@ export default mixins(mimeTypeIcons).extend({
     hasSelection () {
       return this.selected.length > 0
     },
-    filesAndFolders () {
+    firstSelected () : Folder | File {
+      return this.selected[0]
+    },
+    filesAndFolders () : (Folder | File)[] {
       const folders = this.folders || []
       const files = this.files || []
 
@@ -191,6 +198,9 @@ export default mixins(mimeTypeIcons).extend({
       return filesize(value)
     },
 
+    unselectAll () {
+      this.selected = []
+    },
     selectRow (_: any, { select }: any) {
       this.selected = []
       this.$nextTick(() => select(true))
@@ -199,6 +209,8 @@ export default mixins(mimeTypeIcons).extend({
       if (item.__typename === 'Folder') {
         this.$router.push(`/collaboration/files/${this.workspace.id}/${item.id}`)
       }
+
+      downloadFileOrFolder(this.$apollo, { file: this.firstSelected })
     }
   }
 })

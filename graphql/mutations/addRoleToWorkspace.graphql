@@ -1,0 +1,5 @@
+mutation addRoleToWorkspace($id: ID!, $roles: [ID!]!) {
+  addRoleToWorkspace(id: $id, roles: $roles) {
+    id
+  }
+}

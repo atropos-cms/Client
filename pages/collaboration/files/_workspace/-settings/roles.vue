@@ -1,7 +1,7 @@
 <template>
   <v-expansion-panel>
     <v-expansion-panel-header>
-      {{ $t('role.members') }}
+      {{ $t('collaboration.files.roles') }}
     </v-expansion-panel-header>
 
     <v-expansion-panel-content>
@@ -11,7 +11,7 @@
             fab
             left
             color="secondary"
-            @click="addMember"
+            @click="addRole"
           >
             <v-icon>mdi-plus</v-icon>
           </v-btn>
@@ -30,7 +30,7 @@
 
       <v-data-table
         :headers="headers"
-        :items="model.members"
+        :items="model.roles"
         :options.sync="options"
         :search="search"
         :footer-props="{ itemsPerPageOptions: [10, 50, 100] }"
@@ -39,7 +39,7 @@
         <template v-slot:item.action="{ item }">
           <v-icon
             small
-            @click="removeMember(item)"
+            @click="removeRole(item)"
           >
             delete
           </v-icon>
@@ -51,54 +51,52 @@
 
 <script lang="ts">
 import mixins from 'vue-typed-mixins'
-import addMemberDialog from '../-modals/add-member.vue'
+import addRoleDialog from '../../-modals/add-role.vue'
 import { i18n } from '~/plugins/vue-i18n'
 import isForm from '~/mixins/isClonedForm.ts'
 import savesModels from '~/mixins/savesModels.ts'
 import { Preset } from '~/components/dialogs/isDialog'
-import { User } from '~/typescript/graphql'
+import { Role } from '~/typescript/graphql'
 
 export default mixins(isForm, savesModels).extend({
   data: () => ({
     headers: [
-      { text: i18n.t('user.fullName'), value: 'fullName' },
-      { text: i18n.t('user.email'), value: 'email' },
+      { text: i18n.t('role.name'), value: 'name' },
       { text: i18n.t('general.actions'), value: 'action', align: 'right', sortable: false }
     ],
     search: '',
     options: {
-      sortBy: ['full_name'],
+      sortBy: ['name'],
       sortDesc: [false]
     }
   }),
 
   methods: {
-    async addMember () {
+    async addRole () {
       await this.$dialog({
-        title: this.$t('messages.addMemberToRoleTitle', this.model),
-        component: addMemberDialog,
+        title: this.$t('messages.addRoleToWorkspaceTitle', this.model),
+        component: addRoleDialog,
         preset: Preset.Save,
         action: model => this.$apollo.mutate({
-          mutation: require('~/graphql/mutations/addRoleMembers.graphql'),
+          mutation: require('~/graphql/mutations/addRoleToWorkspace.graphql'),
           variables: {
             id: this.model.id,
-            members: model.selected
+            roles: model.selected
           }
-        }).then(() => this.$emit('refreshRole'))
+        }).then(() => this.$emit('refreshWorkspace'))
       })
     },
-    async removeMember (user: User) {
+    async removeRole (role: Role) {
       await this.$confirm({
-        title: this.$t('messages.removeMemberFromRoleTitle', { full_name: user.fullName, name: this.model.name }),
-        message: this.$t('messages.removeMemberToRoleMessage', user),
+        title: this.$t('messages.removeRoleFromWorkspaceTitle', { role_name: role.name, name: this.model.name }),
         preset: Preset.Remove,
         action: () => this.$apollo.mutate({
-          mutation: require('~/graphql/mutations/removeRoleMembers.graphql'),
+          mutation: require('~/graphql/mutations/removeRoleFromWorkspace.graphql'),
           variables: {
             id: this.model.id,
-            members: [user.id]
+            roles: [role.id]
           }
-        }).then(() => this.$emit('refreshRole'))
+        }).then(() => this.$emit('refreshWorkspace'))
       })
     }
   }

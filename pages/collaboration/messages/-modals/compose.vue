@@ -2,10 +2,12 @@
   <div>
     <v-select
       v-model="model.recippients"
-      :items="items"
+      :items="roles.data"
       dense
       multiple
       chips
+      item-text="name"
+      :loading="$apollo.queries.roles.loading"
       :error-messages="$v('recippients', 'account.recippients')"
       :label="$t('collaboration.messages.recippients')"
     />
@@ -31,7 +33,32 @@ import isForm from '~/mixins/isForm.ts'
 
 export default mixins(isForm).extend({
   data: () => ({
-    items: ['Foo', 'Bar', 'Fizz', 'Buzz']
-  })
+    roles: {
+      paginatorInfo: {
+        total: 0
+      },
+      data: []
+    }
+  }),
+
+  apollo: {
+    roles: {
+      query: require('~/graphql/queries/roles.graphql'),
+      variables () {
+        const first = 1
+        const orderBy = [{
+          field: 'name',
+          order: 'DESC'
+        }]
+
+        return {
+          first,
+          orderBy,
+          page: 1
+        }
+      },
+      debounce: 200
+    }
+  }
 })
 </script>

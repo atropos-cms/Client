@@ -1,6 +1,8 @@
 export default {
   addMemberToRoleTitle: 'Add members to {name}',
-  removeMemberToRoleTitle: 'Remove member {fullName} from {name}',
+  addRoleToWorkspaceTitle: 'Add role to {name}',
+  removeMemberFromRoleTitle: 'Remove member {fullName} from {name}',
+  removeRoleFromWorkspaceTitle: 'Remove role {role_name} from {name}',
   removeMemberToRoleMessage: 'Member {fullName} won\'t receive emails from the role and might loos access to some resources.',
   createUserTitle: 'Create a new user',
   createRoleTitle: 'Create a new role',

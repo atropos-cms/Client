@@ -118,7 +118,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import manageMembers from '../-modals/manage-members.vue'
 import renameWorkspace from '../-modals/rename-workspace.vue'
 import { Workspace } from '~/typescript/graphql.ts'
 import { Preset } from '~/components/dialogs/isDialog'
@@ -136,26 +135,8 @@ export default Vue.extend({
     openWorkspace () {
       this.$router.push(`/collaboration/files/${this.workspace.id}`)
     },
-    async manageMembers () {
-      const title = this.$t('collaboration.files.manageWorkspaceMembers')
-
-      await this.$dialog({
-        title,
-        component: manageMembers,
-        preset: Preset.Save,
-        model: {
-          name: this.workspace.name
-        },
-        action: model => this.$apollo.mutate({
-          mutation: require('~/graphql/mutations/updateWorkspace.graphql'),
-          variables: {
-            id: this.workspace.id,
-            data: model
-          }
-        }).then(() => {
-          this.$emit('contentModified')
-        })
-      })
+    manageMembers () {
+      this.$router.push(`/collaboration/files/${this.workspace.id}/settings`)
     },
     async renameWorkspace () {
       const title = this.$t('collaboration.files.renameWorkspace')

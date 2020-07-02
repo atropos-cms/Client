@@ -1,0 +1,5 @@
+mutation removeRoleFromWorkspace($id: ID!, $roles: [ID!]!) {
+  removeRoleFromWorkspace(id: $id, roles: $roles) {
+    id
+  }
+}

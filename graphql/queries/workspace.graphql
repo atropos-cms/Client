@@ -2,5 +2,12 @@ query Workspace($id: ID!) {
   workspace(id: $id) {
     id
     name
+    createdAt
+    updatedAt
+
+    roles {
+      id
+      name
+    }
   }
 }
