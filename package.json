@@ -46,7 +46,7 @@
     "dayjs": "^1.8.28",
     "filesize": "^6.1.0",
     "graphql-tag": "^2.10.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "nuxt": "^2.13.2",
     "vue-i18n": "^8.18.2",
     "vue-typed-mixins": "^0.2.0",
